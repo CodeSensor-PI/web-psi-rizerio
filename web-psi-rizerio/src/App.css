@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/font/static/Montserrat-Regular.ttf');
+}
+
+:root {
+    --LightPurplePsi: #C5A8FA;
+    --PurplePsi: #643BA1;
+    --LightPinkPsi: #FFA5E3;
+    --PinkPsi: #F848B5;
+    --BeigePsi: #F0B3A1;
+    --WhitePsi: #F7F2EF;
+    --BlackPsi: #000000;
+    --TrueWhitePsi: #F8F8F8;
+    --GrayPsi: #D0CED0;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
