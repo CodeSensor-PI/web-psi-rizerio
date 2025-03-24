@@ -8,7 +8,7 @@ const Header = () => {
             <img src={Logo} alt="Logo JR"  id='logo_header' />
             <navbar className={styles.navbar} id='navbar'>
                 <ul>
-                    <li><a className='navbar-item' href="#home">Home</a></li>
+                    <li><a className='navbar-item' href="#">Home</a></li>
                     <li><a className='navbar-item' href="#sobre">Sobre a PsiRizerio</a></li>
                     <li><a className='navbar-item' href="#metodologias">Metodologias</a></li>
                     <li><a className='navbar-item' href="#planos">Planos</a></li>
