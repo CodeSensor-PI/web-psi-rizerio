@@ -1,6 +1,6 @@
-import Botao from '../../../components/botoes/Botao'
 import styles from '../banner/banner.module.css'
 import Foto from '../../../images/foto-psi-rizerio.png'
+import Botao from '../../../components/botoes/BotaoComponent'
 
 const Banner = () => {
     return (

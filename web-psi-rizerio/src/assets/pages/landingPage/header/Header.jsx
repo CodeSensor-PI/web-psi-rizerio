@@ -1,6 +1,6 @@
-import Botao from '../../../components/botoes/Botao';
 import styles from '../header/header.module.css'
 import Logo from '../../../images/SUBLOGO-04.png'
+import Botao from '../../../components/botoes/BotaoComponent';
 
 const Header = () => {
     return (
