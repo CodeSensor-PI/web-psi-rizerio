@@ -1,0 +1,13 @@
+.botaoIcone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--PurplePsi);
+    margin-bottom: 2%;
+    width: 150px;
+    transition: ease-in-out 0.3s;
+}

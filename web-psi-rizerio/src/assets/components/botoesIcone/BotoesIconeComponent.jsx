@@ -1,23 +1,31 @@
-// import styles from '../botoesIcone/botoesIcone.module.css'
+import styles from '../botoesIcone/botoesIcone.module.css'
 
-// function BotaoIcone({ texto, icon: Icon, onClick, disabled, style, width, height, color }) {
-//     return (
-//         <div className={styles.botoes}>
-//             <button
-//                 className={styles.button}
-//                 onClick={onClick}
-//                 disabled={disabled}
-//                 style={{
-//                     ...style,
-//                     width: width,
-//                     height: height,
-//                     backgroundColor: color,
-//                 }}>
-//                     {Icon && <Icon size={20} color="white" />}
-//                 {texto}
-//             </button>
-//         </div>
-//     );
-// }
+function BotaoIcone({ texto, Icon, onClick, disabled, style, width, height, backgroundColor, hoverTextColor, hover, hoverBackgroundColor}) {
+    return (
+        <div className={styles.botoes}>
+            <button
+                className={styles.botaoIcone}
+                onClick={onClick}
+                disabled={disabled}
+                style={{
+                    ...style,
+                    width,
+                    height,
+                    backgroundColor,
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = hoverBackgroundColor;
+                    e.target.style.color = hoverTextColor;
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = backgroundColor;
+                    e.target.style.color = "var(--PurplePsi)"
+                }}>
+                {texto}
+                    {Icon && <Icon className='w-[12%] h-[12%]' />}
+            </button>
+        </div>
+    );
+}
 
-// export default BotaoIcone
+export default BotaoIcone
