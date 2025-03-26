@@ -13,9 +13,18 @@ const Metodos = () => {
             />
 
             <div className={styles.cards}>
-                <Card/>
-                <Card/>
-                <Card/>
+                <Card
+                    titulo="Card 1"
+                    descricao="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor provident consectetur esse dolores facilis facere"
+                />
+                <Card
+                    titulo="Card 2"
+                    descricao="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor provident consectetur esse dolores facilis facere"
+                />
+                <Card
+                    titulo="Card 3"
+                    descricao="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor provident consectetur esse dolores facilis facere"
+                />
             </div>
 
             <div className="w-[14%]">
