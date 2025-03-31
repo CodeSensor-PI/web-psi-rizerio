@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.section_faq {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    background-color: var(--WhitePsi);
+}
+
+.acordeon {
+    border: blueviolet solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 2%;
+    width: 60%;
+    height: 75%;
+}
