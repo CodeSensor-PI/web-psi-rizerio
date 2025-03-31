@@ -5,7 +5,7 @@ import icone1 from '../../../../assets/react.svg'
 
 const Carreira = () => {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id='sobre'>
             <Titulo
                 titulo="SOBRE A PSIRIZERIO"
                 subtitulo="Carreira"

@@ -5,7 +5,7 @@ import Card from '../../../components/cards/CardComponent'
 
 const Metodos = () => {
     return (
-        <section className={styles.metodos}>
+        <section className={styles.metodos} id='metodologias'>
 
             <Titulo
                 titulo="METODOLOGIAS"
