@@ -1,6 +1,6 @@
 import styles from '../botoesIcone/botoesIcone.module.css'
 
-function BotaoIcone({ texto, Icon, onClick, disabled, style, width, height, backgroundColor, hoverTextColor, hover, hoverBackgroundColor}) {
+function BotaoIcone({ texto, Icon, onClick, disabled, style, width, height, backgroundColor, hoverTextColor, hoverBackgroundColor}) {
     return (
         <div className={styles.botoes}>
             <button

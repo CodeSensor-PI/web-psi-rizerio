@@ -1,6 +1,6 @@
 import styles from '../botoes/botao.module.css'
 
-function Botao({ texto, onClick, disabled, style, width, height, color }) {
+function Botao({ texto, onClick, disabled, style, width, height, backgroundColor, color, hoverTextColor, hoverBackgroundColor }) {
     return (
         <div className={styles.botoes}>
             <button
@@ -12,6 +12,14 @@ function Botao({ texto, onClick, disabled, style, width, height, color }) {
                     width: width,
                     height: height,
                     backgroundColor: color,
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = hoverBackgroundColor;
+                    e.target.style.color = hoverTextColor;
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = backgroundColor;
+                    e.target.style.color = color
                 }}>
                 {texto}
             </button>
