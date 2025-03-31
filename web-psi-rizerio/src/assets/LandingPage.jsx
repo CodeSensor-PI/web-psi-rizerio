@@ -1,4 +1,5 @@
 import Abordagem from "./pages/landingPage/abordagem/Abordagem"
+import Avaliacao from "./pages/landingPage/avaliacao/Avaliacao"
 import Banner from "./pages/landingPage/banner/Banner"
 import Carreira from "./pages/landingPage/carreira/Carreira"
 import Header from "./pages/landingPage/header/Header"
@@ -14,6 +15,7 @@ const LandingPage = () => {
             <Metodos/>
             <Abordagem/>
             <Planos/>
+            <Avaliacao/>
         </div>
     )
 }
