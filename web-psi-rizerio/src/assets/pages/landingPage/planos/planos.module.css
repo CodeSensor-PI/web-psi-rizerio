@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+.section_planos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--TrueWhitePsi);
+    height: 90vh;
+}
+
+.titulo_planos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    gap: 12%;
+    height: 30%;
+}
+
+.container_planos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+}
+
