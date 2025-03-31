@@ -1,3 +1,4 @@
+import Abordagem from "./pages/landingPage/abordagem/Abordagem"
 import Banner from "./pages/landingPage/banner/Banner"
 import Carreira from "./pages/landingPage/carreira/Carreira"
 import Header from "./pages/landingPage/header/Header"
@@ -10,6 +11,7 @@ const LandingPage = () => {
             <Banner/>
             <Carreira/>
             <Metodos/>
+            <Abordagem/>
         </div>
     )
 }
