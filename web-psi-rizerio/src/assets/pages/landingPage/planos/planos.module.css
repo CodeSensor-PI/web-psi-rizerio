@@ -5,7 +5,8 @@
     align-items: center;
     flex-direction: column;
     background-color: var(--TrueWhitePsi);
-    height: 90vh;
+    height: 95vh;
+    padding-top: 5%;
 }
 
 .titulo_planos {

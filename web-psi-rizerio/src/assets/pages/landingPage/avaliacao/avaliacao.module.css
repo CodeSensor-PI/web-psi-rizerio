@@ -7,7 +7,8 @@
     flex-direction: column;
     background-color: var(--WhitePsi);
     width: 100%;
-    height: 90vh;
+    height: 95vh;
+    padding-top: 3%;
 }
 
 .swiper_avaliacoes {

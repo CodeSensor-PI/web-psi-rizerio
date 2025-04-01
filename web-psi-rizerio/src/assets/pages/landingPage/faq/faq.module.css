@@ -5,8 +5,9 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: 90vh;
+    height: 98vh;
     background-color: var(--WhitePsi);
+    padding-top: 3%;
 }
 
 .acordeon {
