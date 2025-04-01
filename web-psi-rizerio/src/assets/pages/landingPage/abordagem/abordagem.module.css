@@ -21,7 +21,24 @@
 
 .botoes_abordagem {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 10%;
-    width: 70%;
+    width: 65%;
 }
+
+.botao_abordagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 45%;
+    background-color: transparent;
+    color: var(--PurplePsi);
+    transition: 0.3s ease-in-out;
+}
+
+.botao_abordagem:hover {
+    cursor: pointer;
+    color: var(--LightPurplePsi);
+}
+

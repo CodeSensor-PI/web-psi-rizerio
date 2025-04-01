@@ -1,6 +1,5 @@
 import styles from '../abordagem/abordagem.module.css'
 import Botao from '../../../components/botoes/BotaoComponent'
-import BotaoIcone from '../../../components/botoesIcone/BotoesIconeComponent'
 import Titulo from '../../../components/titulo/TituloComponent'
 import { FaArrowRight } from 'react-icons/fa'
 
@@ -25,14 +24,9 @@ const Abordagem = () => {
                             width='150px'
                             height='40px'
                         />
-                        <BotaoIcone
-                            texto='Fazer Login'
-                            width='150px'
-                            height='40px'
-                            color='var(--PurplePsi)'
-                            backgroundColor='transparent'
-                            border='var(--PurplePsi)'
-                        />
+                        <button className={styles.botao_abordagem}>
+                            Fazer Login <FaArrowRight className='w-[30%] h-[50%]' />
+                        </button>
                     </div>
                 </div>
             </section>

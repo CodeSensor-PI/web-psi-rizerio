@@ -1,4 +1,3 @@
-import BotaoIcone from '../botoesIcone/botoesIconeComponent'
 import styles from '../cards/card.module.css'
 import { FaArrowRight } from 'react-icons/fa'
 
@@ -10,13 +9,9 @@ function Card(props) {
                 <h3 className='font-semibold'>{props.titulo}</h3>
                 <span className='font-semibold'>{props.descricao}</span>
             </div>
-            <div className={styles.botao}>
-                <BotaoIcone
-                    texto="Saiba Mais"
-                    hoverTextColor="var(--LightPurplePsi)"
-                    Icon={FaArrowRight}
-                />
-            </div>
+            <button className={styles.botao}>
+                Saiba Mais <FaArrowRight className='w-[20%] h-[60%]'/>
+            </button>
         </article>
     )
 }

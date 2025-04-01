@@ -23,5 +23,17 @@
 }
 
 .botao {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    height: 10%;
+    color: var(--PurplePsi);
+    transition: 0.3s ease-in-out;
+}
+
+.botao:hover {
+    cursor: pointer;
+    color: var(--LightPurplePsi);
 }
