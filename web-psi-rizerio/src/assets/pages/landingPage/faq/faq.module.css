@@ -10,7 +10,6 @@
 }
 
 .acordeon {
-    border: blueviolet solid;
     display: flex;
     justify-content: space-around;
     align-items: center;
