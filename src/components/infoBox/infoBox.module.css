@@ -1,0 +1,13 @@
+@import url('tailwindcss');
+
+.card {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 18%;
+    height: 60%;
+}
+
+

@@ -1,0 +1,21 @@
+.component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100px;
+}
+
+.titulo {
+    color: var(--PurplePsi);
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.subtitulo {
+    color: var(--BlackPsi);
+    font-size: x-large;
+    font-weight: bold;
+}
