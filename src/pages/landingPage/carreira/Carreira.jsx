@@ -1,0 +1,35 @@
+import InfoBox from '../../../components/infoBox/InfoBoxComponent'
+import Titulo from '../../../components/titulo/TituloComponent'
+import styles from './carreira.module.css'
+import icone1 from '../../../assets/images/react.svg'
+
+const Carreira = () => {
+    return (
+        <section className={styles.section} id='sobre'>
+            <Titulo
+                titulo="SOBRE A PSIRIZERIO"
+                subtitulo="Carreira"
+            />
+            <div className={styles.cards}>
+                <InfoBox
+                    icone={icone1}
+                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                />
+                <InfoBox
+                    icone={icone1}
+                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                />
+                <InfoBox
+                    icone={icone1}
+                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                />
+                <InfoBox
+                    icone={icone1}
+                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                />
+            </div>
+        </section>
+    )
+}
+
+export default Carreira
