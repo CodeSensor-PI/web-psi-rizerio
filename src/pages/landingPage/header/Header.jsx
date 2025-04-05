@@ -3,6 +3,11 @@ import Logo from '../../../assets/images/SUBLOGO-04.png'
 import Botao from '../../../components/botoes/BotaoComponent';
 
 const Header = () => {
+
+const handleLoginRedirect = () => {
+    window.location.href = '/login'
+}
+
     return (
         <header className={styles.header} id="header">
             <img src={Logo} alt="Logo JR"  id='logo_header' />
@@ -16,7 +21,7 @@ const Header = () => {
                     <li><a className='navbar-item' href="#faq">FAQ</a></li>
                 </ul>
             </navbar>
-            <div className={styles.botoes} id='botoes'>
+            <div className={styles.botoes} onClick={handleLoginRedirect} id='botoes'>
                 <Botao
                 texto="Entrar"/>
             </div>

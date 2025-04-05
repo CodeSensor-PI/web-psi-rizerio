@@ -4,7 +4,12 @@ import Titulo from '../../../components/titulo/TituloComponent'
 import { FaArrowRight } from 'react-icons/fa'
 
 const Abordagem = () => {
-    return (
+
+    const handleLoginRedirect = () => {
+        window.location.href = '/login'
+    }
+    
+    return (    
         <>
             <section className={styles.abordagem}>
                 <img src="https://placehold.co/500x500" className='h-[80%]' alt="Foto sobre abordagem ACP" />
@@ -24,7 +29,7 @@ const Abordagem = () => {
                             width='150px'
                             height='40px'
                         />
-                        <button className={styles.botao_abordagem}>
+                        <button className={styles.botao_abordagem} onClick={handleLoginRedirect} >
                             Fazer Login <FaArrowRight className='w-[30%] h-[50%]' />
                         </button>
                     </div>
