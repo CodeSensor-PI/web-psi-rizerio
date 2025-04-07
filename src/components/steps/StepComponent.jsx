@@ -1,0 +1,35 @@
+import styles from './step.module.css';
+
+const steps = ['Dados Pessoais', 'Localidade', 'Contato', 'Conclusão'];
+
+const StepComponent = ({ stepAtual }) => {
+    return (
+        <div className={styles.step_component}>
+            {steps.map((label, index) => {
+                const numeroEtapa = index + 1;
+                const ativo = stepAtual === numeroEtapa;
+                const completo = stepAtual > numeroEtapa;
+
+                return (
+                    <div className={styles.step_wrapper} key={index}>
+                        {index !== 0 && (
+                            <div
+                                className={`${styles.line} ${stepAtual >= numeroEtapa ? styles.line_completed : ''
+                                    }`}
+                            />
+                        )}
+                        <div
+                            className={`${styles.circle} ${completo ? styles.completed : ''
+                                } ${ativo ? styles.active : ''}`}
+                        >
+                            {numeroEtapa}/4
+                        </div>
+                        <span className={styles.label}>{label}</span>
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
+export default StepComponent;

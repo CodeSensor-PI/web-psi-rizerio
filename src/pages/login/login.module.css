@@ -3,29 +3,35 @@ body {
     padding: 0;
     background-color: var(--PurplePsi);
 }
+
 .login {
     display: flex;
     height: 100vh;
     width: 100vw;
     background-color: var(--PurplePsi);
-    background: url('../../images/ICONE-03.png') no-repeat center center fixed;
-    background-position: 10% 50%; 
+    background: url('../../assets/images/ICONE-06.png') no-repeat center center fixed;
+    background-position: 10% 50%;
     background-size: cover;
     padding: 0 4em;
     justify-content: end;
     align-items: center;
+
+    span {
+        font-size: 12px;
+        color: #001D6C;
+    }
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 90%;
-  width: 40vw;
-  gap: 1em;
-  padding: 5vw;
-  background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+    width: 40vw;
+    gap: 1em;
+    padding: 5vw;
+    background-color: #fff;
 }
 
 
@@ -55,27 +61,9 @@ body {
     gap: 16px;
 }
 
-span {
-    font-size: 12px;
-    color: #001D6C;
-}
 
 .frase {
     color: #697077;
-}
-
-.entrar {
-    cursor: pointer;
-    background-color: var(--PurplePsi);
-    border-radius: 24px;
-    color: #fff; 
-    height: 2.7em;
-    transition: ease-in-out 0.3s;
-}
-
-.entrar:hover {
-    background-color: #6c0aa1;
-    color: white;
 }
 
 .esqSenha {

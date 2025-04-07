@@ -3,6 +3,11 @@ import Botao from '../botoes/BotaoComponent'
 import Titulo from '../titulo/TituloComponent'
 
 function CardPlanos(props) {
+
+    const handleLoginRedirect = () => {
+        window.location.href = '/login'
+    }
+
     return (
         <article className={styles.planos}>
             <Titulo
@@ -11,9 +16,11 @@ function CardPlanos(props) {
             <span className='text-center'>{props.descricao}</span>
 
             <h1 className='text-[3em] font-bold'>{props.preco}</h1>
-            <Botao
-                texto="Ingressar"
-            />
+            <div onClick={handleLoginRedirect}>
+                <Botao
+                    texto="Ingressar"
+                />
+            </div>
         </article>
     )
 }
