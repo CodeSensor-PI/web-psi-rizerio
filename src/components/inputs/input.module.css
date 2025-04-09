@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+.input_container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 30%;
+    gap: 10px;
+}
+
+input {
+    border: var(--PurplePsi) 3px solid;
+    border-radius: 20px;
+    background-color: var(--TrueWhitePsi);
+    height: 50%;
+}
