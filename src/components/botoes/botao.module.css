@@ -16,6 +16,6 @@
 .button:hover {
     cursor: pointer;
     background-color: var(--TrueWhitePsi);
-    color: var(--BlackPsi);
-
+    color: var(--PurplePsi);
+    font-weight: bold;
 }
