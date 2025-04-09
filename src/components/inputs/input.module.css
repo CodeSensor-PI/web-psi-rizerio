@@ -6,11 +6,22 @@
     width: 40%;
     height: 30%;
     gap: 10px;
+
+    input {
+        border: var(--LightPurplePsi) 3px solid;
+        border-radius: 20px;
+        background-color: var(--TrueWhitePsi);
+        height: 40%;
+        width: 100%;
+        padding-left: 0.7em;
+    }
+    
+    label{
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: start;
+        width: 100%;
+    }
 }
 
-input {
-    border: var(--PurplePsi) 3px solid;
-    border-radius: 20px;
-    background-color: var(--TrueWhitePsi);
-    height: 50%;
-}
+
