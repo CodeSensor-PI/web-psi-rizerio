@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+.botao_salvar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--PurplePsi);
+    border: var(--PurplePsi) solid 2px;
+    border-radius: 12px;
+    width: 23%;
+    height: 45px;
+    color: var(--TrueWhitePsi);
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.botao_salvar:hover {
+    cursor: pointer;
+    background-color: var(--TrueWhitePsi);
+    color: var(--PurplePsi);
+}
