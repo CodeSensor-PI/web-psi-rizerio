@@ -28,3 +28,18 @@ html, body {
     scroll-behavior: smooth;
     box-sizing: border-box;
 }
+
+.swal-small {
+    font-size: 10px;
+    padding: 10px;
+  }
+  
+  .swal-medium {
+    font-size: 16px;
+    padding: 20px;
+  }
+  
+  .swal-large {
+    font-size: 20px;
+    padding: 30px;
+  }
