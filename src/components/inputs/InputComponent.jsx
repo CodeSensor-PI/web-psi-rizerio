@@ -5,10 +5,10 @@ function InputComponent(props) {
         <div className={styles.input_container}>
             <label className='font-bold'>{props.label}</label>
             <input
+                className={props.width}
                 type={props.type}
                 onChange={props.onChange}
                 placeholder={props.placeholder}
-                width={props.width}
             />
         </div>
     );

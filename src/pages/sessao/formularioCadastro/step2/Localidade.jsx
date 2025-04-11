@@ -6,19 +6,21 @@ import StepComponent from '../../../../components/steps/StepComponent';
 
 const Localidade = () => {
     return (
-        <>  
+        <>
             <HeaderDash showSettingsIcon={false} />
-            <StepComponent stepAtual={2} />
             <section className={styles.localidade}>
-                <MainComponent caminhoTela={"/forms/contato"}>
+            <StepComponent stepAtual={2} />
+                <MainComponent caminhoTela={"/forms/contato"} showBackItem={true}>
                     <div className={styles.inputs_content_localidade}>
                         <Input
+                            width="w-[40%]"
                             label="CEP"
                             type="number"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="00000-000"
                         />
                         <Input
+                            width="w-[50%]"
                             label="Logradouro"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
