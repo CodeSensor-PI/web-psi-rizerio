@@ -9,3 +9,12 @@
     height: 92vh;
     background-color: var(--TrueWhitePsi);
 }
+
+.inputs_content_dados {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
