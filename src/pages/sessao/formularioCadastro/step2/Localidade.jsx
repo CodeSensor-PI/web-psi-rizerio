@@ -13,20 +13,21 @@ const Localidade = () => {
                 <MainComponent caminhoTela={"/forms/contato"} showBackItem={true}>
                     <div className={styles.inputs_content_localidade}>
                         <Input
-                            width="w-[40%]"
+                            width="w-[20%]"
                             label="CEP"
                             type="number"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="00000-000"
                         />
                         <Input
-                            width="w-[50%]"
+                            width="w-[40%]"
                             label="Logradouro"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="Rua, Avenida, Estrada"
                         />
                         <Input
+                            width="w-[30%]"
                             label="Bairro"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
