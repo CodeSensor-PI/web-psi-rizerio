@@ -10,9 +10,10 @@ const DadosPessoais = () => {
             <HeaderDash showSettingsIcon={false} />
             <section className={styles.dados_pessoais}>
                 <StepComponent stepAtual={1} />
-                <MainComponent showBackItem={false} caminhoTela={"/forms/localidade"}>
+                <MainComponent stepAtual={1} showBackItem={false} caminhoTela={"/forms/localidade"}>
                     <div className={styles.inputs_content_dados}>
                         <Input className="flex-col"
+                            height="h-[50%]"
                             label="Quando você nasceu"
                             type="date"
                             onChange={(e) => console.log(e.target.value)}

@@ -9,53 +9,57 @@ const Localidade = () => {
         <>
             <HeaderDash showSettingsIcon={false} />
             <section className={styles.localidade}>
-            <StepComponent stepAtual={2} />
-                <MainComponent caminhoTela={"/forms/contato"} showBackItem={true}>
+                <StepComponent stepAtual={2} />
+                <MainComponent stepAtual={2} caminhoTela={"/forms/contato"} showBackItem={true}>
                     <div className={styles.inputs_content_localidade}>
                         <Input
-                            width="w-[20%]"
+                            width="w-[15%]"
                             label="CEP"
                             type="number"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="00000-000"
                         />
                         <Input
-                            width="w-[40%]"
+                            width="w-[35%]"
                             label="Logradouro"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="Rua, Avenida, Estrada"
                         />
                         <Input
-                            width="w-[30%]"
+                            width="w-[20%]"
                             label="Bairro"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="Insira seu bairro"
                         />
                         <Input
+                            width="w-[23%]"
                             label="Cidade"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="Insira sua cidade"
                         />
                         <Input
+                            width="w-[20%]"
                             label="Estado"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="Insira seu estado"
                         />
                         <Input
+                            width="w-[25%]"
                             label="Número"
                             type="number"
                             onChange={(e) => console.log(e.target.value)}
-                            placeholder="Insira o número da residência"
+                            placeholder="Insira o número"
                         />
                         <Input
+                            width="w-[30%]"
                             label="Complemento"
                             type="text"
                             onChange={(e) => console.log(e.target.value)}
-                            placeholder="Insira o complemento da residência"
+                            placeholder="Insira o complemento"
                         />
                     </div>
                 </MainComponent>
