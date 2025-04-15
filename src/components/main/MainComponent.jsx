@@ -2,15 +2,31 @@ import styles from './main.module.css';
 import { IoIosArrowBack } from "react-icons/io";
 import Titulo from '../titulo/TituloComponent';
 import BotaoSalvar from '../botaoSalvar/BotaoSalvarComponent';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function MainComponent({ children, showBackItem, caminhoTela }) {
+const stepBackRoutes = {
+    1: '/forms',
+    2: '/forms/localidade',
+    3: '/forms/contato',
+};
+
+function MainComponent({ children, showBackItem, caminhoTela, stepAtual }) {
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        const previousPath = stepBackRoutes[stepAtual];
+        if (previousPath) {
+            navigate(previousPath);
+        } else {
+            console.warn('Step inválido ou rota de retorno não definida!');
+        }
+    };
+
     return (
         <section className={styles.main_component}>
             {showBackItem && (
-                <button className={styles.seta_voltar}>
-                    <IoIosArrowBack>
-                    </IoIosArrowBack>
+                <button className={styles.seta_voltar} onClick={handleBackClick}>
+                    <IoIosArrowBack />
                     Voltar
                 </button>
             )}
