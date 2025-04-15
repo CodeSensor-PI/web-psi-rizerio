@@ -5,9 +5,9 @@ import BotaoSalvar from '../botaoSalvar/BotaoSalvarComponent';
 import { Link, useNavigate } from 'react-router-dom';
 
 const stepBackRoutes = {
-    1: '/forms',
-    2: '/forms/localidade',
-    3: '/forms/contato',
+    2: '/forms',
+    3: '/forms/localidade',
+    4: '/forms/contato',
 };
 
 function MainComponent({ children, showBackItem, caminhoTela, stepAtual }) {
@@ -15,11 +15,7 @@ function MainComponent({ children, showBackItem, caminhoTela, stepAtual }) {
 
     const handleBackClick = () => {
         const previousPath = stepBackRoutes[stepAtual];
-        if (previousPath) {
-            navigate(previousPath);
-        } else {
-            console.warn('Step inválido ou rota de retorno não definida!');
-        }
+        navigate(previousPath);
     };
 
     return (
