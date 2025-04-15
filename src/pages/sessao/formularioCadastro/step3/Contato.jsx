@@ -2,7 +2,9 @@ import HeaderDash from '../../../../components/headerDash/HeaderDashComponent';
 import Input from '../../../../components/inputs/InputComponent';
 import MainComponent from '../../../../components/main/MainComponent';
 import StepComponent from '../../../../components/steps/StepComponent';
-import styles from '../step3/contato.module.CSS';
+import styles from '../step3/contato.module.css';
+import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
+import { Link } from 'react-router-dom'
 
 const Contato = () => {
     return (
@@ -26,6 +28,14 @@ const Contato = () => {
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="(00)00000-0000"
                         />
+                    </div>
+                    <div className={styles.div_botao}>
+                        <Link to="/forms/conclusao">
+                            <BotaoSalvar
+                                texto="Salvar e Continuar"
+                                onClick={() => console.log("Botão clicado")}
+                            />
+                        </Link>
                     </div>
                 </MainComponent>
 

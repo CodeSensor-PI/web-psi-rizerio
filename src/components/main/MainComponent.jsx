@@ -1,8 +1,7 @@
 import styles from './main.module.css';
 import { IoIosArrowBack } from "react-icons/io";
 import Titulo from '../titulo/TituloComponent';
-import BotaoSalvar from '../botaoSalvar/BotaoSalvarComponent';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const stepBackRoutes = {
     2: '/forms',
@@ -10,7 +9,7 @@ const stepBackRoutes = {
     4: '/forms/contato',
 };
 
-function MainComponent({ children, showBackItem, caminhoTela, stepAtual }) {
+function MainComponent({ children, showBackItem, stepAtual }) {
     const navigate = useNavigate();
 
     const handleBackClick = () => {
@@ -31,14 +30,6 @@ function MainComponent({ children, showBackItem, caminhoTela, stepAtual }) {
                 <div className={styles.inputs_box}>
                     {children}
                 </div>
-            </div>
-            <div className={styles.div_botao}>
-                <Link to={caminhoTela}>
-                    <BotaoSalvar
-                        texto="Salvar e Continuar"
-                        onClick={() => console.log("Botão clicado")}
-                    />
-                </Link>
             </div>
         </section>
     );

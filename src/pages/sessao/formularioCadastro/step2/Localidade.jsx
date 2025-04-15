@@ -3,6 +3,8 @@ import HeaderDash from '../../../../components/headerDash/HeaderDashComponent';
 import MainComponent from '../../../../components/main/MainComponent';
 import Input from '../../../../components/inputs/InputComponent';
 import StepComponent from '../../../../components/steps/StepComponent';
+import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
+import { Link } from 'react-router-dom'
 
 const Localidade = () => {
     return (
@@ -61,6 +63,14 @@ const Localidade = () => {
                             onChange={(e) => console.log(e.target.value)}
                             placeholder="Insira o complemento"
                         />
+                    </div>
+                    <div className={styles.div_botao}>
+                        <Link to="/forms/contato">
+                            <BotaoSalvar
+                                texto="Salvar e Continuar"
+                                onClick={() => console.log("Botão clicado")}
+                            />
+                        </Link>
                     </div>
                 </MainComponent>
 
