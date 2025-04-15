@@ -12,7 +12,7 @@ const Contato = () => {
             <HeaderDash showSettingsIcon={false} />
             <section className={styles.contato}>
                 <StepComponent stepAtual={3} />
-                <MainComponent stepAtual={3} caminhoTela={"/forms/conclusao"} showBackItem={true}>
+                <MainComponent stepAtual={3} showBackItem={true}>
                     <div className={styles.inputs_content_contato}>
                         <Input
                             width="w-[40%]"

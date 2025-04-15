@@ -12,7 +12,7 @@ const Localidade = () => {
             <HeaderDash showSettingsIcon={false} />
             <section className={styles.localidade}>
                 <StepComponent stepAtual={2} />
-                <MainComponent stepAtual={2} caminhoTela={"/forms/contato"} showBackItem={true}>
+                <MainComponent stepAtual={2} showBackItem={true}>
                     <div className={styles.inputs_content_localidade}>
                         <Input
                             width="w-[15%]"

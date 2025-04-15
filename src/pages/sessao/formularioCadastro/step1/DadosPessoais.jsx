@@ -13,7 +13,7 @@ const DadosPessoais = () => {
             <HeaderDash showSettingsIcon={false} />
             <section className={styles.dados_pessoais}>
                 <StepComponent stepAtual={1} />
-                <MainComponent stepAtual={1} showBackItem={false} caminhoTela={"/forms/localidade"}>
+                <MainComponent stepAtual={1} showBackItem={false}>
                     <div className={styles.inputs_content_dados}>
                         <Input className="flex-col"
                             height="h-[50%]"
