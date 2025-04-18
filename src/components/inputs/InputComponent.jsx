@@ -6,8 +6,13 @@ function InputComponent(props) {
             <label className='font-bold'>{props.label}</label>
             <input
                 type={props.type}
+                name={props.name}
+                value={props.value}
                 onChange={props.onChange}
+                onKeyUp={props.onKeyUp}
                 placeholder={props.placeholder}
+                max={props.max}
+                onBlur={props.onBlur}
             />
         </div>
     );
