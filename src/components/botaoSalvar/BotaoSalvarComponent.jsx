@@ -5,7 +5,8 @@ function BotaoSalvar(props) {
     return (
         <button className={styles.botao_salvar}
             onClick={props.onClick}
-            width={props.width}>
+            width={props.width}
+            backgroundColor={props.backgroundColor}>
             <RiSave2Line className='w-[10%] h-[100%]'/> {props.texto}
         </button>
 
