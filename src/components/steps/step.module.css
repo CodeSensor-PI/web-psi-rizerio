@@ -28,6 +28,7 @@
     height: 6px;
     background-color: var(--LightPurplePsi);
     z-index: 0;
+    transition: background-color 0.4s ease-in-out;
 }
 
 .line_completed {
@@ -46,11 +47,13 @@
     font-size: 18px;
     font-weight: bold;
     z-index: 1;
-    transition: 0.3s ease-in-out;
+    transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .active {
     background-color: var(--PurplePsi);
+    transform: scale(1.1);
+    box-shadow: 0 0 12px var(--LightPurplePsi);
 }
 
 .completed {

@@ -1,0 +1,34 @@
+@import 'tailwindcss';
+
+.conclusao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 92vh;
+    background-color: var(--TrueWhitePsi);
+
+     textarea {
+        border: var(--PurplePsi) 3px solid;
+        border-radius: 20px;
+        background-color: var(--TrueWhitePsi);
+        height: 50%;
+        width: 50%;
+        max-width: 100%;
+        padding-left: 1em;
+        padding: 1em;
+        resize: both;
+    }
+
+}
+
+.inputs_content_conclusao {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3%;
+    width: 80%;
+    height: 40vh;
+}
