@@ -1,21 +1,21 @@
 @import 'tailwindcss';
 
-.dados_pessoais {
+.contato {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 92vh;
     background-color: var(--TrueWhitePsi);
 }
 
-.inputs_content_dados {
+.inputs_content_contato {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 70%;
-    height: 20em;
-    margin-top: 5%;
+    margin-top: 3%;
+    width: 80%;
+    height: 40vh;
 }

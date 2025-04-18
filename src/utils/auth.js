@@ -1,7 +1,6 @@
 import { errorMessage } from "./alert.js";
 
 export function autenticateUser(email, password) {
-  
   // Verifica se os campos estão vazios
   if (email.trim() === "" || password.trim() === "") {
     errorMessage(`Você não pode ter campos vazios!`);
@@ -26,4 +25,5 @@ export function autenticateUser(email, password) {
 
   // Se todas as validações passarem, retorna true
   return true;
+
 }

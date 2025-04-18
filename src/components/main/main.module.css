@@ -2,13 +2,13 @@
 
 .main_component {
     display: flex;
-    justify-content: start;
+    justify-content: space-around;
     flex-direction: column;
     width: 80%;
     height: 80%;
     border: var(--LightPurplePsi) solid 2px;
     border-radius: 24px;
-    gap: 3%;
+    gap: 1em;
 }
 
 .seta_voltar {
@@ -16,9 +16,9 @@
     justify-content: start;
     align-items: center;
     flex-direction: row;
-    padding: 2%;
+    padding: 0.3em;
     width: 10%;
-    height: 5%;
+    height: fit-content;
     transition: 0.3s ease-in-out;
 }
 
@@ -27,26 +27,11 @@
     color: var(--LightPurplePsi);
 }
 
-.inputs_content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 70%;
-}
-
 .inputs_box {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 80%;
-    height: 80%;
+    width: 100%;
 }
 
-.div_botao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
