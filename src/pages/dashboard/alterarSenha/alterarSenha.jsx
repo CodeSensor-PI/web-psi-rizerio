@@ -8,7 +8,7 @@ import InputComponent from '../../../components/inputs/InputComponent';
 
 const AlterarSenha = () => {
     return (
-        <div>
+        <div className={styles.div_alterar_senha}>
             <HeaderDash showSettingsIcon={true} />
             <div className={styles.container}>
                 <div className={styles.box_inputs}>
@@ -16,7 +16,7 @@ const AlterarSenha = () => {
                         <Titulo titulo="Atualizar Senha"></Titulo>
                     </div>
 
-                    <div className={styles.input}>
+                    <div className={styles.inputs}>
                         <InputComponent label={"Senha Atual:"} type="password" onChange="" placeholder="Insira sua senha atual"/>
                         <InputComponent label={"Nova Senha:"} type="password" onChange="" placeholder="Insira sua nova senha"/>
                         <InputComponent label={"Confirmar Senha:"} type="password" placeholder="Confirme sua nova senha"/>

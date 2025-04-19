@@ -20,7 +20,7 @@ function App() {
             <Route path='/forms/localidade' element={<Localidade/>} />
             <Route path='/forms/contato' element={<Contato/>} />
             <Route path='/forms/conclusao' element={<Conclusao/>} />
-            <Route path='/alterarSenha' element={<AlterarSenha/>} />
+            <Route path='/dashboard/alterarSenha' element={<AlterarSenha/>} />
           </Routes>
         </BrowserRouter>
       </div>

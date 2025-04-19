@@ -8,11 +8,13 @@
     background-color: var(--PurplePsi);
     border: var(--PurplePsi) solid 2px;
     border-radius: 12px;
-    height: 45px;
+    height: 2em;
     color: var(--TrueWhitePsi);
     transition: 0.3s ease-in-out;
     font-weight: bold;
     font-size: larger;
+    width: fit-content;
+    padding: 1em;
 }
 
 .botao_salvar:hover {

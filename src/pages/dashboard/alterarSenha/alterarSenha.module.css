@@ -5,7 +5,7 @@
     font-size: 2rem;
 }
 
-body {
+.div_alterar_senha {
     background-color: var(--WhitePsi);
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
@@ -35,7 +35,7 @@ body {
     gap: 2em;
 }
 
-.input {
+.inputs {
     display: flex;
     flex-direction: column;
     justify-content: center;
