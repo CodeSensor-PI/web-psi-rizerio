@@ -1,4 +1,4 @@
-import styles from '../step2/localidade.module.css';
+import styles from './localidade.module.css';
 import HeaderDash from '../../../../components/headerDash/HeaderDashComponent';
 import MainComponent from '../../../../components/main/MainComponent';
 import Input from '../../../../components/inputs/InputComponent';

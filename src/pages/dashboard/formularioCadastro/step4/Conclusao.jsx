@@ -1,7 +1,7 @@
 import HeaderDash from '../../../../components/headerDash/HeaderDashComponent';
 import MainComponent from '../../../../components/main/MainComponent';
 import StepComponent from '../../../../components/steps/StepComponent';
-import styles from '../step4/conclusao.module.css';
+import styles from './conclusao.module.css';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
 import { useState } from 'react'
 import { errorMessage } from "../../../../utils/alert";

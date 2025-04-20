@@ -2,7 +2,7 @@ import HeaderDash from '../../../../components/headerDash/HeaderDashComponent';
 import Input from '../../../../components/inputs/InputComponent';
 import MainComponent from '../../../../components/main/MainComponent';
 import StepComponent from '../../../../components/steps/StepComponent';
-import styles from '../step3/contato.module.css';
+import styles from './contato.module.css';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
