@@ -13,6 +13,7 @@ function InputComponent(props) {
                 placeholder={props.placeholder}
                 max={props.max}
                 onBlur={props.onBlur}
+                required={props.required}
             />
         </div>
     );
