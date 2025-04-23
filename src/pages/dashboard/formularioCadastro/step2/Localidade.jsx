@@ -68,7 +68,7 @@ const Localidade = () => {
             errorMessage("Preencha todos os campos para prosseguir.")
             return
         }
-        navigate('/forms/contato')
+        navigate('/dashboard/forms/contato')
     }
 
     return (
@@ -87,6 +87,7 @@ const Localidade = () => {
                             onChange={handleCepChange}
                             onBlur={handleBuscarEndereco}
                             placeholder="00000-000"
+                            required={true}
                         />
                         <Input
                             name="logradouro"
@@ -96,6 +97,8 @@ const Localidade = () => {
                             type="text"
                             onChange={(e) => setLogradouro(e.target.value)}
                             placeholder="Rua, Avenida, Estrada"
+                            required={true}
+
                         />
                         <Input
                             name="bairro"
@@ -105,6 +108,7 @@ const Localidade = () => {
                             type="text"
                             onChange={(e) => setBairro(e.target.value)}
                             placeholder="Insira seu bairro"
+                            required={true}
                         />
                         <Input
                             name="cidade"
@@ -114,6 +118,7 @@ const Localidade = () => {
                             type="text"
                             onChange={(e) => setCidade(e.target.value)}
                             placeholder="Insira sua cidade"
+                            required={true}
                         />
                         <Input
                             name="estado"
@@ -123,6 +128,7 @@ const Localidade = () => {
                             type="text"
                             onChange={(e) => setEstado(e.target.value)}
                             placeholder="Insira seu estado"
+                            required={true}
                         />
                         <Input
                             name="numero"
@@ -131,6 +137,7 @@ const Localidade = () => {
                             type="number"
                             onChange={(e) => setNumero(e.target.value)}
                             placeholder="Insira o número"
+                            required={true}
                         />
                         <Input
                             name="complemento"
@@ -139,6 +146,7 @@ const Localidade = () => {
                             type="text"
                             onChange={(e) => setComplemento(e.target.value)}
                             placeholder="Insira o complemento"
+                            required={false}
                         />
                     </div>
                     {erro && <p className='text-red-500'>{erro}</p>}

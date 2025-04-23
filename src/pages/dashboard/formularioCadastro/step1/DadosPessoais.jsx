@@ -55,7 +55,7 @@ const DadosPessoais = () => {
         localStorage.setItem('data', data)
         localStorage.setItem('telefone', telefone.replace(/\D/g, ''))
         localStorage.setItem('cpf', cpf.replace(/\D/g, ''))
-        navigate('/forms/localidade')
+        navigate('/dashboard/forms/localidade')
     }
 
     return (
@@ -73,6 +73,7 @@ const DadosPessoais = () => {
                             onChange={(e) => setData(e.target.value)}
                             placeholder="DD/MM/AAAA"
                             max='9999-12-31'
+                            required={true}
                         />
                         <Input className="flex-col"
                             name="telefone"
@@ -82,6 +83,7 @@ const DadosPessoais = () => {
                             onChange={handleTelefoneChange}
                             onKeyUp={handleKeyPress}
                             placeholder="(00)00000-0000"
+                            required={true}
                         />
                         <Input className="flex-col"
                             name="cpf"
@@ -91,6 +93,7 @@ const DadosPessoais = () => {
                             onChange={handleCpfChange}
                             onKeyUp={handleKeyPress}
                             placeholder="000.000.000-00"
+                            required={true}
                         />
                     </div>
                     <div className={styles.div_botao}>

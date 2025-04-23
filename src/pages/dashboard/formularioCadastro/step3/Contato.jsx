@@ -31,7 +31,7 @@ const Contato = () => {
             errorMessage("Preencha todos os campos para prosseguir.")
             return
         }
-        navigate('/forms/conclusao')
+        navigate('/dashboard/forms/conclusao')
     }
 
     return (
@@ -49,6 +49,7 @@ const Contato = () => {
                             type="text"
                             onChange={(e) => setNomeEmergencia(e.target.value)}
                             placeholder="Digite o nome"
+                            required={true}
                         />
                         <Input
                             name="contatoEmergencia"
@@ -58,6 +59,7 @@ const Contato = () => {
                             type="tel"
                             onChange={handleTelefoneChange}
                             placeholder="(00)00000-0000"
+                            required={true}
                         />
                     </div>
                     <div className={styles.div_botao}>

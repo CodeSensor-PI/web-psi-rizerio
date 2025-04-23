@@ -13,7 +13,7 @@ const Conclusao = () => {
     function salvarInformacoes() {
 
         if (motivoConsulta.length <= 5) {
-            errorMessage("Preencha todos os campos para prosseguir.")
+            errorMessage("Motivo da consulta deve ter mais de 5 caracteres.")
             return
         }
 
@@ -27,7 +27,7 @@ const Conclusao = () => {
                 <MainComponent stepAtual={4} showBackItem={true}>
                     <div className={styles.inputs_content_conclusao}>
                         <label className='font-bold' htmlFor="motivo_consulta">Explique o motivo da sua consulta</label>
-                        <textarea
+                        <textarea required={true}
                             name="motivo_consulta"
                             value={motivoConsulta}
                             onChange={(e) => setMotivoConsulta(e.target.value)}
