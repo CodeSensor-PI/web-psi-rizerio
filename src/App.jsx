@@ -7,6 +7,9 @@ import LandingPage from './pages/landingPage/LandingPage'
 import Localidade from './pages/sessao/formularioCadastro/step2/Localidade';
 import Contato from './pages/sessao/formularioCadastro/step3/Contato';
 import Conclusao from './pages/sessao/formularioCadastro/step4/Conclusao';
+import MeusAgendamentos from './pages/dashboard/meusAgendamentos/meusAgendamentos';
+
+
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
             <Route path='/forms/contato' element={<Contato/>} />
             <Route path='/forms/conclusao' element={<Conclusao/>} />
             <Route path='/dashboard/alterarSenha' element={<AlterarSenha/>} />
+            <Route path='/dashboard/meusAgendamentos' element={<MeusAgendamentos />} />
           </Routes>
         </BrowserRouter>
       </div>
