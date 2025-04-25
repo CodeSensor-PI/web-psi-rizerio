@@ -1,6 +1,5 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DadosPessoais from './pages/sessao/formularioCadastro/step1/DadosPessoais';
 import Login from './pages/login/LoginComponent'
 import AlterarSenha from './pages/dashboard/alterarSenha/alterarSenha';
 import LandingPage from './pages/landingPage/LandingPage'

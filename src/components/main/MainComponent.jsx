@@ -4,9 +4,9 @@ import Titulo from '../titulo/TituloComponent';
 import { useNavigate } from 'react-router-dom';
 
 const stepBackRoutes = {
-    2: '/forms',
-    3: '/forms/localidade',
-    4: '/forms/contato',
+    2: '/dashboard/forms',
+    3: '/dashboard/forms/localidade',
+    4: '/dashboard/forms/contato',
 };
 
 function MainComponent({ children, showBackItem, stepAtual }) {
