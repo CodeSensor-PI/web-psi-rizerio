@@ -24,7 +24,8 @@ const MeusAgendamentos = () => {
         setMostrarPopup(true);
     };
 
-    const confirmarCancelamento = async () => {
+    const confirmarCancelamento = async (event) => {
+        event.preventDefault();
         try {
             const response = await atualizarAgendamento(agendamentoSelecionado, { statusSessao: 'CANCELADA' });
             if (response.status === 200) {

@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login/LoginComponent'
 import AlterarSenha from './pages/dashboard/alterarSenha/alterarSenha';
 import LandingPage from './pages/landingPage/LandingPage'
-import Localidade from './pages/sessao/';
-import Contato from './pages/sessao/dashboard/formularioCadastro/step3/Contato';
-import Conclusao from './pages/sessao/dashboard/formularioCadastro/step4/Conclusao';
+import DadosPessoais from './pages/dashboard/formularioCadastro/step1/DadosPessoais';
+import Localidade from './pages/dashboard/formularioCadastro/step2/Localidade';
+import Contato from './pages/dashboard/formularioCadastro/step3/Contato';
+import Conclusao from './pages/dashboard/formularioCadastro/step4/Conclusao';
 import MeusAgendamentos from './pages/dashboard/meusAgendamentos/meusAgendamentos';
 
 
