@@ -17,34 +17,10 @@
       "statusSessao": "CANCELADA"
     },
     {
-      "id": "3",
-      "idUsuario": "104",
-      "data": "2025-04-25",
-      "hora": "10:00:00",
-      "local": "Online",
-      "statusSessao": "PENDENTE"
-    },
-    {
-      "id": "3",
-      "idUsuario": "104",
-      "data": "2025-04-25",
-      "hora": "10:00:00",
-      "local": "Online",
-      "statusSessao": "CANCELADA"
-    },
-    {
-      "id": "3",
+      "id": "4",
       "idUsuario": "101",
-      "data": "2025-04-25",
-      "hora": "10:00:00",
-      "local": "Online",
-      "statusSessao": "PENDENTE"
-    },
-    {
-      "id": "3",
-      "idUsuario": "101",
-      "data": "2025-04-25",
-      "hora": "10:00:00",
+      "data": "2025-04-24",
+      "hora": "14:00:00",
       "local": "Online",
       "statusSessao": "CANCELADA"
     }

@@ -8,7 +8,7 @@ const MeusAgendamentos = () => {
     const [agendamentos, setAgendamentos] = useState([]);
     const [mostrarPopup, setMostrarPopup] = useState(false);
     const [agendamentoSelecionado, setAgendamentoSelecionado] = useState(null);
-    const idUsuario = "101"; 
+    const idUsuario = "101";
 
     const buscarAgendamentos = async () => {
         try {
@@ -24,17 +24,18 @@ const MeusAgendamentos = () => {
         setMostrarPopup(true);
     };
 
-    const confirmarCancelamento = async (event) => {
-        event.preventDefault();
+    const confirmarCancelamento = async () => {
+        
         try {
             const response = await atualizarAgendamento(agendamentoSelecionado, { statusSessao: 'CANCELADA' });
             if (response.status === 200) {
-                const agendamentosAtualizados = agendamentos.map((agendamento) =>
-                    agendamento.id === agendamentoSelecionado
-                        ? { ...agendamento, statusSessao: 'CANCELADA' }
-                        : agendamento
+                setAgendamentos((prev) =>
+                    prev.map((agendamento) =>
+                        agendamento.id === agendamentoSelecionado
+                            ? { ...agendamento, statusSessao: 'CANCELADA' }
+                            : agendamento
+                    )
                 );
-                setAgendamentos(agendamentosAtualizados);
                 setMostrarPopup(false);
                 responseMessage('Agendamento cancelado com sucesso!');
             } else {
@@ -44,6 +45,7 @@ const MeusAgendamentos = () => {
             errorMessage(`Erro ao cancelar o agendamento: ${erro.message}`);
         }
     };
+
 
     const fecharPopup = () => {
         setMostrarPopup(false);
@@ -59,7 +61,7 @@ const MeusAgendamentos = () => {
             <div className={styles.containerPrincipal}>
                 <div className={styles.header}>
                     <h1>Meus agendamentos</h1>
-                    <button className={styles.agendarButton}>+ Quero Agendar</button>
+                    <button className={styles.agendarButton} type='button'>+ Quero Agendar</button>
                 </div>
                 <div className={styles.agendamentosContainer}>
                     {agendamentos.length > 0 ? (
@@ -81,12 +83,13 @@ const MeusAgendamentos = () => {
                                         <>
                                             <span className={styles.pendente}>Agendado</span>
                                             <button
-                                                type='button'
+                                                type="button"
                                                 className={styles.cancelarButton}
                                                 onClick={() => cancelarAgendamento(agendamento.id)}
                                             >
                                                 Cancelar Agendamento
                                             </button>
+
                                         </>
                                     )}
                                 </div>
@@ -104,10 +107,10 @@ const MeusAgendamentos = () => {
                         <h2>Confirmar Cancelamento</h2>
                         <p>Tem certeza de que deseja cancelar este agendamento?</p>
                         <div className={styles.popupActions}>
-                            <button className={styles.confirmButton} onClick={confirmarCancelamento}>
+                            <button className={styles.confirmButton} type='button' onClick={confirmarCancelamento}>
                                 SIM
                             </button>
-                            <button className={styles.cancelButton} onClick={fecharPopup}>
+                            <button className={styles.cancelButton} type='button' onClick={fecharPopup}>
                                 NÃO
                             </button>
                         </div>
