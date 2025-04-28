@@ -22,7 +22,7 @@ const StepComponent = ({ stepAtual }) => {
                             className={`${styles.circle} ${completo ? styles.completed : ''
                                 } ${ativo ? styles.active : ''}`}
                         >
-                            {numeroEtapa}/4
+                            {numeroEtapa}
                         </div>
                         <span className={styles.label}>{label}</span>
                     </div>
