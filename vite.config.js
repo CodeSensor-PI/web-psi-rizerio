@@ -8,10 +8,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/pacientes": {
-        target: "http://localhost:8080", // Backend para /auth
+        target: "http://localhost:8080",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/pacientes/, "/pacientes"), // Mantém o prefixo /auth
+        rewrite: (path) => path.replace(/^\/pacientes/, "/pacientes"),
       },
     },
   },
