@@ -5,24 +5,30 @@ import styles from './conclusao.module.css';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
 import { useState } from 'react'
 import { errorMessage } from "../../../../utils/alert";
+import { salvarDadosFormulario, obterDadosFormulario } from '../../../../utils/formStorage';
 
 const Conclusao = () => {
 
     const [motivoConsulta, setMotivoConsulta] = useState('');
 
-    function salvarInformacoes() {
+    function salvarInformacoes(e) {
+        e.preventDefault();
 
         if (motivoConsulta.length <= 5) {
             errorMessage("Motivo da consulta deve ter mais de 5 caracteres.")
             return
         }
 
+        salvarDadosFormulario('dados-pessoais', { motivoConsulta });
+
+        const dadosCompletos = obterDadosFormulario();
+        console.log("Enviando para Backend: ", dadosCompletos);
     }
 
     return (
         <>
             <HeaderDash showSettingsIcon={false} />
-            <section className={styles.conclusao}>
+            <form onSubmit={salvarInformacoes} className={styles.conclusao}>
                 <StepComponent stepAtual={4} />
                 <MainComponent stepAtual={4} showBackItem={true}>
                     <div className={styles.inputs_content_conclusao}>
@@ -38,12 +44,12 @@ const Conclusao = () => {
                     <div className={styles.div_botao}>
                         <BotaoSalvar
                             texto="Salvar e Continuar"
-                            onClick={salvarInformacoes}
+                            type="submit"
                         />
                     </div>
                 </MainComponent>
 
-            </section>
+            </form>
         </>
     );
 };
