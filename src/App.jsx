@@ -1,15 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login/LoginComponent'
-import AlterarSenha from './pages/dashboard/alterarSenha/alterarSenha';
 import LandingPage from './pages/landingPage/LandingPage'
-import DadosPessoais from './pages/dashboard/formularioCadastro/step1/DadosPessoais';
-import Localidade from './pages/dashboard/formularioCadastro/step2/Localidade';
-import Contato from './pages/dashboard/formularioCadastro/step3/Contato';
-import Conclusao from './pages/dashboard/formularioCadastro/step4/Conclusao';
-import MeusAgendamentos from './pages/dashboard/meusAgendamentos/meusAgendamentos';
-
-
+import Dashboard from './pages/dashboard/Dashboard';
 
 function App() {
   return (
@@ -18,13 +11,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<LandingPage/>} />
-            <Route path='/login' element={<Login/>} /> 
-            <Route path='/forms' element={<DadosPessoais/>} />
-            <Route path='/forms/localidade' element={<Localidade/>} />
-            <Route path='/forms/contato' element={<Contato/>} />
-            <Route path='/forms/conclusao' element={<Conclusao/>} />
-            <Route path='/dashboard/alterarSenha' element={<AlterarSenha/>} />
-            <Route path='/dashboard/meusAgendamentos' element={<MeusAgendamentos />} />
+            <Route path='/login' element={<Login/>} />
+            <Route path='/dashboard/*' element={<Dashboard/>} /> 
           </Routes>
         </BrowserRouter>
       </div>
