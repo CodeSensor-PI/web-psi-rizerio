@@ -1,13 +1,13 @@
 import styles from '../botaoSalvar/botaoSalvar.module.css';
-import { RiSave2Line } from "react-icons/ri";
-import { FaSave, FaSearch } from 'react-icons/fa';
+import { FaSave } from 'react-icons/fa';
 
 function BotaoSalvar(props) {
     return (
         <button className={styles.botao_salvar}
             onClick={props.onClick}
             width={props.width}
-            backgroundColor={props.backgroundColor}>
+            backgroundColor={props.backgroundColor}
+            type={props.type}>
             <FaSave /> {props.texto}
         </button>
 
