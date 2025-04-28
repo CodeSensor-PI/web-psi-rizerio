@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { errorMessage } from "../../../../utils/alert";
 import { buscarEnderecoPorCep } from '../../../../provider/api';
-
+import { salvarDadosFormulario } from '../../../../utils/formStorage';
 
 const Localidade = () => {
 
@@ -62,106 +62,118 @@ const Localidade = () => {
         }
     }
 
-    function salvarInformacoes() {
+    function salvarInformacoes(e) {
+        e.preventDefault();
 
         if (!cep || !logradouro || !bairro || !cidade || !estado || !numero) {
             errorMessage("Preencha todos os campos para prosseguir.")
             return
         }
-        navigate('/dashboard/forms/contato')
-    }
+        
+        salvarDadosFormulario('localidade', {
+            cep: cep.replace(/\D/g, ''),
+            logradouro: logradouro,
+            bairro: bairro,
+            cidade: cidade,
+            estado: estado,
+            numero: numero,
+            complemento: complemento
+        })
 
-    return (
-        <>
-            <HeaderDash showSettingsIcon={false} />
-            <section className={styles.localidade}>
-                <StepComponent stepAtual={2} />
-                <MainComponent stepAtual={2} showBackItem={true}>
-                    <div className={styles.inputs_content_localidade}>
-                        <Input
-                            name="cep"
-                            value={cep}
-                            width="w-[15%]"
-                            label="CEP"
-                            type="text"
-                            onChange={handleCepChange}
-                            onBlur={handleBuscarEndereco}
-                            placeholder="00000-000"
-                            required={true}
-                        />
-                        <Input
-                            name="logradouro"
-                            value={logradouro}
-                            width="w-[35%]"
-                            label="Logradouro"
-                            type="text"
-                            onChange={(e) => setLogradouro(e.target.value)}
-                            placeholder="Rua, Avenida, Estrada"
-                            required={true}
+    navigate('/dashboard/forms/contato')
+}
 
-                        />
-                        <Input
-                            name="bairro"
-                            value={bairro}
-                            width="w-[20%]"
-                            label="Bairro"
-                            type="text"
-                            onChange={(e) => setBairro(e.target.value)}
-                            placeholder="Insira seu bairro"
-                            required={true}
-                        />
-                        <Input
-                            name="cidade"
-                            value={cidade}
-                            width="w-[23%]"
-                            label="Cidade"
-                            type="text"
-                            onChange={(e) => setCidade(e.target.value)}
-                            placeholder="Insira sua cidade"
-                            required={true}
-                        />
-                        <Input
-                            name="estado"
-                            value={estado}
-                            width="w-[20%]"
-                            label="Estado"
-                            type="text"
-                            onChange={(e) => setEstado(e.target.value)}
-                            placeholder="Insira seu estado"
-                            required={true}
-                        />
-                        <Input
-                            name="numero"
-                            width="w-[25%]"
-                            label="Número"
-                            type="number"
-                            onChange={(e) => setNumero(e.target.value)}
-                            placeholder="Insira o número"
-                            required={true}
-                        />
-                        <Input
-                            name="complemento"
-                            width="w-[30%]"
-                            label="Complemento"
-                            type="text"
-                            onChange={(e) => setComplemento(e.target.value)}
-                            placeholder="Insira o complemento"
-                            required={false}
-                        />
-                    </div>
-                    {erro && <p className='text-red-500'>{erro}</p>}
-                    <br />
-                    <div className={styles.div_botao}>
-                        <BotaoSalvar
-                            texto="Salvar e Continuar"
-                            onClick={salvarInformacoes}
-                        />
-                    </div>
-                </MainComponent>
+return (
+    <>
+        <HeaderDash showSettingsIcon={false} />
+        <form onSubmit={salvarInformacoes} className={styles.localidade}>
+            <StepComponent stepAtual={2} />
+            <MainComponent stepAtual={2} showBackItem={true}>
+                <div className={styles.inputs_content_localidade}>
+                    <Input
+                        name="cep"
+                        value={cep}
+                        width="w-[15%]"
+                        label="CEP"
+                        type="text"
+                        onChange={handleCepChange}
+                        onBlur={handleBuscarEndereco}
+                        placeholder="00000-000"
+                        required={true}
+                    />
+                    <Input
+                        name="logradouro"
+                        value={logradouro}
+                        width="w-[35%]"
+                        label="Logradouro"
+                        type="text"
+                        onChange={(e) => setLogradouro(e.target.value)}
+                        placeholder="Rua, Avenida, Estrada"
+                        required={true}
 
-            </section>
-        </>
-    );
+                    />
+                    <Input
+                        name="bairro"
+                        value={bairro}
+                        width="w-[20%]"
+                        label="Bairro"
+                        type="text"
+                        onChange={(e) => setBairro(e.target.value)}
+                        placeholder="Insira seu bairro"
+                        required={true}
+                    />
+                    <Input
+                        name="cidade"
+                        value={cidade}
+                        width="w-[23%]"
+                        label="Cidade"
+                        type="text"
+                        onChange={(e) => setCidade(e.target.value)}
+                        placeholder="Insira sua cidade"
+                        required={true}
+                    />
+                    <Input
+                        name="estado"
+                        value={estado}
+                        width="w-[20%]"
+                        label="Estado"
+                        type="text"
+                        onChange={(e) => setEstado(e.target.value)}
+                        placeholder="Insira seu estado"
+                        required={true}
+                    />
+                    <Input
+                        name="numero"
+                        width="w-[25%]"
+                        label="Número"
+                        type="text"
+                        onChange={(e) => setNumero(e.target.value)}
+                        placeholder="Insira o número"
+                        required={true}
+                    />
+                    <Input
+                        name="complemento"
+                        width="w-[30%]"
+                        label="Complemento"
+                        type="text"
+                        onChange={(e) => setComplemento(e.target.value)}
+                        placeholder="Insira o complemento"
+                        required={false}
+                    />
+                </div>
+                {erro && <p className='text-red-500'>{erro}</p>}
+                <br />
+                <div className={styles.div_botao}>
+                    <BotaoSalvar
+                        texto="Salvar e Continuar"
+                        type="submit"
+                    />
+                </div>
+            </MainComponent>
+
+        </form>
+    </>
+);
 };
 
 export default Localidade;
