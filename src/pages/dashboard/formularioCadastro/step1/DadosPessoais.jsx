@@ -7,7 +7,7 @@ import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { errorMessage } from "../../../../utils/alert";
-
+import { salvarDadosFormulario } from '../../../../utils/formStorage'
 
 const DadosPessoais = () => {
 
@@ -42,7 +42,8 @@ const DadosPessoais = () => {
         }
     };
 
-    function salvarInformacoes() {
+    function salvarInformacoes(e) {
+        e.preventDefault();
 
         const telefoneNumeros = telefone.replace(/\D/g, '');
         const cpfNumeros = cpf.replace(/\D/g, '');
@@ -52,16 +53,19 @@ const DadosPessoais = () => {
             return
         }
 
-        localStorage.setItem('data', data)
-        localStorage.setItem('telefone', telefone.replace(/\D/g, ''))
-        localStorage.setItem('cpf', cpf.replace(/\D/g, ''))
+        salvarDadosFormulario('dados-pessoais', {
+            data: data,
+            telefone: telefoneNumeros,
+            cpf: cpfNumeros
+        })
+
         navigate('/dashboard/forms/localidade')
     }
 
     return (
         <>
             <HeaderDash showSettingsIcon={false} />
-            <section className={styles.dados_pessoais}>
+            <form onSubmit={salvarInformacoes} className={styles.dados_pessoais}>
                 <StepComponent stepAtual={1} />
                 <MainComponent stepAtual={1} showBackItem={false}>
                     <div className={styles.inputs_content_dados}>
@@ -99,11 +103,11 @@ const DadosPessoais = () => {
                     <div className={styles.div_botao}>
                         <BotaoSalvar
                             texto="Salvar e Continuar"
-                            onClick={() => salvarInformacoes()}
+                            type="submit"
                         />
                     </div>
                 </MainComponent>
-            </section>
+            </form>
         </>
     )
 }

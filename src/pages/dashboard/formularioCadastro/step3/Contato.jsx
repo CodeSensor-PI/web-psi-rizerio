@@ -7,6 +7,7 @@ import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { errorMessage } from "../../../../utils/alert";
+import { salvarDadosFormulario } from '../../../../utils/formStorage';
 
 const Contato = () => {
 
@@ -23,7 +24,8 @@ const Contato = () => {
         setContatoEmergencia(formattedValue);
     };
 
-    function salvarInformacoes() {
+    function salvarInformacoes(e) {
+        e.preventDefault();
 
         const contatoEmergenciaNumeros = contatoEmergencia.replace(/\D/g, '');
 
@@ -31,13 +33,19 @@ const Contato = () => {
             errorMessage("Preencha todos os campos para prosseguir.")
             return
         }
+
+        salvarDadosFormulario('dados-pessoais', {
+            nomeEmergencia: nomeEmergencia,
+            contatoEmergencia: contatoEmergenciaNumeros
+        })
+
         navigate('/dashboard/forms/conclusao')
     }
 
     return (
         <>
             <HeaderDash showSettingsIcon={false} />
-            <section className={styles.contato}>
+            <form onSubmit={salvarInformacoes} className={styles.contato}>
                 <StepComponent stepAtual={3} />
                 <MainComponent stepAtual={3} showBackItem={true}>
                     <div className={styles.inputs_content_contato}>
@@ -65,12 +73,12 @@ const Contato = () => {
                     <div className={styles.div_botao}>
                         <BotaoSalvar
                             texto="Salvar e Continuar"
-                            onClick={salvarInformacoes}
+                            type="submit"
                         />
                     </div>
                 </MainComponent>
 
-            </section>
+            </form>
         </>
     );
 };
