@@ -2,6 +2,9 @@ import styles from './metodos.module.css'
 import Titulo from '../../../components/titulo/TituloComponent'
 import Botao from '../../../components/botoes/BotaoComponent'
 import Card from '../../../components/cards/CardComponent'
+import ImagemDescritiva from '../../../assets/images/imagem-descritiva.jpg'
+import ImagemExperimental from '../../../assets/images/imagem-experimental.jpg'
+import ImagemCorrelacional from '../../../assets/images/imagem-correlacional.jpg'
 
 const Metodos = () => {
     return (
@@ -14,16 +17,19 @@ const Metodos = () => {
 
             <div className={styles.cards}>
                 <Card
-                    titulo="Card 1"
-                    descricao="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor provident consectetur esse dolores facilis facere"
+                    imagem={ImagemDescritiva}
+                    titulo="Pesquisa Descritiva"
+                    descricao="Busca descrever e analisar fenômenos psicológicos, muitas vezes utilizando métodos como entrevistas e observações. "
                 />
                 <Card
-                    titulo="Card 2"
-                    descricao="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor provident consectetur esse dolores facilis facere"
+                    imagem={ImagemExperimental}
+                    titulo="Pesquisa Experimental"
+                    descricao="Envolve a manipulação de variáveis para observar seus efeitos, permitindo estabelecer relações causais."
                 />
                 <Card
-                    titulo="Card 3"
-                    descricao="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor provident consectetur esse dolores facilis facere"
+                    imagem={ImagemCorrelacional}
+                    titulo="Pesquisa Correlacional"
+                    descricao="Examina a relação entre duas ou mais variáveis, identificando padrões, sem estabelecer relações causais."
                 />
             </div>
 
