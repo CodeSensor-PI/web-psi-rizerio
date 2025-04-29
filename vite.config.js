@@ -13,6 +13,12 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/pacientes/, "/pacientes"),
       },
+      "/sessoes": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/sessoes/, "/sessoes"),
+      },
     },
   },
 });

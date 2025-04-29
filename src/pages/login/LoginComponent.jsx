@@ -41,7 +41,7 @@ const LoginComponent = () => {
           if (!cpf) {
             window.location.href = "/dashboard/forms";
           } else {
-            window.location.href = "/dashboard/";
+            window.location.href = "/dashboard/meus-agendamentos";
           }
         }, 2300);
       } else {
@@ -59,6 +59,14 @@ const LoginComponent = () => {
   return (
     <div className={styles.login}>
       <div className={styles.container}>
+        <p
+          className={styles.voltarTexto}
+          onClick={() => (window.location.href = "/")}
+        >
+          {" "}
+          Voltar
+        </p>
+
         <div className={styles.title}>
           <Titulo titulo="Bem vindo de Volta"></Titulo>
           <p>Entre para continuar</p>
