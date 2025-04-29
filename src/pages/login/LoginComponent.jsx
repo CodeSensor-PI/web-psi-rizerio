@@ -41,7 +41,7 @@ const LoginComponent = () => {
           if (!cpf) {
             window.location.href = "/dashboard/forms";
           } else {
-            window.location.href = "dashboard/meus-agendamentos";
+            window.location.href = "/dashboard/meus-agendamentos";
           }
         }, 2300);
       } else {
