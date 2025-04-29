@@ -1,12 +1,14 @@
-import style from './infoBox.module.css'  
+import style from './infoBox.module.css'
 
-function InfoBox ({icone, descricao}) {
+function InfoBox(props) {
 
     return (
         <article className={style.card}>
-            <img className='w-[50%] h-[30%]' src={icone} alt="Ícone da Box" />
-            <div className='flex justify-center text-sm font-semibold'>
-                <span >{descricao}</span>
+            <div className="w-[50%] h-[30%] flex justify-center items-center">
+                <props.icone size={50} color="var(--PurplePsi)" />
+            </div>
+            <div className="flex justify-center text-sm font-semibold">
+                <span>{props.descricao}</span>
             </div>
         </article>
     )
