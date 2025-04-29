@@ -1,5 +1,24 @@
 import axios from "axios";
 
+/**
+ * @param {string} id
+ * @param {string} senhaAtual
+ * @param {string} novaSenha
+ * @returns {Promise}
+ */
+export const alterarSenha = async (id, senhaAtual, novaSenha) => {
+  try {
+    const response = await axios.put(`/pacientes/${id}/alterar-senha`, {
+      senha: senhaAtual,
+      novaSenha,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao alterar a senha:", error);
+    throw error;
+  }
+};
+
 export const buscarEnderecoPorCep = async (cep) => {
   try {
     const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
@@ -16,7 +35,7 @@ export const buscarEnderecoPorCep = async (cep) => {
 
 export const buscarPlanos = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/planos");
+    const response = await axios.get(`/planos`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar os planos:", error.message);
@@ -24,11 +43,13 @@ export const buscarPlanos = async () => {
   }
 };
 
-export const visualizarAgendamentos = async (idUsuario) => {
+/**
+ * @param {string} idPaciente
+ * @returns {Promise}
+ */
+export const visualizarAgendamentos = async (idPaciente) => {
   try {
-    const response = await axios.get(
-      `http://localhost:3000/sessao?idUsuario=${idUsuario}`
-    );
+    const response = await axios.get(`/sessoes/pacientes/${idPaciente}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar os agendamentos:", error.message);
@@ -39,7 +60,7 @@ export const visualizarAgendamentos = async (idUsuario) => {
 export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
   try {
     const response = await axios.patch(
-      `http://localhost:3000/sessao/${idAgendamento}`,
+      `/sessoes/${idAgendamento}`,
       dadosAtualizados
     );
     return response;
@@ -51,9 +72,7 @@ export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
 
 export const buscarAgendamentoPorId = async (idAgendamento) => {
   try {
-    const response = await axios.get(
-      `http://localhost:3000/sessao/${idAgendamento}`
-    );
+    const response = await axios.get(`/sessoes/${idAgendamento}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar o agendamento por ID:", error.message);
