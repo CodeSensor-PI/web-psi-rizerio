@@ -1,6 +1,7 @@
 import styles from './abordagem.module.css'
 import Botao from '../../../components/botoes/BotaoComponent'
 import Titulo from '../../../components/titulo/TituloComponent'
+import ImagemACP from '../../../assets/images/imagem-acp.jpg'
 import { FaArrowRight } from 'react-icons/fa'
 
 const Abordagem = () => {
@@ -12,7 +13,7 @@ const Abordagem = () => {
     return (    
         <>
             <section className={styles.abordagem}>
-                <img src="https://placehold.co/500x500" className='h-[80%]' alt="Foto sobre abordagem ACP" />
+                <img src={ImagemACP} className='w-[50%] h-[80%]' alt="Foto sobre abordagem ACP" />
                 <div className={styles.container_abordagem}>
                     <Titulo
                         titulo='ACP'
