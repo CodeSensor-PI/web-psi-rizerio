@@ -1,7 +1,7 @@
 import InfoBox from '../../../components/infoBox/InfoBoxComponent'
 import Titulo from '../../../components/titulo/TituloComponent'
 import styles from './carreira.module.css'
-import icone1 from '../../../assets/images/react.svg'
+import { FaBrain, FaUserTie, FaBriefcase, FaGraduationCap } from 'react-icons/fa'
 
 const Carreira = () => {
     return (
@@ -12,20 +12,20 @@ const Carreira = () => {
             />
             <div className={styles.cards}>
                 <InfoBox
-                    icone={icone1}
-                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                    icone={FaGraduationCap}
+                    descricao="Fiz meu ensino médio na ETEC e uma faculdade de Psicologia."
                 />
                 <InfoBox
-                    icone={icone1}
-                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                    icone={FaUserTie}
+                    descricao="Durante a faculdade, trabalhei com Recursos Humanos."
                 />
                 <InfoBox
-                    icone={icone1}
-                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                    icone={FaBriefcase}
+                    descricao="Mudei de área onde fiz um estágio em Psicologia."
                 />
                 <InfoBox
-                    icone={icone1}
-                    descricao="Id eros pellentesque facilisi id mollis faucibus commodo enim."
+                    icone={FaBrain}
+                    descricao="Atualmente atendo meus pacientes particulares em consultas online."
                 />
             </div>
         </section>

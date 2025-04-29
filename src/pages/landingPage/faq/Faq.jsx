@@ -17,17 +17,12 @@ const Faq = () => {
         {
             id: 3,
             pergunta: "O que eu preciso no dia do agendamento?",
-            resposta: "Você precisa de um local tranquilo e uma conexão estável à internet."
+            resposta: "Você precisa de um local tranquilo e uma conexão estável à internet, além de um celular ou computador com câmera e microfone."
         },
         {
             id: 4,
-            pergunta: "O que eu preciso no dia do agendamento?",
-            resposta: "Você precisa de um local tranquilo e uma conexão estável à internet."
-        },
-        {
-            id: 5,
-            pergunta: "O que eu preciso no dia do agendamento?",
-            resposta: "Você precisa de um local tranquilo e uma conexão estável à internet."
+            pergunta: "A consulta é sigilosa?",
+            resposta: "Sim, todas as informações compartilhadas durante a consulta são mantidas em sigilo, respeitando o Código de Ética do Psicólogo."
         }
     ];
 
