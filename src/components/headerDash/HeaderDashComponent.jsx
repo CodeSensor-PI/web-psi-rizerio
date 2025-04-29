@@ -1,7 +1,7 @@
 import styles from "./headerDash.module.css";
 import { BsGear } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
-import { IoArrowBack } from "react-icons/io5"; // Ícone de voltar
+import { IoArrowBack } from "react-icons/io5";
 
 function HeaderDash({ showSettingsIcon, showBackButton = false }) {
   const handleLogout = () => {

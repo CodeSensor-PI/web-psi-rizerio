@@ -9,14 +9,12 @@
     padding: 0 2rem;
 }
 
-/* Área da esquerda (Botão Voltar) */
 .leftIcons {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-/* Área da direita (Configurações e Logout) */
 .rightIcons {
     display: flex;
     justify-content: flex-end;

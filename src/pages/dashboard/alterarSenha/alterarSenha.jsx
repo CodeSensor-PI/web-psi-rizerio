@@ -1,12 +1,12 @@
 import styles from "./alterarSenha.module.css";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate
+import { useNavigate } from "react-router-dom";
 import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
 import Titulo from "../../../components/titulo/TituloComponent";
 import BotaoSalvar from "../../../components/botaoSalvar/BotaoSalvarComponent";
 import InputComponent from "../../../components/inputs/InputComponent";
-import { errorMessage, responseMessage } from "../../../utils/alert"; // Funções de mensagem
-import { alterarSenha } from "../../../provider/api"; // Função para alterar a senha
+import { errorMessage, responseMessage } from "../../../utils/alert";
+import { alterarSenha } from "../../../provider/api";
 
 const AlterarSenha = () => {
   const navigate = useNavigate();
@@ -28,9 +28,9 @@ const AlterarSenha = () => {
 
     try {
       const idDoUsuario = localStorage.getItem("idUsuario");
-      await alterarSenha(idDoUsuario, senha, novaSenha); // Chama a função para alterar a senha
+      await alterarSenha(idDoUsuario, senha, novaSenha);
       responseMessage("Senha alterada com sucesso!");
-      navigate("/dashboard/meus-agendamentos"); // Redireciona para a tela de "Meus Agendamentos"
+      navigate("/dashboard/meus-agendamentos");
     } catch (error) {
       errorMessage("Erro ao alterar a senha.");
       console.error(error);
@@ -51,28 +51,28 @@ const AlterarSenha = () => {
               label={"Senha Atual:"}
               type="password"
               value={senha}
-              onChange={(e) => setSenha(e.target.value)} // Atualiza o estado
+              onChange={(e) => setSenha(e.target.value)}
               placeholder="Insira sua senha atual"
             />
             <InputComponent
               label={"Nova Senha:"}
               type="password"
               value={novaSenha}
-              onChange={(e) => setNovaSenha(e.target.value)} // Atualiza o estado
+              onChange={(e) => setNovaSenha(e.target.value)}
               placeholder="Insira sua nova senha"
             />
             <InputComponent
               label={"Confirmar Senha:"}
               type="password"
               value={confirmarSenha}
-              onChange={(e) => setConfirmarSenha(e.target.value)} // Atualiza o estado
+              onChange={(e) => setConfirmarSenha(e.target.value)}
               placeholder="Confirme sua nova senha"
             />
           </div>
           <BotaoSalvar
             texto="Salvar"
             backgroundColor="var(--LightPurplePsi)"
-            onClick={handleSavePassword} // Chama a função handleSavePassword
+            onClick={handleSavePassword}
           ></BotaoSalvar>
         </div>
       </div>
