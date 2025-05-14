@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.planos {
+    border: #DDE1E6 solid 1px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--WhitePsi);
+    width: 40%;
+    height: 80%;
+    padding: 2%;
+}

@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+.section_footer {
+    background-color: var(--TrueWhitePsi);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40vh;
+    padding-top: 2em;
+}
+
+.footer_botao {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--PurplePsi);
+    border: 2px solid var(--PurplePsi);
+    color: var(--TrueWhitePsi);
+    width: 15%;
+    height: 20%;
+    border-radius: 30px;
+    transition: ease-in-out 0.3s;
+}
+
+.footer_botao:hover {
+    cursor: pointer;
+    background-color: var(--TrueWhitePsi);
+    color: var(--BlackPsi);
+}
