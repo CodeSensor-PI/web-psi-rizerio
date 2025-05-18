@@ -1,5 +1,6 @@
 import styles from './accordion.module.css'
 import { useState } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 
 function Accordion(props) {
     const [isOpen, setIsOpen] = useState(false)
@@ -9,11 +10,15 @@ function Accordion(props) {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={styles.accordion_botao}
+                style={{
+                    backgroundColor: props.background || '#F8F8F8',
+                    color: props.color || '#000'
+                }}
             >
-                {props.pergunta}
-                <span className={styles.accordion_icon}>{isOpen ? "➖" : "➕"}</span>
+                {props.texto}
+                <span className={styles.accordion_icon}>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
             </button>
-            {isOpen && <div className={styles.content}>{props.resposta}</div>}
+            {isOpen && <div className={styles.content}>{props.children}</div>}
         </div>
     )
 }
