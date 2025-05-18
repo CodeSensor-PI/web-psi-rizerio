@@ -59,8 +59,8 @@ export const visualizarAgendamentos = async (idPaciente) => {
 
 export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
   try {
-    const response = await axios.patch(
-      `/sessoes/${idAgendamento}`,
+    const response = await axios.put(
+      `/sessoes/cancelar/${idAgendamento}`,
       dadosAtualizados
     );
     return response;
@@ -68,7 +68,7 @@ export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
     console.error("Erro ao atualizar o agendamento:", error.message);
     throw error;
   }
-};
+};  
 
 export const buscarAgendamentoPorId = async (idAgendamento) => {
   try {

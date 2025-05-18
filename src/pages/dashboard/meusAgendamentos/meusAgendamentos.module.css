@@ -153,16 +153,15 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  overflow: hidden; /* Garante que o pop-up não cause rolagem */
 }
 
 .popup {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
   text-align: center;
-  width: 300px;
 }
 
 .popup h2 {
@@ -177,42 +176,50 @@ body {
   color: #555;
 }
 
+.inputContainer {
+  margin-bottom: 15px;
+}
+
+.inputContainer label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputContainer input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .popupActions {
   display: flex;
   justify-content: space-between;
-}
-
-.popupActions button {
-  min-width: 100px;
-  text-align: center;
+  gap: 10px;
 }
 
 .confirmButton {
-  background-color: #6c4ac6;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
   padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.confirmButton:hover {
-  background-color: #5a3aa6;
 }
 
 .cancelButton {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: none;
-  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
   padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.cancelButton:hover {
-  background-color: #f5c6cb;
+.confirmButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .notificacao {
