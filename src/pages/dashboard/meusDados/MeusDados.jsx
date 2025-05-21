@@ -1,7 +1,6 @@
 import styles from "./MeusDados.module.css";
 import HeaderDash from '../../../components/headerDash/HeaderDashComponent';
 import Titulo from '../../../components/titulo/TituloComponent';
-import BotaoSalvar from '../../../components/botaoSalvar/BotaoSalvarComponent';
 import { FaPencil, FaLock } from 'react-icons/fa6';
 import Input from '../../../components/inputs/InputComponent';
 import Accordion from "../../../components/accordion/AccordionComponent";
@@ -50,7 +49,7 @@ const MeusDados = () => {
             <section className={styles.container_meus_dados}>
                 <div className='flex flex-row items-center justify-around w-[80em]'>
                     <Titulo titulo="Meus Dados" />
-                    <button className={styles.botao_editar}><FaPencil />Editar</button>
+                    <button onClick={() => window.location.href = '/dashboard/alterar-senha'} className={styles.botao_senha}><FaLock /> Alterar Senha</button>
                 </div>
                 <div className={styles.box_infos}>
                     <figure className="flex flex-col items-center justify-center h-[15em] w-[10em] rounded-xl">
@@ -140,7 +139,7 @@ const MeusDados = () => {
                         </Accordion>
                         <Accordion texto="Consulta"
                             background="#C5A8FA">
-                            <div className="flex flex-wrap gap-2.5">
+                            <div className="flex flex-wrap gap-2.5 w-max">
                                 <div className="flex flex-col gap-2.5 w-[20em] h-17">
                                     <label className="font-bold text-[0.8rem]">Dia consultas:</label>
                                     <select className="border-3 rounded-[20px] border-[#C5A8FA] h-[85%]" name="dia_consultas">
@@ -161,26 +160,19 @@ const MeusDados = () => {
                                     onChange={(e) => setHorarioConsultas(e.target.value)}
                                     fontSize="0.8rem"
                                 />
-                                <div className="flex flex-col gap-2.5 w-[20em] h-17">
-                                    <label className="font-bold text-[0.8rem]">Motivo de consulta</label>
-                                    <textarea
-                                        name="motivo_consulta"
-                                        value={motivoConsulta}
-                                        style={{ padding: '0.4em' }}
-                                        className="border-3 rounded-[20px] border-[#C5A8FA] min-h-10 resize"
-                                        onChange={(e) => setMotivoConsulta(e.target.value)}
-                                    ></textarea>
-                                </div>
+                            </div>
+                            <div className="flex flex-col gap-2.5 h-fit">
+                                <label className="font-bold text-[0.8rem]">Motivo de consulta</label>
+                                <textarea
+                                    name="motivo_consulta"
+                                    value={motivoConsulta}
+                                    style={{ padding: '0.4em' }}
+                                    className="border-3 rounded-[20px] border-[#C5A8FA] min-h-10 resize max-w-[30em] h-[5em]"
+                                    onChange={(e) => setMotivoConsulta(e.target.value)}
+                                ></textarea>
                             </div>
                         </Accordion>
                     </div>
-                </div>
-                <div className="flex flex-row justify-around w-[20em]">
-                    <BotaoSalvar
-                        texto="Salvar"
-                        onClick={() => { }}
-                    />
-                    <button onClick={() => window.location.href = '/dashboard/alterar-senha'} className={styles.botao_senha}><FaLock /> Alterar Senha</button>
                 </div>
             </section>
         </>
