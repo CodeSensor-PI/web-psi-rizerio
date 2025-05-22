@@ -79,3 +79,17 @@ export const buscarAgendamentoPorId = async (idAgendamento) => {
     throw error;
   }
 };
+
+
+export const buscarHorariosDisponiveis = async (data, horaInicio, horaFim) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/sessoes/disponibilidade`, {
+      params: { data, horaInicio, horaFim },
+    });
+    console.log("Resposta do backend:", response.data); // Verifica o que o backend está retornando
+    return response.data; // Retorna os horários disponíveis
+  } catch (error) {
+    console.error("Erro ao buscar os horários disponíveis:", error.message);
+    throw error;
+  }
+};

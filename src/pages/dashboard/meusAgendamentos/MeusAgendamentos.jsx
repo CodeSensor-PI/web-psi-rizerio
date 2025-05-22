@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   visualizarAgendamentos,
   atualizarAgendamento,
+  buscarHorariosDisponiveis,
 } from "../../../provider/api";
 import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
 import styles from "./meusAgendamentos.module.css";
@@ -15,11 +16,11 @@ const MeusAgendamentos = () => {
   const [agendamentoSelecionado, setAgendamentoSelecionado] = useState(null);
   const idUsuario = localStorage.getItem("idUsuario");
 
-  const [dataEscolhida, setDataEscolhida] = useState("");
   const [horaEscolhida, setHoraEscolhida] = useState("");
-  const [diasDisponiveis, setDiasDisponiveis] = useState([]);
   const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
-  const [tipoConsulta, setTipoConsulta] = useState("avulso"); 
+  const [diaSemana, setDiaSemana] = useState(0);
+  const [dataSelecionada, setDataSelecionada] = useState("");
+  const [diasDoMes, setDiasDoMes] = useState([]);
 
   const buscarAgendamentos = async () => {
     try {
@@ -37,42 +38,35 @@ const MeusAgendamentos = () => {
     }
   };
 
-  const buscarDiasDisponiveis = () => {
-    const hoje = new Date();
-    const dias = [];
-    const qtdDias = 7; // Exibir os próximos 7 dias
-
-    for (let i = 0; i < qtdDias; i++) {
-      const proximoDia = new Date(hoje);
-      proximoDia.setDate(hoje.getDate() + i);
-      dias.push(
-        proximoDia.toLocaleDateString("pt-BR", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        })
-      );
-    }
-
-    setDiasDisponiveis(dias);
+  // Função para formatar a data no formato yyyy-MM-dd
+  const formatarData = (data) => {
+    const [dia, mes, ano] = data.split("/");
+    return `${ano}-${mes}-${dia}`; // Converte para o formato yyyy-MM-dd
   };
 
-  const buscarHorariosDisponiveis = async (data) => {
+  const buscarHorariosLocal = async (data) => {
     try {
-      // Converte a data para o formato ISO (YYYY-MM-DD)
-      const [dia, mes, ano] = data.split("/");
-      const dataISO = `${ano}-${mes}-${dia}`;
+      const dataFormatada = formatarData(data); // Formata a data antes de enviar
+      const horaInicio = "08:00"; // Mock de hora inicial
+      const horaFim = "17:00"; // Mock de hora final
 
-      const response = await fetch(`/sessoes/horarios-disponiveis?data=${dataISO}`);
-      if (response.ok) {
-        const horarios = await response.json();
-        setHorariosDisponiveis(horarios);
-      } else {
-        errorMessage("Erro ao buscar horários disponíveis.");
-      }
-    } catch (error) {
-      console.error("Erro ao buscar horários disponíveis:", error);
-      errorMessage("Erro ao carregar os horários disponíveis.");
+      console.log("Enviando para a API:", {
+        data: dataFormatada,
+        horaInicio,
+        horaFim,
+      });
+
+      const horarios = await buscarHorariosDisponiveis(
+        dataFormatada,
+        horaInicio,
+        horaFim
+      ); // Função importada
+      console.log("Horários disponíveis recebidos:", horarios);
+
+      setHorariosDisponiveis(horarios);
+      console.log("Estado atualizado de horários:", horariosDisponiveis);
+    } catch (erro) {
+      errorMessage(`Erro ao buscar os horários disponíveis: ${erro.message}`);
     }
   };
 
@@ -86,7 +80,6 @@ const MeusAgendamentos = () => {
   };
 
   const mostrarPopupAgendar = () => {
-    buscarDiasDisponiveis();
     setPopupAgendar(true);
   };
 
@@ -120,16 +113,18 @@ const MeusAgendamentos = () => {
     try {
       const novoAgendamento = {
         idUsuario,
-        data: dataEscolhida,
+        data: dataSelecionada,
         hora: horaEscolhida,
-        tipoConsulta: tipoConsulta,
         statusSessao: "PENDENTE",
       };
 
-      const response = await atualizarAgendamento(null, novoAgendamento); 
+      const response = await atualizarAgendamento(null, novoAgendamento);
 
       if (response.status === 201) {
-        setAgendamentos([...agendamentos, { ...novoAgendamento, id: response.data.id }]);
+        setAgendamentos([
+          ...agendamentos,
+          { ...novoAgendamento, id: response.data.id },
+        ]);
         setPopupAgendar(false);
         responseMessage("Agendamento realizado com sucesso!");
       } else {
@@ -143,6 +138,28 @@ const MeusAgendamentos = () => {
   useEffect(() => {
     buscarAgendamentos();
   }, []);
+
+  useEffect(() => {
+    console.log("Estado atualizado de horários:", horariosDisponiveis);
+  }, [horariosDisponiveis]);
+
+  const handleDiaSemanaChange = (e) => {
+    const selectedDiaSemana = parseInt(e.target.value, 10);
+    setDiaSemana(selectedDiaSemana);
+
+    const diasDoMesAtualizados = getDiasDoMesPorDiaSemana(selectedDiaSemana);
+    setDiasDoMes(diasDoMesAtualizados);
+    setDataSelecionada(diasDoMesAtualizados[0]); // Seleciona o primeiro por padrão
+    setHorariosDisponiveis([]); // Limpa os horários disponíveis
+  };
+
+  const handleDataChange = async (e) => {
+    const selectedData = e.target.value;
+    setDataSelecionada(selectedData);
+
+    // Dispara a busca de horários disponíveis
+    await buscarHorariosLocal(selectedData);
+  };
 
   return (
     <>
@@ -225,64 +242,77 @@ const MeusAgendamentos = () => {
       {PopupAgendar && (
         <div className={styles.popupOverlay}>
           <div className={styles.popup}>
-            <h2>Agendar</h2>
-            <p>Selecione a data, horário e tipo de consulta desejados.</p>
+            <h2>Agendar Consulta</h2>
             <div className={styles.inputContainer}>
-              <label htmlFor="data">Data:</label>
+              <label htmlFor="diaSemana">Selecione o Dia da Semana:</label>
+              <select
+                id="diaSemana"
+                value={diaSemana}
+                onChange={handleDiaSemanaChange}
+                className={styles.selectField}
+              >
+                <option value="" disabled>
+                  Selecione um dia da semana
+                </option>
+                <option value={1}>Segunda-feira</option>
+                <option value={2}>Terça-feira</option>
+                <option value={3}>Quarta-feira</option>
+                <option value={4}>Quinta-feira</option>
+                <option value={5}>Sexta-feira</option>
+              </select>
+            </div>
+            <div className={styles.inputContainer}>
+              <label htmlFor="data">Selecione o Dia do Mês:</label>
               <select
                 id="data"
-                value={dataEscolhida}
-                onChange={(e) => {
-                  setDataEscolhida(e.target.value);
-                  buscarHorariosDisponiveis(e.target.value);
-                }}
+                value={dataSelecionada}
+                onChange={handleDataChange} // Chama a função para buscar horários
+                className={styles.selectField}
               >
                 <option value="" disabled>
                   Selecione uma data
                 </option>
-                {diasDisponiveis.map((dia, index) => (
-                  <option key={index} value={dia}>
-                    {dia}
+                {diasDoMes.map((data, index) => (
+                  <option key={index} value={data}>
+                    {data}
                   </option>
                 ))}
               </select>
             </div>
             <div className={styles.inputContainer}>
-              <label htmlFor="hora">Hora:</label>
+              <label htmlFor="horariosDisponiveis">Selecione o Horário:</label>
               <select
-                id="hora"
+                id="horariosDisponiveis"
                 value={horaEscolhida}
                 onChange={(e) => setHoraEscolhida(e.target.value)}
-                disabled={!dataEscolhida}
+                className={styles.selectField}
               >
                 <option value="" disabled>
                   Selecione um horário
                 </option>
-                {horariosDisponiveis.map((hora, index) => (
-                  <option key={index} value={hora}>
-                    {hora}
+                {Array.isArray(horariosDisponiveis) &&
+                horariosDisponiveis.length > 0 ? (
+                  horariosDisponiveis.map((horario, index) => {
+                    console.log("Renderizando horário:", horario);
+                    return (
+                      <option key={index} value={horario}>
+                        {horario}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option value="" disabled>
+                    Nenhum horário disponível
                   </option>
-                ))}
-              </select>
-            </div>
-            <div className={styles.inputContainer}>
-              <label htmlFor="tipoConsulta">Tipo de Consulta:</label>
-              <select
-                id="tipoConsulta"
-                value={tipoConsulta}
-                onChange={(e) => setTipoConsulta(e.target.value)}
-              >
-                <option value="avulso">Avulso</option>
-                <option value="mensal">Mensal</option>
+                )}
               </select>
             </div>
             <div className={styles.popupActions}>
               <button
                 className={styles.confirmButton}
                 onClick={confirmarAgendamento}
-                disabled={!dataEscolhida || !horaEscolhida}
               >
-                Confirmar
+                Confirmar Agendamento
               </button>
               <button
                 className={styles.cancelButton}
@@ -296,6 +326,20 @@ const MeusAgendamentos = () => {
       )}
     </>
   );
+};
+
+const getDiasDoMesPorDiaSemana = (selectedDiaSemana) => {
+  return Array.from({ length: 4 }, (_, i) => {
+    const data = new Date();
+    data.setDate(
+      data.getDate() + i * 7 + ((selectedDiaSemana - data.getDay() + 7) % 7)
+    );
+    return data.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  });
 };
 
 export default MeusAgendamentos;
