@@ -26,6 +26,7 @@ const LoginComponent = () => {
       if (token) {
         localStorage.setItem("authToken", token);
         localStorage.setItem("idUsuario", id);
+        localStorage.setItem("nomeUsuario", nome);
 
         responseMessage(`Bem vindo, ${nome}!`, "small");
 
