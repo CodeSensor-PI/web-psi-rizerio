@@ -147,6 +147,7 @@ const Localidade = () => {
                             type="text"
                             onChange={(e) => setNumero(e.target.value)}
                             placeholder="Insira o número"
+                            max="5"
                             required={true}
                         />
                         <Input
