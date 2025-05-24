@@ -4,6 +4,7 @@ import Localidade from "./formularioCadastro/step2/Localidade"
 import Contato from "./formularioCadastro/step3/Contato"
 import Conclusao from "./formularioCadastro/step4/Conclusao"
 import MeusAgendamentos from "./meusAgendamentos/MeusAgendamentos"
+import MeusDados from "./meusDados/MeusDados"
 import { Route, Routes } from "react-router-dom"
 
 const Dashboard = () => {
@@ -12,6 +13,7 @@ const Dashboard = () => {
             <Routes>
                 <Route path="alterar-senha" element={<AlterarSenha />} />
                 <Route path="meus-agendamentos" element={<MeusAgendamentos />} />
+                <Route path="meus-dados" element={<MeusDados />} />
                 <Route path="forms">
                     <Route index element={<DadosPessoais />} />
                     <Route path="localidade" element={<Localidade />} />

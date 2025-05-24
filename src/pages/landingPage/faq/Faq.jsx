@@ -37,8 +37,8 @@ const Faq = () => {
                 {dadosFaq.map((item) => (
                     <Accordion
                         key={item.id}
-                        pergunta={item.pergunta}
-                        resposta={item.resposta}
+                        texto={item.pergunta}
+                        children={item.resposta}
                     />
                 ))}
             </div>
