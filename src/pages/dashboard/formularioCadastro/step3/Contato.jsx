@@ -7,7 +7,6 @@ import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { errorMessage } from "../../../../utils/alert";
-import { salvarDadosFormulario } from '../../../../utils/formStorage';
 
 const Contato = () => {
 
@@ -28,16 +27,21 @@ const Contato = () => {
         e.preventDefault();
 
         const contatoEmergenciaNumeros = contatoEmergencia.replace(/\D/g, '');
+        const dddEmergencia = contatoEmergenciaNumeros.slice(0, 2);
+        const numeroEmergencia = contatoEmergenciaNumeros.slice(2);
 
         if (!nomeEmergencia || contatoEmergenciaNumeros.length !== 11) {
             errorMessage("Preencha todos os campos para prosseguir.")
             return
         }
 
-        salvarDadosFormulario('dados-pessoais', {
-            nomeEmergencia: nomeEmergencia,
-            contatoEmergencia: contatoEmergenciaNumeros
-        })
+        localStorage.setItem('contatoEmergencia', JSON.stringify({
+            ddd: dddEmergencia,
+            telefone: numeroEmergencia,
+            nomeContato: nomeEmergencia,
+            tipo: "EMERGENCIAL",
+            fkPaciente: localStorage.getItem('idUsuario')
+        }));
 
         navigate('/dashboard/forms/conclusao')
     }
@@ -74,6 +78,7 @@ const Contato = () => {
                         <BotaoSalvar
                             texto="Salvar e Continuar"
                             type="submit"
+                            onSubmit={salvarInformacoes}
                         />
                     </div>
                 </MainComponent>

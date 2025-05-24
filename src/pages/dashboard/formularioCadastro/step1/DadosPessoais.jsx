@@ -7,7 +7,6 @@ import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { errorMessage } from "../../../../utils/alert";
-import { salvarDadosFormulario } from '../../../../utils/formStorage'
 
 const DadosPessoais = () => {
 
@@ -46,6 +45,8 @@ const DadosPessoais = () => {
         e.preventDefault();
 
         const telefoneNumeros = telefone.replace(/\D/g, '');
+        const ddd = telefoneNumeros.slice(0, 2);
+        const numero = telefoneNumeros.slice(2);
         const cpfNumeros = cpf.replace(/\D/g, '');
 
         if (!data || telefoneNumeros.length !== 11 || cpfNumeros.length !== 11) {
@@ -53,11 +54,15 @@ const DadosPessoais = () => {
             return
         }
 
-        salvarDadosFormulario('dados-pessoais', {
-            data: data,
-            telefone: telefoneNumeros,
-            cpf: cpfNumeros
-        })
+        localStorage.setItem('dadosPessoais', JSON.stringify({
+            dataNasc: data,
+            cpf: cpfNumeros,
+            ddd: ddd,
+            nomeContato: localStorage.getItem('nomeUsuario'), 
+            telefonePaciente: numero,
+            tipo: "PESSOAL",
+            fkPaciente: localStorage.getItem('idUsuario')
+        }));
 
         navigate('/dashboard/forms/localidade')
     }
@@ -104,6 +109,7 @@ const DadosPessoais = () => {
                         <BotaoSalvar
                             texto="Salvar e Continuar"
                             type="submit"
+                            onSubmit={salvarInformacoes}
                         />
                     </div>
                 </MainComponent>

@@ -4,14 +4,17 @@ import StepComponent from '../../../../components/steps/StepComponent';
 import styles from './conclusao.module.css';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
 import { useState } from 'react'
-import { errorMessage } from "../../../../utils/alert";
-import { salvarDadosFormulario, obterDadosFormulario } from '../../../../utils/formStorage';
+import { errorMessage, responseMessage } from "../../../../utils/alert";
+import { atualizarUsuario } from '../../../../provider/api';
+import { useNavigate } from 'react-router-dom'
+import { buscarPacientePorId, cadastrarEndereco, cadastrarTelefone } from '../../../../provider/api';
 
 const Conclusao = () => {
 
     const [motivoConsulta, setMotivoConsulta] = useState('');
+    const navigate = useNavigate()
 
-    function salvarInformacoes(e) {
+    async function salvarInformacoes(e) {
         e.preventDefault();
 
         if (motivoConsulta.length <= 5) {
@@ -19,11 +22,80 @@ const Conclusao = () => {
             return
         }
 
-        salvarDadosFormulario('dados-pessoais', { motivoConsulta });
+        localStorage.setItem('motivoConsulta', motivoConsulta);
+        const idUsuario = localStorage.getItem('idUsuario');
+        const paciente = await buscarPacientePorId(idUsuario)
+        const dadosPessoais = JSON.parse(localStorage.getItem('dadosPessoais'));
+        const contatoEmergencia = JSON.parse(localStorage.getItem('contatoEmergencia'));
+        const endereco = JSON.parse(localStorage.getItem('endereco'));
 
-        const dadosCompletos = obterDadosFormulario();
-        console.log("Enviando para Backend: ", dadosCompletos);
-    }
+        try {
+            const enderecoResponse = await cadastrarEndereco(endereco)
+
+            await cadastrarTelefone({
+                ddd: dadosPessoais.ddd,
+                numero: dadosPessoais.telefonePaciente,
+                nomeContato: dadosPessoais.nomeContato,
+                tipo: dadosPessoais.tipo,
+                fkPaciente: {
+                    id: idUsuario,
+                    nome: paciente.nome,
+                    cpf: dadosPessoais.cpf,
+                    email: paciente.email,
+                    status: paciente.status,
+                    fkPlano: {
+                        id: paciente.fkPlano.id,
+                        categoria: paciente.fkPlano.nome,
+                        preco: paciente.fkPlano.valor,
+                    }
+                }
+            })
+
+            await cadastrarTelefone({
+                ddd: contatoEmergencia.ddd,
+                numero: contatoEmergencia.telefone,
+                nomeContato: contatoEmergencia.nomeContato,
+                tipo: contatoEmergencia.tipo,
+                fkPaciente: {
+                    id: idUsuario,
+                    nome: paciente.nome,
+                    cpf: dadosPessoais.cpf,
+                    email: paciente.email,
+                    status: paciente.status,
+                    fkPlano: {
+                        id: paciente.fkPlano.id,
+                        categoria: paciente.fkPlano.nome,
+                        preco: paciente.fkPlano.valor,
+                    }
+                }
+            })
+
+            const body = {
+                dataNasc: dadosPessoais.dataNasc,
+                cpf: dadosPessoais.cpf,
+                motivoConsulta: motivoConsulta,
+                fkEndereco: {
+                    id: enderecoResponse.id,
+                    cep: enderecoResponse.cep,
+                    logradouro: enderecoResponse.logradouro,
+                    bairro: enderecoResponse.bairro,
+                    numero: enderecoResponse.numero,
+                    cidade: enderecoResponse.cidade,
+                    uf: enderecoResponse.uf,
+                }
+            };
+            await atualizarUsuario(idUsuario, body);
+
+            responseMessage("Dados atualizados com sucesso!");
+            setTimeout(() => {
+                navigate('/dashboard/meus-agendamentos');
+            }, 2000);
+
+        } catch (error) {
+            console.error("Erro ao salvar informações: ", error);
+            errorMessage("Erro ao salvar informações. ");
+        }
+    };
 
     return (
         <>
@@ -43,7 +115,7 @@ const Conclusao = () => {
                     </div>
                     <div className={styles.div_botao}>
                         <BotaoSalvar
-                            texto="Salvar e Continuar"
+                            texto="Salvar dados"
                             type="submit"
                         />
                     </div>
@@ -52,6 +124,7 @@ const Conclusao = () => {
             </form>
         </>
     );
-};
+}
+
 
 export default Conclusao;

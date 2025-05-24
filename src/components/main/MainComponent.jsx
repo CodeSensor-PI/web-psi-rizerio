@@ -14,6 +14,15 @@ function MainComponent({ children, showBackItem, stepAtual }) {
 
     const handleBackClick = () => {
         const previousPath = stepBackRoutes[stepAtual];
+        if (stepAtual === 4) {
+            localStorage.removeItem('motivoConsulta');
+        } else if (stepAtual === 3) {
+            localStorage.removeItem('contatoEmergencia');
+        } else if (stepAtual === 2) {
+            localStorage.removeItem('endereco');
+        } else if (stepAtual === 1) {
+            localStorage.removeItem('dadosPessoais');
+        }
         navigate(previousPath);
     };
 
