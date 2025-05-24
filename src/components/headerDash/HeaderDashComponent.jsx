@@ -11,7 +11,7 @@ function HeaderDash({ showSettingsIcon, showBackButton = false }) {
   };
 
   const handleSettings = () => {
-    window.location.href = "/dashboard/alterar-senha";
+    window.location.href = "/dashboard/meus-dados";
   };
 
   const handleBack = () => {
