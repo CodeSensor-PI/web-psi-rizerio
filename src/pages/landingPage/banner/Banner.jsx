@@ -12,7 +12,7 @@ const Banner = () => {
                 <div className={styles.textos}>
                     <div className={styles.titulo}>
                         <h2 id='titulo' style={{color: "var(--PurplePsi)"}}>MEU NOME É</h2>
-                        <h2 id='nome'>Jessica Rizerio</h2>
+                        <h2 id='nome'>Jéssica Rizerio</h2>
                         <h2 id='profissao'>Psicóloga</h2>
                     </div>
                     <div className={styles.bio}>
