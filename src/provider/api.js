@@ -145,7 +145,7 @@ export const cadastrarTelefone = async (telefone) => {
  */
 export const atualizarUsuario = async (idUsuario, dadosPessoais) => {
   try {
-    const response = await axios.put(`/pacientes/primerioLogin/${idUsuario}`, dadosPessoais);
+    const response = await axios.put(`/pacientes/primeiroLogin/${idUsuario}`, dadosPessoais);
     return response.data;
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);

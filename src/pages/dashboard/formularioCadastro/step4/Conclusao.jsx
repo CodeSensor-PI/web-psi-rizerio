@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { errorMessage, responseMessage } from "../../../../utils/alert";
 import { atualizarUsuario } from '../../../../provider/api';
 import { useNavigate } from 'react-router-dom'
-import { cadastrarEndereco, cadastrarTelefone } from '../../../../provider/api';
+import { buscarPacientePorId, cadastrarEndereco, cadastrarTelefone } from '../../../../provider/api';
 
 const Conclusao = () => {
 
@@ -74,12 +74,22 @@ const Conclusao = () => {
                 dataNasc: dadosPessoais.dataNasc,
                 cpf: dadosPessoais.cpf,
                 motivoConsulta: motivoConsulta,
-                fkEndereco: enderecoResponse.id,
+                fkEndereco: {
+                    id: enderecoResponse.id,
+                    cep: enderecoResponse.cep,
+                    logradouro: enderecoResponse.logradouro,
+                    bairro: enderecoResponse.bairro,
+                    numero: enderecoResponse.numero,
+                    cidade: enderecoResponse.cidade,
+                    uf: enderecoResponse.uf,
+                }
             };
             await atualizarUsuario(idUsuario, body);
 
             responseMessage("Dados atualizados com sucesso!");
-            navigate('/dashboard/meus-agendamentos');
+            setTimeout(() => {
+                navigate('/dashboard/meus-agendamentos');
+            }, 2000);
 
         } catch (error) {
             console.error("Erro ao salvar informações: ", error);
