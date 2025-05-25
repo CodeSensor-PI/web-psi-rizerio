@@ -45,7 +45,7 @@ const MeusDados = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={true} showBackButton={true} />
+            <HeaderDash telaAtual="meus-dados" showSettingsIcon={true} showBackButton={true} />
             <section className={styles.container_meus_dados}>
                 <div className='flex flex-row items-center justify-around w-[80em]'>
                     <Titulo titulo="Meus Dados" />

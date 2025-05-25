@@ -39,7 +39,7 @@ const AlterarSenha = () => {
 
   return (
     <div className={styles.div_alterar_senha}>
-      <HeaderDash showSettingsIcon={false} showBackButton={true} />
+      <HeaderDash telaAtual="alterar-senha" showSettingsIcon={false} showBackButton={true} />
       <div className={styles.container}>
         <div className={styles.box_inputs}>
           <div className={styles.title}>
