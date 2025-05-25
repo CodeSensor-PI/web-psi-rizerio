@@ -3,7 +3,7 @@ import { BsGear } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
 import { IoArrowBack } from "react-icons/io5";
 
-function HeaderDash({ showSettingsIcon, showBackButton = false }) {
+function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
@@ -15,7 +15,11 @@ function HeaderDash({ showSettingsIcon, showBackButton = false }) {
   };
 
   const handleBack = () => {
-    window.location.href = "/dashboard/meus-agendamentos";
+    if (telaAtual === "meus-dados") {
+      window.location.href = "/dashboard/meus-agendamentos";
+    } else {
+      window.location.href = "/dashboard/meus-dados";
+    }
   };
 
   return (
