@@ -139,6 +139,20 @@ export const cadastrarTelefone = async (telefone) => {
 }
 
 /**
+ * @param {string | number} idPaciente
+ * @returns {Promise}
+ */
+export const buscarTelefonePorIdPaciente = async (idPaciente) => {
+  try {
+    const response = await axios.get(`/telefones/pacientes/${idPaciente}`)
+    return response.data
+  } catch (error) {
+    console.error("Erro ao buscar telefone por ID do paciente:". error.message)
+    throw error
+  }
+}
+
+/**
  * @param {string} idUsuario
  * @param {object} dadosPessoais
  * @returns {Promise}
