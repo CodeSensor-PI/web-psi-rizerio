@@ -21,6 +21,15 @@ const MeusDados = () => {
     const [horarioConsultas, setHorarioConsultas] = useState('');
     const [motivoConsulta, setMotivoConsulta] = useState('');
 
+    function handleCpfChange(cpf) {
+        return cpf
+            .replace(/\D/g, '') 
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
+            .slice(0, 15);
+    }
+
     async function fetchPacienteData() {
         try {
             const response = await buscarTelefonePorIdPaciente(localStorage.getItem('idUsuario'));
@@ -30,7 +39,7 @@ const MeusDados = () => {
             setNome(paciente?.nome || '');
             setEmail(paciente?.email || '');
             setDataNasc(paciente?.data_nascimento || '');
-            setCpf(paciente?.cpf || '');
+            setCpf(paciente?.cpf ? handleCpfChange(paciente.cpf) : '');
             setCidade(responseEndereco?.fkEndereco?.cidade || '');
 
             const telefonePessoal = response.find(t => t.tipo === "PESSOAL");
@@ -137,6 +146,7 @@ const MeusDados = () => {
                                 type="text"
                                 value={cpf}
                                 onChange={(e) => setCpf(e.target.value)}
+                                onKeyUp
                                 placeholder="000.000.000-00"
                                 fontSize="0.8rem"
                             />
