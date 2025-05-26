@@ -3,6 +3,7 @@ import {
   visualizarAgendamentos,
   atualizarAgendamento,
   buscarHorariosDisponiveis,
+  postAgendamento,
 } from "../../../provider/api";
 import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
 import styles from "./meusAgendamentos.module.css";
@@ -111,19 +112,24 @@ const MeusAgendamentos = () => {
 
   const confirmarAgendamento = async () => {
     try {
+
       const novoAgendamento = {
-        idUsuario,
-        data: dataSelecionada,
+        fkPaciente: {
+          id: Number(idUsuario),
+        },
+        data: formatarData(dataSelecionada), // yyyy-MM-dd
         hora: horaEscolhida,
+        tipo: "AVULSO",
         statusSessao: "PENDENTE",
+        anotacao: "Solicitado por paciente",
       };
 
-      const response = await atualizarAgendamento(null, novoAgendamento);
+      const response = await postAgendamento(novoAgendamento);
 
-      if (response.status === 201) {
+      if (response && (response.status === 201 || response.id)) {
         setAgendamentos([
           ...agendamentos,
-          { ...novoAgendamento, id: response.data.id },
+          { ...novoAgendamento, id: response.data?.id || response.id },
         ]);
         setPopupAgendar(false);
         responseMessage("Agendamento realizado com sucesso!");
@@ -312,7 +318,7 @@ const MeusAgendamentos = () => {
                 className={styles.confirmButton}
                 onClick={confirmarAgendamento}
               >
-                Confirmar Agendamento
+                Agendar Consulta
               </button>
               <button
                 className={styles.cancelButton}

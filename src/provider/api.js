@@ -68,7 +68,21 @@ export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
     console.error("Erro ao atualizar o agendamento:", error.message);
     throw error;
   }
-};  
+};
+
+export const postAgendamento = async (agendamento) => {
+    try {
+        const response = await axios.post('/sessoes', agendamento, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao criar agendamento:', error);
+        throw error;
+    }
+}
 
 export const buscarAgendamentoPorId = async (idAgendamento) => {
   try {
