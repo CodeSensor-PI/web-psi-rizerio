@@ -1,16 +1,18 @@
 import styles from "./MeusDados.module.css";
 import HeaderDash from '../../../components/headerDash/HeaderDashComponent';
 import Titulo from '../../../components/titulo/TituloComponent';
-import { FaPencil, FaLock } from 'react-icons/fa6';
+import { FaLock } from 'react-icons/fa6';
 import Input from '../../../components/inputs/InputComponent';
 import Accordion from "../../../components/accordion/AccordionComponent";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { buscarPacientePorId, buscarTelefonePorIdPaciente } from "../../../provider/api";
 
 const MeusDados = () => {
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [dataNasc, setDataNasc] = useState('');
+    const [cpf, setCpf] = useState('');
     const [cidade, setCidade] = useState('');
     const [telefone, setTelefone] = useState('');
     const [nomeContatoEmergencia, setNomeContatoEmergencia] = useState('');
@@ -18,6 +20,47 @@ const MeusDados = () => {
     const [diaConsultas, setDiaConsultas] = useState('');
     const [horarioConsultas, setHorarioConsultas] = useState('');
     const [motivoConsulta, setMotivoConsulta] = useState('');
+
+    function handleCpfChange(cpf) {
+        return cpf
+            .replace(/\D/g, '') 
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
+            .slice(0, 15);
+    }
+
+    async function fetchPacienteData() {
+        try {
+            const response = await buscarTelefonePorIdPaciente(localStorage.getItem('idUsuario'));
+            const responseEndereco = await buscarPacientePorId(localStorage.getItem('idUsuario'));
+            const paciente = response[0]?.fkPaciente;
+
+            setNome(paciente?.nome || '');
+            setEmail(paciente?.email || '');
+            setDataNasc(paciente?.data_nascimento || '');
+            setCpf(paciente?.cpf ? handleCpfChange(paciente.cpf) : '');
+            setCidade(responseEndereco?.fkEndereco?.cidade || '');
+
+            const telefonePessoal = response.find(t => t.tipo === "PESSOAL");
+            const telefoneEmergencial = response.find(t => t.tipo === "EMERGENCIAL");
+
+            setTelefone(telefonePessoal ? `(${telefonePessoal.ddd}) ${telefonePessoal.numero}` : '');
+            setTelefoneContatoEmergencia(telefoneEmergencial ? `(${telefoneEmergencial.ddd}) ${telefoneEmergencial.numero}` : '');
+
+            setNomeContatoEmergencia(paciente?.nome_contato_emergencia || '');
+            setDiaConsultas(paciente?.dia_consultas || '');
+            setHorarioConsultas(paciente?.horario_consultas || '');
+            setMotivoConsulta(paciente?.motivo_consulta || '');
+
+        } catch (error) {
+            console.error("Erro ao buscar dados do paciente:", error);
+        }
+    }
+
+    useEffect(() => {
+        fetchPacienteData();
+    }, [])
 
     const handleTelefoneChange = (e) => {
         const value = e.target.value.replace(/\D/g, '');
@@ -101,6 +144,9 @@ const MeusDados = () => {
                                 label="CPF:"
                                 name="cpf"
                                 type="text"
+                                value={cpf}
+                                onChange={(e) => setCpf(e.target.value)}
+                                onKeyUp
                                 placeholder="000.000.000-00"
                                 fontSize="0.8rem"
                             />
