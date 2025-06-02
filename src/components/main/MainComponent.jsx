@@ -33,6 +33,7 @@ function MainComponent({ children, showBackItem, stepAtual }) {
                     <IoIosArrowBack />
                     Voltar
                 </button>
+                
             )}
             <div className={styles.inputs_content}>
                 <Titulo subtitulo="Conte sobre você" />

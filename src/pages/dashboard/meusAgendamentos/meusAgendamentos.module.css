@@ -61,6 +61,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 .agendarButton:hover {
