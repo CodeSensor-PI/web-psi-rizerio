@@ -9,7 +9,7 @@ export const buscarPacientePorId = async (idPaciente) => {
     const response = await axios.get(`/pacientes/${idPaciente}`)
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar paciente por ID:". error.message)
+    console.error("Erro ao buscar paciente por ID:".error.message)
     throw error;
   }
 }
@@ -147,7 +147,7 @@ export const buscarTelefonePorIdPaciente = async (idPaciente) => {
     const response = await axios.get(`/telefones/pacientes/${idPaciente}`)
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar telefone por ID do paciente:". error.message)
+    console.error("Erro ao buscar telefone por ID do paciente:".error.message)
     throw error
   }
 }
@@ -160,9 +160,27 @@ export const buscarTelefonePorIdPaciente = async (idPaciente) => {
 export const atualizarUsuario = async (idUsuario, dadosPessoais) => {
   try {
     const response = await axios.put(`/pacientes/primeiroLogin/${idUsuario}`, dadosPessoais);
-    return response.data;
+    console.log(response.data)
+    return response.data
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);
     throw error;
   }
 };
+
+/**
+ * @param {string} idUsuario
+ */
+export const getPreferenciasPorId = async (idUsuario) => {
+  try {
+    const response = await axios.get(`/preferencias/${idUsuario}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao encontrar preferencias:', error);
+    throw error;
+  }
+}
