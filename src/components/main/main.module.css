@@ -17,6 +17,8 @@
     align-items: center;
     flex-direction: row;
     padding: 0.3em;
+    padding-left: 2em;
+    font-weight: bold;
     width: 10%;
     height: fit-content;
     transition: 0.3s ease-in-out;
@@ -25,6 +27,7 @@
 .seta_voltar:hover {
     cursor: pointer;
     color: var(--LightPurplePsi);
+    
 }
 
 .inputs_box {
