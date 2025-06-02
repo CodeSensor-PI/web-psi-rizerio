@@ -36,6 +36,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/telefones/, "/telefones"),
+      },
+      "/preferencias": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/preferencias/, "/preferencias"),
       }
     },
   },
