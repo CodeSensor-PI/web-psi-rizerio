@@ -283,84 +283,84 @@ const MeusDados = () => {
                                     fontSize="0.8rem"
                                     className="my-20"
                                 />
-                    </Accordion>
-                    <Accordion texto="Contato"
-                        background="#C5A8FA"
-                        className="flex flex-wrap">
-                        <Input
-                            label="Telefone:"
-                            name="telefone"
-                            type="tel"
-                            width="w-[12em]"
-                            value={telefone}
-                            onChange={handleTelefoneChange}
-                            onKeyUp={handleKeyPress}
-                            placeholder="(00) 00000-0000"
-                            fontSize="0.8rem"
-                        />
-                        <Input
-                            label="Nome do contato de emergência:"
-                            name="nome_contato_emergencia"
-                            type="text"
-                            width="w-[20em]"
-                            value={nomeContatoEmergencia}
-                            onChange={(e) => setNomeContatoEmergencia(e.target.value)}
-                            placeholder="Contato de emergência"
-                            fontSize="0.8rem"
-                        />
-                        <Input
-                            label="Telefone de emergência:"
-                            name="telefone_contato_emergencia"
-                            type="tel"
-                            width="w-[12em]"
-                            value={telefoneContatoEmergencia}
-                            onChange={handleTelefoneEmergenciaChange}
-                            onKeyUp={handleKeyPress}
-                            placeholder="(00) 00000-0000"
-                            fontSize="0.8rem"
-                        />
-                    </Accordion>
-                    <Accordion texto="Consulta"
-                        background="#C5A8FA"
-                        className="flex flex-wrap">
-                        <div className="flex flex-wrap gap-2.5 w-max">
-                            <div className="flex flex-col gap-2.5 w-[20em] h-17">
-                                <label className="font-bold text-[0.8rem]">Dia consultas:</label>
-                                <select
-                                    className="border-3 rounded-[20px] border-[#C5A8FA] h-[85%]"
-                                    name="dia_consultas"
-                                    value={diaConsultas}
-                                    onChange={(e) => setDiaConsultas(e.target.value)}>
-                                    <option value="segunda">Segunda-Feira</option>
-                                    <option value="terca">Terça-Feira</option>
-                                    <option value="quarta">Quarta-Feira</option>
-                                    <option value="quinta">Quinta-Feira</option>
-                                    <option value="sexta">Sexta-Feira</option>
-                                </select>
-                            </div>
-                            <Input
-                                label="Horário consultas:"
-                                name="horario_consultas"
-                                placeholder="00:00"
-                                type="text"
-                                value={horarioConsultas}
-                                width="w-[10em]"
-                                onChange={(e) => setHorarioConsultas(e.target.value)}
-                                fontSize="0.8rem"
-                            />
+                            </Accordion>
+                            <Accordion texto="Contato"
+                                background="#C5A8FA"
+                                className="flex flex-wrap">
+                                <Input
+                                    label="Telefone:"
+                                    name="telefone"
+                                    type="tel"
+                                    width="w-[12em]"
+                                    value={telefone}
+                                    onChange={handleTelefoneChange}
+                                    onKeyUp={handleKeyPress}
+                                    placeholder="(00) 00000-0000"
+                                    fontSize="0.8rem"
+                                />
+                                <Input
+                                    label="Nome do contato de emergência:"
+                                    name="nome_contato_emergencia"
+                                    type="text"
+                                    width="w-[20em]"
+                                    value={nomeContatoEmergencia}
+                                    onChange={(e) => setNomeContatoEmergencia(e.target.value)}
+                                    placeholder="Contato de emergência"
+                                    fontSize="0.8rem"
+                                />
+                                <Input
+                                    label="Telefone de emergência:"
+                                    name="telefone_contato_emergencia"
+                                    type="tel"
+                                    width="w-[12em]"
+                                    value={telefoneContatoEmergencia}
+                                    onChange={handleTelefoneEmergenciaChange}
+                                    onKeyUp={handleKeyPress}
+                                    placeholder="(00) 00000-0000"
+                                    fontSize="0.8rem"
+                                />
+                            </Accordion>
+                            <Accordion texto="Consulta"
+                                background="#C5A8FA"
+                                className="flex flex-wrap">
+                                <div className="flex flex-wrap gap-2.5 w-max">
+                                    <div className="flex flex-col gap-2.5 w-[20em] h-17">
+                                        <label className="font-bold text-[0.8rem]">Dia consultas:</label>
+                                        <select
+                                            className="border-3 rounded-[20px] border-[#C5A8FA] h-[85%]"
+                                            name="dia_consultas"
+                                            value={diaConsultas}
+                                            onChange={(e) => setDiaConsultas(e.target.value)}>
+                                            <option value="segunda">Segunda-Feira</option>
+                                            <option value="terca">Terça-Feira</option>
+                                            <option value="quarta">Quarta-Feira</option>
+                                            <option value="quinta">Quinta-Feira</option>
+                                            <option value="sexta">Sexta-Feira</option>
+                                        </select>
+                                    </div>
+                                    <Input
+                                        label="Horário consultas:"
+                                        name="horario_consultas"
+                                        placeholder="00:00"
+                                        type="text"
+                                        value={horarioConsultas}
+                                        width="w-[10em]"
+                                        onChange={(e) => setHorarioConsultas(e.target.value)}
+                                        fontSize="0.8rem"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2.5 w-120">
+                                    <label className="font-bold text-[0.8rem]">Motivo de consulta</label>
+                                    <textarea
+                                        name="motivo_consulta"
+                                        value={motivoConsulta}
+                                        style={{ padding: '0.4em' }}
+                                        className="border-3 rounded-[20px] border-[#C5A8FA] min-h-20 resize-y max-w-[30em] h-[5em] overflow-auto"
+                                        onChange={(e) => setMotivoConsulta(e.target.value)}
+                                    ></textarea>
+                                </div>
+                            </Accordion>
                         </div>
-                        <div className="flex flex-col gap-2.5 w-120">
-                            <label className="font-bold text-[0.8rem]">Motivo de consulta</label>
-                            <textarea
-                                name="motivo_consulta"
-                                value={motivoConsulta}
-                                style={{ padding: '0.4em' }}
-                                className="border-3 rounded-[20px] border-[#C5A8FA] min-h-20 resize-y max-w-[30em] h-[5em] overflow-auto"
-                                onChange={(e) => setMotivoConsulta(e.target.value)}
-                            ></textarea>
-                        </div>
-                    </Accordion>
-                </div>
                     </div >
                 </section >
             }
