@@ -5,7 +5,7 @@ import styles from './conclusao.module.css';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
 import { useState } from 'react'
 import { errorMessage, responseMessage } from "../../../../utils/alert";
-import { atualizarUsuario } from '../../../../provider/api';
+import { atualizarUsuario, buscarEnderecoPorCepNumero } from '../../../../provider/api';
 import { useNavigate } from 'react-router-dom'
 import { buscarPacientePorId, cadastrarEndereco, cadastrarTelefone } from '../../../../provider/api';
 
@@ -30,7 +30,11 @@ const Conclusao = () => {
         const endereco = JSON.parse(localStorage.getItem('endereco'));
 
         try {
-            const enderecoResponse = await cadastrarEndereco(endereco)
+            let enderecoResponse = await buscarEnderecoPorCepNumero(endereco.cep, endereco.numero);
+
+            if (!enderecoResponse || !enderecoResponse.id) {
+                enderecoResponse = await cadastrarEndereco(endereco)
+            }
 
             await cadastrarTelefone({
                 ddd: dadosPessoais.ddd,

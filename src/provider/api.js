@@ -108,20 +108,20 @@ export const cadastrarEndereco = async (endereco) => {
   }
 };
 
-// /**
-//  * @param {string} idPaciente
-//  * @param {object} endereco
-//  * @returns {promise}
-//  */
-// export const buscarEnderecos = async (endereco) => {
-//   try {
-//     const response = await axios.post(`/enderecos`, endereco)
-//     return response.data;
-//   } catch (error) {
-//     console.error("Erro ao criar endereço: ", error.message)
-//     throw error;
-//   }
-// };
+/**
+ * @param {string} cep
+ * @param {string} numero
+ * @returns {promise}
+ */
+export const buscarEnderecoPorCepNumero = async (cep, numero) => {
+  try {
+    const response = await axios.get(`/enderecos/encontrarEndereco?cep=${cep}&numero=${numero}`)
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao criar endereço: ", error.message)
+    throw error;
+  }
+};
 
 /**
  * @param {string} idPaciente
