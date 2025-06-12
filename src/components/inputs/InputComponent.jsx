@@ -16,6 +16,7 @@ function InputComponent(props) {
                 max={props.max}
                 onBlur={props.onBlur}
                 required={props.required}
+                disabled={!!props.disabled}
                 style={{
                     height: props.height || '2.5rem',
                     fontSize: props.fontSizeInput || '1rem',

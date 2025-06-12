@@ -29,3 +29,21 @@ export function responseMessage(mensagem, size = "small") {
   });
 }
 
+export function confirmEdit(titulo, message, size = "small") {
+  return Swal.fire({
+    title: titulo,
+    text: message,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Salvar",
+    cancelButtonText: "Continuar editando",
+    customClass: {
+      popup: `swal-${size}`,
+      confirmButton: "btn_primario",
+      cancelButton: "btn_secundario",
+    },
+    backdrop: false,
+  });
+}
+
+
