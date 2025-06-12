@@ -184,3 +184,50 @@ export const getPreferenciasPorId = async (idUsuario) => {
     throw error;
   }
 }
+
+/**
+ * @param {string} idUsuario
+ * @param {object} dados
+ * @returns {Promise}
+ */
+export const atualizarDados = async (idUsuario, dados) => {
+  try {
+    const response = await axios.put(`/pacientes/${idUsuario}`, dados);
+    return response.data
+  } catch (error) {
+    console.error("Erro ao atualizar o usuário:", error.message);
+    throw error;
+  }
+};
+
+/**
+ * @param {string} idEndereco
+ * @param {object} endereco
+ * @returns {Promise}
+ */
+export const atualizarEndereco = async (idEndereco, endereco) => {
+  try {
+    const response = await axios.put(`/enderecos/${idEndereco}`, endereco);
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error("Erro ao atualizar o usuário:", error.message);
+    throw error;
+  }
+};
+
+/**
+ * @param {string} idTelefone
+ * @param {object} telefone
+ * @returns {Promise}
+ */
+export const atualizarTelefone = async (idTelefone, telefone) => {
+  try {
+    const response = await axios.put(`/telefones/${idTelefone}`, telefone);
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error("Erro ao atualizar o usuário:", error.message);
+    throw error;
+  }
+};
