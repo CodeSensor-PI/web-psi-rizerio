@@ -30,11 +30,12 @@ const Conclusao = () => {
         const endereco = JSON.parse(localStorage.getItem('endereco'));
 
         try {
-            let enderecoResponse = await buscarEnderecoPorCepNumero(endereco.cep, endereco.numero);
-
-            if (!enderecoResponse || !enderecoResponse.id) {
-                enderecoResponse = await cadastrarEndereco(endereco)
-            }
+            let enderecoResponse = null;
+        try {
+            enderecoResponse = await buscarEnderecoPorCepNumero(endereco.cep, endereco.numero);
+        } catch (error) {
+            enderecoResponse = await cadastrarEndereco(endereco);
+        }
 
             await cadastrarTelefone({
                 ddd: dadosPessoais.ddd,
