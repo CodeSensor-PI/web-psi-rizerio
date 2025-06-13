@@ -6,7 +6,7 @@ import Input from '../../../components/inputs/InputComponent';
 import Accordion from "../../../components/accordion/AccordionComponent";
 import Loading from "../../../components/loading/Loading";
 import { useState, useEffect } from 'react';
-import { atualizarDados, buscarPacientePorId, buscarTelefonePorIdPaciente, getPreferenciasPorId, buscarEnderecoPorCep, atualizarEndereco, atualizarTelefone } from "../../../provider/api";
+import { atualizarDados, buscarPacientePorId, buscarTelefonePorIdPaciente, getPreferenciasPorId, buscarEnderecoPorCep, buscarEnderecoPorCepNumero, cadastrarEndereco, atualizarEndereco, atualizarTelefone } from "../../../provider/api";
 import { FaSave } from "react-icons/fa";
 import { confirmEdit, responseMessage, errorMessage } from "../../../utils/alert";
 
@@ -78,6 +78,7 @@ const MeusDados = () => {
                     const idUsuario = localStorage.getItem('idUsuario');
                     const usuarioAtual = await buscarPacientePorId(idUsuario);
 
+                    // Monta o payload do endereço
                     const enderecoPayload = {
                         cep: (cep || usuarioAtual.fkEndereco?.cep)?.replace(/\D/g, ''),
                         logradouro: logradouro || usuarioAtual.fkEndereco?.logradouro,
@@ -85,9 +86,43 @@ const MeusDados = () => {
                         numero: numero || usuarioAtual.fkEndereco?.numero,
                         cidade: cidade || usuarioAtual.fkEndereco?.cidade,
                         uf: estado || usuarioAtual.fkEndereco?.uf,
+                        complemento: complemento || usuarioAtual.fkEndereco?.complemento,
                     };
 
-                    await atualizarEndereco(usuarioAtual.fkEndereco?.id, enderecoPayload);
+                    let enderecoResponse;
+                    try {
+                        enderecoResponse = await buscarEnderecoPorCepNumero(enderecoPayload.cep, enderecoPayload.numero);
+                    } catch (error) {
+                        if (error?.response?.status === 404) {
+                            enderecoResponse = await cadastrarEndereco(enderecoPayload);
+                        } else {
+                            errorMessage("Erro ao buscar endereço. Tente novamente.");
+                            setLoading(false);
+                            return;
+                        }
+                    }
+
+                    const body = {
+                        fkPlano: usuarioAtual.fkPlano,
+                        status: usuarioAtual.status || "ATIVO",
+                        nome: nome || usuarioAtual.nome,
+                        cpf: usuarioAtual.cpf,
+                        email: email || usuarioAtual.email,
+                        fkEndereco: {
+                            id: enderecoResponse.id,
+                            cep: enderecoResponse.cep,
+                            logradouro: enderecoResponse.logradouro,
+                            bairro: enderecoResponse.bairro,
+                            numero: enderecoResponse.numero,
+                            cidade: enderecoResponse.cidade,
+                            uf: enderecoResponse.uf,
+                            complemento: enderecoResponse.complemento,
+                            createdAt: enderecoResponse.createdAt,
+                            updatedAt: enderecoResponse.updatedAt,
+                        }
+                    };
+
+                    await atualizarDados(idUsuario, body);
 
                     const telefones = await buscarTelefonePorIdPaciente(idUsuario);
                     const telefonePessoal = telefones.find(t => t.tipo === "PESSOAL");
@@ -134,27 +169,6 @@ const MeusDados = () => {
                         });
                     }
 
-                    const body = {
-                        fkPlano: usuarioAtual.fkPlano,
-                        status: usuarioAtual.status || "ATIVO",
-                        nome: nome || usuarioAtual.nome,
-                        cpf: usuarioAtual.cpf,
-                        email: email || usuarioAtual.email,
-                        fkEndereco: {
-                            id: usuarioAtual.fkEndereco?.id,
-                            cep: cep || usuarioAtual.fkEndereco?.cep,
-                            logradouro: logradouro || usuarioAtual.fkEndereco?.logradouro,
-                            bairro: bairro || usuarioAtual.fkEndereco?.bairro,
-                            numero: numero || usuarioAtual.fkEndereco?.numero,
-                            cidade: cidade || usuarioAtual.fkEndereco?.cidade,
-                            uf: estado || usuarioAtual.fkEndereco?.uf,
-                            createdAt: usuarioAtual.fkEndereco?.createdAt,
-                            updatedAt: usuarioAtual.fkEndereco?.updatedAt,
-                        }
-                    };
-
-                    await atualizarDados(localStorage.getItem('idUsuario'), body);
-
                     fetchPacienteData();
                     responseMessage("Dados atualizados com sucesso!");
                     isEditing(false);
@@ -175,6 +189,7 @@ const MeusDados = () => {
             .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
             .slice(0, 15);
     }
+
 
     async function fetchPacienteData() {
         try {
@@ -246,6 +261,11 @@ const MeusDados = () => {
             .replace(/\D/g, '')
             .replace(/^(\d{5})(\d)/, '$1-$2')
             .slice(0, 9);
+    }
+
+    const handleEstadoChange = (e) => {
+        const value = e.target.value.replace(/[^a-zA-Z]/g, '');
+        setEstado(value);
     }
 
     const handleKeyPress = (e) => {
@@ -391,7 +411,7 @@ const MeusDados = () => {
                                 width="w-[12em]"
                                 label="Estado"
                                 type="text"
-                                onChange={(e) => setEstado(e.target.value)}
+                                onChange={handleEstadoChange}
                                 placeholder="Insira seu estado"
                                 fontSize="0.8rem"
                                 className="my-2"
