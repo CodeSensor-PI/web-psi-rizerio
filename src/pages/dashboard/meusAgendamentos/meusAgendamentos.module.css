@@ -79,9 +79,9 @@ body {
 }
 
 .agendamentosContainer {
-  max-height: calc(92vh - 200px); 
-  overflow-y: auto; 
-  overflow-x: hidden; 
+  max-height: calc(92vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -127,6 +127,12 @@ body {
   border: 1px solid #c5c9ff;
 }
 
+.concluida {
+  background-color: #e2e3ff;
+  color: #383d7a;
+  border: 1px solid #c5c9ff;
+}
+
 .cancelarButton {
   margin-top: 10px;
   background-color: #f8d7da;
@@ -154,7 +160,8 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  overflow: hidden; /* Garante que o pop-up não cause rolagem */
+  overflow: hidden;
+  /* Garante que o pop-up não cause rolagem */
 }
 
 .popup {
@@ -228,7 +235,8 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1001;
   animation: fadeInOut 3s ease-in-out;
-  overflow: hidden; /* Garante que o conteúdo não cause rolagem */
+  overflow: hidden;
+  /* Garante que o conteúdo não cause rolagem */
 }
 
 @keyframes fadeInOut {
@@ -236,14 +244,17 @@ body {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   10% {
     opacity: 1;
     transform: translateY(0);
   }
+
   90% {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-10px);

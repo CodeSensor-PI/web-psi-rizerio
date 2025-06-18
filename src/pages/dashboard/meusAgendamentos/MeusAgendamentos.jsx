@@ -43,7 +43,7 @@ const MeusAgendamentos = () => {
       <HeaderDash showSettingsIcon={true} />
       {loading ? (
         <Loading />
-      ) :
+      ) : (
         <div className={styles.containerPrincipal}>
           <div className={styles.header}>
             <h1>Meus agendamentos</h1>
@@ -74,7 +74,10 @@ const MeusAgendamentos = () => {
                       <span className={styles.cancelado}>Cancelado</span>
                     )}
                     {agendamento.statusSessao === "CONFIRMADA" && (
-                      <span className={styles.confirmado}>Concluído</span>
+                      <span className={styles.confirmado}>Confirmado</span>
+                    )}
+                    {agendamento.statusSessao === "CONCLUIDA" && (
+                      <span className={styles.concluida}>Concluído</span>
                     )}
                     {agendamento.statusSessao === "PENDENTE" && (
                       <>
@@ -96,7 +99,7 @@ const MeusAgendamentos = () => {
             )}
           </div>
         </div>
-      }
+      )}
     </>
   );
 };
