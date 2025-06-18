@@ -236,3 +236,30 @@ export const atualizarTelefone = async (idTelefone, telefone) => {
     throw error;
   }
 };
+
+export const buscarHorariosDisponiveis = async (data, hora, hora2) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/sessoes/horarios`, {
+      params: { data, hora, hora2 },
+    });
+    console.log("Resposta do backend:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os horários disponíveis:", error.message);
+    throw error;
+  }
+};
+
+export const postAgendamento = async (agendamento) => {
+  try {
+    const response = await axios.post("/sessoes", agendamento, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao criar agendamento:", error);
+    throw error;
+  }
+};
