@@ -6,13 +6,13 @@ import axios from "axios";
  */
 export const buscarPacientePorId = async (idPaciente) => {
   try {
-    const response = await axios.get(`/pacientes/${idPaciente}`)
-    return response.data
+    const response = await axios.get(`/pacientes/${idPaciente}`);
+    return response.data;
   } catch (error) {
-    console.error("Erro ao buscar paciente por ID:".error.message)
+    console.error("Erro ao buscar paciente por ID:".error.message);
     throw error;
   }
-}
+};
 
 /**
  * @param {string} id
@@ -73,7 +73,7 @@ export const visualizarAgendamentos = async (idPaciente) => {
 
 export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
   try {
-    const response = await axios.patch(
+    const response = await axios.put(
       `/sessoes/${idAgendamento}`,
       dadosAtualizados
     );
@@ -100,10 +100,10 @@ export const buscarAgendamentoPorId = async (idAgendamento) => {
  */
 export const cadastrarEndereco = async (endereco) => {
   try {
-    const response = await axios.post(`/enderecos`, endereco)
+    const response = await axios.post(`/enderecos`, endereco);
     return response.data;
   } catch (error) {
-    console.error("Erro ao criar endereço: ", error.message)
+    console.error("Erro ao criar endereço: ", error.message);
     throw error;
   }
 };
@@ -115,10 +115,12 @@ export const cadastrarEndereco = async (endereco) => {
  */
 export const buscarEnderecoPorCepNumero = async (cep, numero) => {
   try {
-    const response = await axios.get(`/enderecos/encontrarEndereco?cep=${cep}&numero=${numero}`)
+    const response = await axios.get(
+      `/enderecos/encontrarEndereco?cep=${cep}&numero=${numero}`
+    );
     return response.data;
   } catch (error) {
-    console.error("Erro ao criar endereço: ", error.message)
+    console.error("Erro ao criar endereço: ", error.message);
     throw error;
   }
 };
@@ -130,13 +132,13 @@ export const buscarEnderecoPorCepNumero = async (cep, numero) => {
  */
 export const cadastrarTelefone = async (telefone) => {
   try {
-    const response = await axios.post(`/telefones`, telefone)
-    response.data
+    const response = await axios.post(`/telefones`, telefone);
+    response.data;
   } catch (error) {
-    console.error("Erro ao cadastrar telefone: ", telefone)
-    throw error
+    console.error("Erro ao cadastrar telefone: ", telefone);
+    throw error;
   }
-}
+};
 
 /**
  * @param {string | number} idPaciente
@@ -144,13 +146,13 @@ export const cadastrarTelefone = async (telefone) => {
  */
 export const buscarTelefonePorIdPaciente = async (idPaciente) => {
   try {
-    const response = await axios.get(`/telefones/pacientes/${idPaciente}`)
-    return response.data
+    const response = await axios.get(`/telefones/pacientes/${idPaciente}`);
+    return response.data;
   } catch (error) {
-    console.error("Erro ao buscar telefone por ID do paciente:".error.message)
-    throw error
+    console.error("Erro ao buscar telefone por ID do paciente:".error.message);
+    throw error;
   }
-}
+};
 
 /**
  * @param {string} idUsuario
@@ -159,9 +161,12 @@ export const buscarTelefonePorIdPaciente = async (idPaciente) => {
  */
 export const atualizarUsuario = async (idUsuario, dadosPessoais) => {
   try {
-    const response = await axios.put(`/pacientes/primeiroLogin/${idUsuario}`, dadosPessoais);
-    console.log(response.data)
-    return response.data
+    const response = await axios.put(
+      `/pacientes/primeiroLogin/${idUsuario}`,
+      dadosPessoais
+    );
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);
     throw error;
@@ -175,15 +180,15 @@ export const getPreferenciasPorId = async (idUsuario) => {
   try {
     const response = await axios.get(`/preferencias/${idUsuario}`, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     return response.data;
   } catch (error) {
-    console.error('Erro ao encontrar preferencias:', error);
+    console.error("Erro ao encontrar preferencias:", error);
     throw error;
   }
-}
+};
 
 /**
  * @param {string} idUsuario
@@ -193,7 +198,7 @@ export const getPreferenciasPorId = async (idUsuario) => {
 export const atualizarDados = async (idUsuario, dados) => {
   try {
     const response = await axios.put(`/pacientes/${idUsuario}`, dados);
-    return response.data
+    return response.data;
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);
     throw error;
@@ -208,8 +213,8 @@ export const atualizarDados = async (idUsuario, dados) => {
 export const atualizarEndereco = async (idEndereco, endereco) => {
   try {
     const response = await axios.put(`/enderecos/${idEndereco}`, endereco);
-    console.log(response.data)
-    return response.data
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);
     throw error;
@@ -224,8 +229,8 @@ export const atualizarEndereco = async (idEndereco, endereco) => {
 export const atualizarTelefone = async (idTelefone, telefone) => {
   try {
     const response = await axios.put(`/telefones/${idTelefone}`, telefone);
-    console.log(response.data)
-    return response.data
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);
     throw error;

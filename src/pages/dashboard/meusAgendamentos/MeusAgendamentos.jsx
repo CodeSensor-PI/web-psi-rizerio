@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   visualizarAgendamentos,
+  buscarAgendamentoPorId,
   atualizarAgendamento,
 } from "../../../provider/api";
 import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
@@ -32,6 +33,52 @@ const MeusAgendamentos = () => {
     } finally {
       setTimeout(() => setLoading(false), 500);
     }
+  };
+
+  useEffect(() => {
+    buscarAgendamentos();
+  }, []);
+
+  const cancelarAgendamento = (idAgendamento) => {
+    setAgendamentoSelecionado(idAgendamento);
+    setMostrarPopup(true);
+  };
+  const confirmarCancelamento = async () => {
+    try {
+      const agendamentoCompleto = await buscarAgendamentoPorId(
+        agendamentoSelecionado
+      );
+
+      const agendamentoAtualizado = {
+        ...agendamentoCompleto,
+        statusSessao: "CANCELADA",
+      };
+
+      const response = await atualizarAgendamento(
+        agendamentoSelecionado,
+        agendamentoAtualizado
+      );
+
+      if (response.status === 200) {
+        setAgendamentos((prev) =>
+          prev.map((agendamento) =>
+            agendamento.id === agendamentoSelecionado
+              ? { ...agendamento, statusSessao: "CANCELADA" }
+              : agendamento
+          )
+        );
+        setMostrarPopup(false);
+        responseMessage("Agendamento cancelado com sucesso!");
+      } else {
+        errorMessage("Erro ao atualizar o agendamento no backend.");
+      }
+    } catch (erro) {
+      errorMessage(`Erro ao cancelar o agendamento: ${erro.message}`);
+    }
+  };
+
+  const fecharPopup = () => {
+    setMostrarPopup(false);
   };
 
   useEffect(() => {
@@ -97,6 +144,30 @@ const MeusAgendamentos = () => {
             ) : (
               <p>Nenhum agendamento encontrado.</p>
             )}
+          </div>
+        </div>
+      )}
+      {mostrarPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popup}>
+            <h2>Confirmar Cancelamento</h2>
+            <p>Tem certeza de que deseja cancelar este agendamento?</p>
+            <div className={styles.popupActions}>
+              <button
+                className={styles.confirmButton}
+                type="button"
+                onClick={confirmarCancelamento}
+              >
+                SIM
+              </button>
+              <button
+                className={styles.cancelButton}
+                type="button"
+                onClick={fecharPopup}
+              >
+                NÃO
+              </button>
+            </div>
           </div>
         </div>
       )}
