@@ -22,7 +22,49 @@
         color: #888;
         cursor: not-allowed;
     }
+}
 
+@media (max-width: 900px) {
+    .box_infos {
+        flex-direction: column;
+        align-items: center;
+        width: 98vw;
+        height: auto;
+        padding: 2% 1%;
+    }
+    .box_inputs_dados {
+        width: 95vw;
+        gap: 1.5%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container_meus_dados {
+        padding: 0.5em;
+        height: auto;
+    }
+    .box_infos {
+        width: 100vw;
+        min-width: unset;
+        padding: 2% 0.5%;
+        border-radius: 12px;
+    }
+    .box_inputs_dados {
+        width: 99vw;
+        gap: 0.5em;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .botao_senha, .botao_editar {
+        width: 100%;
+        min-width: 0;
+        font-size: 0.95em;
+        height: 2.2em;
+        padding: 0.5em 0.2em;
+    }
+    .botao_editar {
+        margin-top: 1em;
+    }
 }
 
 .botao_senha {

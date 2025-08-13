@@ -1,3 +1,4 @@
+
 @import 'tailwindcss';
 
 .dados_pessoais {
@@ -18,4 +19,50 @@
     width: 70%;
     height: 20em;
     margin-top: 5%;
+}
+
+@media (max-width: 780px) {
+    .inputs_content_dados {
+        width: 50vw;
+        min-width: unset;
+        margin-top: 1em;
+        padding: 0.2em 0.1em;
+        gap: 1.2em;
+        align-items: stretch;
+    }
+    .inputs_content_dados > * {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+    .div_botao {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .inputs_content_dados {
+        width: 70vw;
+        min-width: unset;
+        margin-top: 1em;
+        padding: 0.2em 0.1em;
+        gap: 1.2em;
+        align-items: stretch;
+    }
+    .inputs_content_dados > * {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+    .div_botao {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5em;
+    }
 }

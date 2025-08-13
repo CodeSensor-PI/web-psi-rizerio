@@ -2,8 +2,15 @@ import styles from "./headerDash.module.css";
 import { BsGear } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
 import { IoArrowBack } from "react-icons/io5";
+import Titulo from "../titulo/TituloComponent";
+import { useEffect, useState } from "react";
 
 function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
+  const [tituloPagina, setTituloPagina] = useState('');
+  useEffect(() => {
+    handleTituloPagina();
+  }, [telaAtual]);
+
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
@@ -22,6 +29,18 @@ function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
     }
   };
 
+  const handleTituloPagina = () => {
+    if (telaAtual === "dados-pessoais") {
+      setTituloPagina("Dados Pessoais");
+    } else if(telaAtual === "localidade"){
+      setTituloPagina("Localidade");
+    } else if(telaAtual === "contato"){
+      setTituloPagina("Contato");
+    } else if(telaAtual === "conclusao"){
+      setTituloPagina("Conclusão");
+    }
+  };
+
   return (
     <header className={styles.header_dash}>
       <div className={styles.leftIcons}>
@@ -32,6 +51,9 @@ function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
             onClick={handleBack}
           />
         )}
+      </div>
+      <div>
+       <Titulo subtitulo={tituloPagina}></Titulo>
       </div>
 
       <div className={styles.rightIcons}>

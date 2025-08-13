@@ -88,7 +88,7 @@ const Localidade = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} />
+            <HeaderDash showSettingsIcon={false} telaAtual={'localidade'} />
             {loading ? (
                 <Loading />
             ) :

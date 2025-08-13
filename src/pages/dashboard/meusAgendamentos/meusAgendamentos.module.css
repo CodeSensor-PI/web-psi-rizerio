@@ -17,6 +17,98 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .containerPrincipal {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 10px;
+  }
+  .header h1 {
+    font-size: 18px;
+  }
+  .agendarButton {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+  .agendamentoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+  .status {
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .popup {
+    width: 95vw;
+    min-width: unset;
+    max-width: 400px;
+    padding: 10px;
+  }
+  .popupActions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .inputContainer label {
+    font-size: 14px;
+  }
+  .selectField {
+    font-size: 13px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .containerPrincipal {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 4px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .header h1 {
+    font-size: 15px;
+  }
+  .agendarButton {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+  .agendamentoItem {
+    padding: 6px;
+    font-size: 13px;
+  }
+  .info p {
+    font-size: 12px;
+  }
+  .status span {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .popup {
+    width: 98vw;
+    max-width: 320px;
+    padding: 6px;
+  }
+  .popup h2 {
+    font-size: 15px;
+  }
+  .popup p {
+    font-size: 12px;
+  }
+  .inputContainer label {
+    font-size: 12px;
+  }
+  .selectField {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;

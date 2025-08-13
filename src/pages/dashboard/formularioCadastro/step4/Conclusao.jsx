@@ -104,7 +104,7 @@ const Conclusao = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} />
+            <HeaderDash showSettingsIcon={false} telaAtual={'conclusao'}/>
             <form onSubmit={salvarInformacoes} className={styles.conclusao}>
                 <StepComponent stepAtual={4} />
                 <MainComponent stepAtual={4} showBackItem={true}>
