@@ -58,7 +58,7 @@ const DadosPessoais = () => {
             dataNasc: data,
             cpf: cpfNumeros,
             ddd: ddd,
-            nomeContato: localStorage.getItem('nomeUsuario'), 
+            nomeContato: localStorage.getItem('nomeUsuario'),
             telefonePaciente: numero,
             tipo: "PESSOAL",
             fkPaciente: localStorage.getItem('idUsuario')
@@ -76,8 +76,8 @@ const DadosPessoais = () => {
                     <div className={styles.inputs_content_dados}>
                         <Input className="flex-col"
                             name="data"
-                            height="h-[50%]"
-                            label="Quando você nasceu"
+                            width="w-[100%]"
+                            label="Quando você nasceu?"
                             type="date"
                             onChange={(e) => setData(e.target.value)}
                             placeholder="DD/MM/AAAA"
@@ -86,8 +86,9 @@ const DadosPessoais = () => {
                         />
                         <Input className="flex-col"
                             name="telefone"
-                            label="Qual o seu telefone"
+                            label="Qual o seu telefone?"
                             type="tel"
+                            width="w-[100%]"
                             value={telefone}
                             onChange={handleTelefoneChange}
                             onKeyUp={handleKeyPress}
@@ -96,8 +97,9 @@ const DadosPessoais = () => {
                         />
                         <Input className="flex-col"
                             name="cpf"
-                            label="Qual o seu CPF"
+                            label="Qual o seu CPF?"
                             type="text"
+                            width="w-[100%]"
                             value={cpf}
                             onChange={handleCpfChange}
                             onKeyUp={handleKeyPress}
@@ -113,6 +115,7 @@ const DadosPessoais = () => {
                         />
                     </div>
                 </MainComponent>
+
             </form>
         </>
     )

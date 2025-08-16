@@ -56,7 +56,7 @@ const Contato = () => {
                         <Input
                             name="nomeEmergencia"
                             value={nomeEmergencia}
-                            width="w-[40%]"
+                            width="w-[100%]"
                             label="Nome do contato de emergência"
                             type="text"
                             onChange={(e) => setNomeEmergencia(e.target.value)}
@@ -66,8 +66,8 @@ const Contato = () => {
                         <Input
                             name="contatoEmergencia"
                             value={contatoEmergencia}
-                            width="w-[40%]"
-                            label="Contato de emergência"
+                            width="w-[100%]"
+                            label="Número do contato de emergência"
                             type="tel"
                             onChange={handleTelefoneChange}
                             placeholder="(00)00000-0000"

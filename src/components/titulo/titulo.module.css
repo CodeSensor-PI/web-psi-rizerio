@@ -19,3 +19,23 @@
     font-size: x-large;
     font-weight: bold;
 }
+
+@media (max-width: 1100px) {
+    .titulo {
+        font-size: x-large;
+    }
+
+    .subtitulo {
+        font-size: large;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo {
+        font-size: large;
+    }
+
+    .subtitulo {
+        font-size: medium;
+    }
+}

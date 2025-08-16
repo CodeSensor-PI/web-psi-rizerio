@@ -4,7 +4,7 @@ function InputComponent(props) {
     return (
         <div className={styles.input_container + ' ' + (props.width || 'w-[50%]')}>
             <label className='font-bold'
-                style={{ fontSize: props.fontSize || '1.2rem' }}
+                style={{ fontSize: props.fontSize}}
             >{props.label}</label>
             <input
                 type={props.type}
@@ -19,7 +19,6 @@ function InputComponent(props) {
                 disabled={!!props.disabled}
                 style={{
                     height: props.height || '2.5rem',
-                    fontSize: props.fontSizeInput || '1rem',
                 }}
             />
         </div>
