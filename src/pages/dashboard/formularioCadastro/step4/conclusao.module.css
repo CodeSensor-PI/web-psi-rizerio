@@ -14,21 +14,21 @@
         border-radius: 20px;
         background-color: var(--TrueWhitePsi);
         height: 50%;
-        width: 50%;
+        width: 100%;
         max-width: 100%;
         padding-left: 1em;
         padding: 1em;
-        resize: both;
+        resize: none;
     }
 
 }
 
 .inputs_content_conclusao {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 3%;
     width: 80%;
     height: 40vh;
+    gap: 1em;
 }

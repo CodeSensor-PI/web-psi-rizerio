@@ -108,7 +108,7 @@ const Localidade = () => {
             ) :
                 <form onSubmit={salvarInformacoes} className={styles.localidade}>
                     <StepComponent stepAtual={2} />
-                    <MainComponent stepAtual={2} showBackItem={true}>
+                    <MainComponent stepAtual={2} showBackItem={true} tituloPagina="Onde você mora?">
                         <div className={styles.inputs_content_localidade}>
                             <div className={styles.input_group}>
                                 <Input
