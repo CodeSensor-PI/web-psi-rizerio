@@ -10,6 +10,7 @@ import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
 import Loading from "../../../components/loading/Loading";
 import styles from "./meusAgendamentos.module.css";
 import { errorMessage, responseMessage } from "../../../utils/alert";
+import Agendamento from "../../../components/agendamento/agendamento";
 
 const MeusAgendamentos = () => {
   const [agendamentos, setAgendamentos] = useState([]);
@@ -213,6 +214,20 @@ const MeusAgendamentos = () => {
     await buscarHorariosLocal(selectedData);
   };
 
+  const getDiasDoMesPorDiaSemana = (selectedDiaSemana) => {
+    return Array.from({ length: 4 }, (_, i) => {
+      const data = new Date();
+      data.setDate(
+        data.getDate() + i * 7 + ((selectedDiaSemana - data.getDay() + 7) % 7)
+      );
+      return data.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+    });
+  };
+
   return (
     <>
       <HeaderDash showSettingsIcon={true} />
@@ -227,51 +242,17 @@ const MeusAgendamentos = () => {
               type="button"
               onClick={mostrarPopupAgendar}
             >
-              + Quero Agendar
+              + Novo Agendamento
             </button>
           </div>
           <div className={styles.agendamentosContainer}>
             {agendamentos.length > 0 ? (
               agendamentos.map((agendamento, index) => (
-                <div
+                <Agendamento
                   key={`${agendamento.id}-${index}`}
-                  className={styles.agendamentoItem}
-                >
-                  <div className={styles.info}>
-                    <p>
-                      <b>Dia:</b> {agendamento.data}
-                    </p>
-                    <p>
-                      <b>Horário:</b> {agendamento.hora}
-                    </p>
-                    <p>
-                      <b>Local:</b> {agendamento.local}
-                    </p>
-                  </div>
-                  <div className={styles.status}>
-                    {agendamento.statusSessao === "CANCELADA" && (
-                      <span className={styles.cancelado}>Cancelado</span>
-                    )}
-                    {agendamento.statusSessao === "CONFIRMADA" && (
-                      <span className={styles.confirmado}>Confirmada</span>
-                    )}
-                    {agendamento.statusSessao === "CONCLUIDA" && (
-                      <span className={styles.confirmado}>Concluído</span>
-                    )}
-                    {agendamento.statusSessao === "PENDENTE" && (
-                      <>
-                        <span className={styles.pendente}>Agendado</span>
-                        <button
-                          type="button"
-                          className={styles.cancelarButton}
-                          onClick={() => cancelarAgendamento(agendamento.id)}
-                        >
-                          Cancelar Agendamento
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </div>
+                  agendamento={agendamento}
+                  onCancelar={cancelarAgendamento}
+                />
               ))
             ) : (
               <p>Nenhum agendamento encontrado.</p>
@@ -286,18 +267,18 @@ const MeusAgendamentos = () => {
             <p>Tem certeza de que deseja cancelar este agendamento?</p>
             <div className={styles.popupActions}>
               <button
-                className={styles.confirmButton}
-                type="button"
-                onClick={confirmarCancelamento}
-              >
-                SIM
-              </button>
-              <button
                 className={styles.cancelButton}
                 type="button"
                 onClick={fecharPopup}
               >
                 NÃO
+              </button>
+              <button
+                className={styles.confirmButton}
+                type="button"
+                onClick={confirmarCancelamento}
+              >
+                SIM
               </button>
             </div>
           </div>
@@ -355,7 +336,7 @@ const MeusAgendamentos = () => {
                   Selecione um horário
                 </option>
                 {Array.isArray(horariosDisponiveis) &&
-                horariosDisponiveis.length > 0 ? (
+                  horariosDisponiveis.length > 0 ? (
                   horariosDisponiveis.map((horario, index) => (
                     <option key={index} value={horario}>
                       {horario.substring(0, 5)}
@@ -370,16 +351,16 @@ const MeusAgendamentos = () => {
             </div>
             <div className={styles.popupActions}>
               <button
-                className={styles.confirmButton}
-                onClick={confirmarAgendamento}
-              >
-                Agendar Consulta
-              </button>
-              <button
                 className={styles.cancelButton}
                 onClick={fecharPopupAgendar}
               >
                 Cancelar
+              </button>
+              <button
+                className={styles.confirmButton}
+                onClick={confirmarAgendamento}
+              >
+                Agendar Consulta
               </button>
             </div>
           </div>
@@ -389,18 +370,6 @@ const MeusAgendamentos = () => {
   );
 };
 
-const getDiasDoMesPorDiaSemana = (selectedDiaSemana) => {
-  return Array.from({ length: 4 }, (_, i) => {
-    const data = new Date();
-    data.setDate(
-      data.getDate() + i * 7 + ((selectedDiaSemana - data.getDay() + 7) % 7)
-    );
-    return data.toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  });
-};
+
 
 export default MeusAgendamentos;
