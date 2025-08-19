@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+.accordion_item {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion_botao {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.accordion_botao:hover {
+    background: #f0f0f0;
+}
+
+.accordion_icon {
+    font-size: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 2%;
+    padding: 10px;
+    background: #f9f9f9;
+    font-size: 14px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

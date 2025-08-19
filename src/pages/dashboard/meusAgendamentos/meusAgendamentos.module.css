@@ -1,0 +1,269 @@
+.container {
+  padding: 20px;
+  background-color: #fdf9f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.containerPrincipal {
+  max-width: 100%;
+  margin: 20px auto;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  padding: 20px;
+  background-color: #fdf9f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.headerDash .logoutIcon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: #6c4ac6;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.headerDash .logoutIcon:hover {
+  color: #5a3aa6;
+}
+
+.agendarButton {
+  background-color: #6c4ac6;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.agendarButton:hover {
+  background-color: #5a3aa6;
+}
+
+.agendamentoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid #d3bff0;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.agendamentosContainer {
+  max-height: calc(92vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-right: 10px;
+}
+
+.info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.status span {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.cancelado {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.confirmado {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.pendente {
+  background-color: #e2e3ff;
+  color: #383d7a;
+  border: 1px solid #c5c9ff;
+}
+
+.cancelarButton {
+  margin-top: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancelarButton:hover {
+  background-color: #f5c6cb;
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.popup h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.popup p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.inputContainer {
+  margin-bottom: 15px;
+}
+
+.inputContainer label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputContainer input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popupActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.confirmButton {
+  background-color: var(--PurplePsi);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: var(--LightPurplePsi);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.selectField {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid var(--LightPurplePsi);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.notificacao {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  animation: fadeInOut 3s ease-in-out;
+  overflow: hidden;
+  /* Garante que o conteúdo não cause rolagem */
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

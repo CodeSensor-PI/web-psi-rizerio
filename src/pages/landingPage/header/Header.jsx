@@ -1,0 +1,32 @@
+import styles from './header.module.css'
+import Logo from '../../../assets/images/SUBLOGO-04.png'
+import Botao from '../../../components/botoes/BotaoComponent';
+
+const Header = () => {
+
+const handleLoginRedirect = () => {
+    window.location.href = '/login'
+}
+
+    return (
+        <header className={styles.header} id="header">
+            <img src={Logo} alt="Logo JR"  id='logo_header' />
+            <navbar className={styles.navbar} id='navbar'>
+                <ul>
+                    <li><a className='navbar-item' href="#">Home</a></li>
+                    <li><a className='navbar-item' href="#sobre">Sobre a PsiRizerio</a></li>
+                    <li><a className='navbar-item' href="#metodologias">Metodologias</a></li>
+                    <li><a className='navbar-item' href="#planos">Planos</a></li>
+                    <li><a className='navbar-item' href="#avaliacoes">Avaliações</a></li>
+                    <li><a className='navbar-item' href="#faq">FAQ</a></li>
+                </ul>
+            </navbar>
+            <div className={styles.botoes} onClick={handleLoginRedirect} id='botoes'>
+                <Botao
+                texto="Entrar"/>
+            </div>
+        </header>
+    );
+}
+
+export default Header

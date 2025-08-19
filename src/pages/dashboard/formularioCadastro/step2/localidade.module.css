@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+.localidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 92vh;
+    background-color: var(--TrueWhitePsi);
+}
+
+.inputs_content_localidade {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 40vh;
+    padding: 0em 2em;
+    width: 80%;
+    margin-top: 2%;
+}

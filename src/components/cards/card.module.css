@@ -1,0 +1,40 @@
+@import url('tailwindcss');
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 28%;
+    height: 100%;
+    border: var(--GrayPsi) 1px solid;
+    background-color: var(--TrueWhitePsi);
+    border-radius: 0px 0px 39px 39px;
+    -moz-border-radius: 0px 0px 39px 39px;
+    -webkit-border-radius: 0px 0px 39px 39px;
+}
+
+.descricao_Card {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 35%;
+    width: 100%;
+    padding: 2%;
+    gap: 1em;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    height: 10%;
+    color: var(--PurplePsi);
+    transition: 0.3s ease-in-out;
+}
+
+.botao:hover {
+    cursor: pointer;
+    color: var(--LightPurplePsi);
+}

@@ -1,0 +1,28 @@
+{
+  "sessao": [
+    {
+      "id": "1",
+      "idUsuario": "101",
+      "data": "2025-04-23",
+      "hora": "19:37:50",
+      "local": "Online",
+      "statusSessao": "CANCELADA"
+    },
+    {
+      "id": "2",
+      "idUsuario": "102",
+      "data": "2025-04-24",
+      "hora": "14:00:00",
+      "local": "Online",
+      "statusSessao": "CANCELADA"
+    },
+    {
+      "id": "4",
+      "idUsuario": "101",
+      "data": "2025-04-24",
+      "hora": "14:00:00",
+      "local": "Online",
+      "statusSessao": "CANCELADA"
+    }
+  ]
+}
