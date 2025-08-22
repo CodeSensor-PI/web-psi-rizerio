@@ -26,29 +26,34 @@ Além da apresentação institucional, o sistema oferece ao usuário a possibili
 
 ## Tecnologias Utilizadas
 
-- **JavaScript** 
-- **CSS** 
-- **ReactJS**
-- **NodeJS**
-- **Tailwind** 
-- **Integração via API REST com backend Java**
+- **Frontend**:
+  - JavaScript
+  - ReactJS
+  - Tailwind CSS
+  - CSS
 
-## Instalação e Execução
+- **Backend**:
+  - Node.js (funções específicas)
+  - Integração principal com backend Java usando o framework **Spring Boot**
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/CodeSensor-PI/web-psi-rizerio.git
+## Como rodar o projeto
+
+1. **Clone o repositório**
+   ```sh
+   git clone https://github.com/CodeSensor-PI/web-projeto.git
+   cd web-projeto
    ```
-2. Acesse a pasta do projeto:
-   ```bash
-   cd web-psi-rizerio
-   ```
-3. Instale as dependências (se houver):
-   ```bash
+
+2. **Instale as dependências do frontend**
+   ```sh
    npm install
    ```
-4. Execute o projeto localmente:
-   ```bash
+
+3. **Configure o backend**
+   - Certifique-se de ter o backend Java (Spring Boot) rodando e configurado conforme instruções do projeto backend.
+
+4. **Inicie a aplicação**
+   ```sh
    npm start
    ```
 
@@ -57,3 +62,5 @@ Além da apresentação institucional, o sistema oferece ao usuário a possibili
 Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
+
+**Agendfy** - Soluções inteligentes para o seu agendamento.
