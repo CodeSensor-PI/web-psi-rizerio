@@ -1,8 +1,3 @@
-# web-psy-rizerio
-Segue um README completo para o seu projeto, baseado nas informações fornecidas:
-
----
-
 # Web PSI Rizerio
 
 Repositório para Front-End do projeto PSI Rizerio
@@ -54,10 +49,6 @@ Além da apresentação institucional, o sistema oferece ao usuário a possibili
    ```bash
    npm start
    ```
-   
-## Contribuição
-
-Contribuições são bem-vindas! Para contribuir, abra uma issue ou envie um pull request com suas sugestões ou melhorias.
 
 ## Licença
 
