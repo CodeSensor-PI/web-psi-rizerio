@@ -26,10 +26,12 @@ Além da apresentação institucional, o sistema oferece ao usuário a possibili
 
 ## Tecnologias Utilizadas
 
-- **JavaScript** (80.4%)
-- **CSS** (18.9%)
-- **Outros** (0.7%)
-- Integração via API REST com backend Java
+- **JavaScript** 
+- **CSS** 
+- **ReactJS**
+- **Node**
+- **Tailwind** 
+- **Integração via API REST com backend Java**
 
 ## Instalação e Execução
 
