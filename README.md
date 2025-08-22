@@ -29,7 +29,7 @@ Além da apresentação institucional, o sistema oferece ao usuário a possibili
 - **JavaScript** 
 - **CSS** 
 - **ReactJS**
-- **Node**
+- **NodeJS**
 - **Tailwind** 
 - **Integração via API REST com backend Java**
 
