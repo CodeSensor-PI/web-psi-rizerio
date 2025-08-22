@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+.container_notFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--LightWhitePsi);
+    color: #333;
+}
+
+.title {
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--LightPurplePsi);
+    margin-bottom: 1rem;
+}
+
+.message {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.link {
+    padding: 0.75rem 2rem;
+    background: #3182ce;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.link:hover {
+    background: #2b6cb0;
+}
