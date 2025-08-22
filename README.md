@@ -54,8 +54,7 @@ Além da apresentação institucional, o sistema oferece ao usuário a possibili
    ```bash
    npm start
    ```
-   Ou abra o arquivo `index.html` diretamente no navegador.
-
+   
 ## Contribuição
 
 Contribuições são bem-vindas! Para contribuir, abra uma issue ou envie um pull request com suas sugestões ou melhorias.
@@ -65,5 +64,3 @@ Contribuições são bem-vindas! Para contribuir, abra uma issue ou envie um pul
 Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
-
-Se desejar que alguma seção seja ajustada ou incluir mais detalhes (ex: instruções do backend, prints, contatos), só avisar!
