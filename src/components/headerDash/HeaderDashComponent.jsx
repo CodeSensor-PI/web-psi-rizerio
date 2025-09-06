@@ -4,6 +4,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoArrowBack } from "react-icons/io5";
 
 function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
+
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();

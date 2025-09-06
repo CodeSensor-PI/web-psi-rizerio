@@ -48,16 +48,16 @@ const Contato = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} />
+            <HeaderDash showSettingsIcon={false} telaAtual={'contato'} />
             <form onSubmit={salvarInformacoes} className={styles.contato}>
                 <StepComponent stepAtual={3} />
-                <MainComponent stepAtual={3} showBackItem={true}>
+                <MainComponent stepAtual={3} showBackItem={true} tituloPagina="Quem é seu Contato de Emergência?">
                     <div className={styles.inputs_content_contato}>
                         <Input
                             name="nomeEmergencia"
                             value={nomeEmergencia}
-                            width="w-[40%]"
-                            label="Nome do contato de emergência"
+                            width="w-[100%]"
+                            label="Nome do contato"
                             type="text"
                             onChange={(e) => setNomeEmergencia(e.target.value)}
                             placeholder="Digite o nome"
@@ -66,8 +66,8 @@ const Contato = () => {
                         <Input
                             name="contatoEmergencia"
                             value={contatoEmergencia}
-                            width="w-[40%]"
-                            label="Contato de emergência"
+                            width="w-[100%]"
+                            label="Número do contato"
                             type="tel"
                             onChange={handleTelefoneChange}
                             placeholder="(00)00000-0000"
