@@ -86,7 +86,7 @@
 
    .dataHora{
        display: flex;
-       gap: 0em;
+       gap: 1em;
        width: 100%;
        flex-wrap: wrap;
    }

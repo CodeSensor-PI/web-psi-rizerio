@@ -1,6 +1,6 @@
 import styles from './botao.module.css'
 
-function Botao({ texto, onClick, disabled, style, width, height, backgroundColor, color, hoverTextColor, hoverBackgroundColor }) {
+function Botao({ texto, onClick, disabled, style, height, backgroundColor, color, hoverTextColor, hoverBackgroundColor }) {
     return (
         <div className={styles.botoes}>
             <button
@@ -9,7 +9,6 @@ function Botao({ texto, onClick, disabled, style, width, height, backgroundColor
                 disabled={disabled}
                 style={{
                     ...style,
-                    width: width,
                     height: height,
                     backgroundColor: color,
                 }}

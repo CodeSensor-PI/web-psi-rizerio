@@ -37,7 +37,7 @@ const Agendamento = ({ agendamento, onCancelar }) => {
                 )}
                 {agendamento.statusSessao === "PENDENTE" && (
                     <>
-                        <span className={styles.pendente}>Agendado</span>
+                        <span className={styles.pendente}>Agendamento Solicitado</span>
                         <button
                             type="button"
                             className={styles.cancelarButton}
