@@ -9,6 +9,19 @@ import { useNavigate } from 'react-router-dom';
 import { errorMessage } from "../../../../utils/alert";
 import { buscarEnderecoPorCep } from '../../../../provider/api';
 import Loading from '../../../../components/loading/Loading';
+import { useEffect } from 'react';
+
+function useIsMobile(breakpoint = 1100) {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= breakpoint);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [breakpoint]);
+
+    return isMobile;
+}
 
 const Localidade = () => {
 
@@ -22,6 +35,7 @@ const Localidade = () => {
     const [complemento, setComplemento] = useState('')
     const [erro, setErro] = useState('')
     const navigate = useNavigate()
+    const isMobile = useIsMobile();
 
     const handleCepChange = (e) => {
         const value = e.target.value.replace(/\D/g, '');
@@ -88,85 +102,97 @@ const Localidade = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} />
+            <HeaderDash showSettingsIcon={false} telaAtual={'localidade'} />
             {loading ? (
                 <Loading />
             ) :
                 <form onSubmit={salvarInformacoes} className={styles.localidade}>
                     <StepComponent stepAtual={2} />
-                    <MainComponent stepAtual={2} showBackItem={true}>
+                    <MainComponent stepAtual={2} showBackItem={true} tituloPagina="Onde você mora?">
                         <div className={styles.inputs_content_localidade}>
-                            <Input
-                                name="cep"
-                                value={cep}
-                                width="w-[15%]"
-                                label="CEP"
-                                type="text"
-                                onChange={handleCepChange}
-                                onBlur={handleBuscarEndereco}
-                                placeholder="00000-000"
-                                required={true}
-                            />
-                            <Input
-                                name="logradouro"
-                                value={logradouro}
-                                width="w-[35%]"
-                                label="Logradouro"
-                                type="text"
-                                onChange={(e) => setLogradouro(e.target.value)}
-                                placeholder="Rua, Avenida, Estrada"
-                                required={true}
-
-                            />
-                            <Input
-                                name="bairro"
-                                value={bairro}
-                                width="w-[20%]"
-                                label="Bairro"
-                                type="text"
-                                onChange={(e) => setBairro(e.target.value)}
-                                placeholder="Insira seu bairro"
-                                required={true}
-                            />
-                            <Input
-                                name="cidade"
-                                value={cidade}
-                                width="w-[23%]"
-                                label="Cidade"
-                                type="text"
-                                onChange={(e) => setCidade(e.target.value)}
-                                placeholder="Insira sua cidade"
-                                required={true}
-                            />
-                            <Input
-                                name="estado"
-                                value={estado}
-                                width="w-[20%]"
-                                label="Estado"
-                                type="text"
-                                onChange={(e) => setEstado(e.target.value)}
-                                placeholder="Insira seu estado"
-                                required={true}
-                            />
-                            <Input
-                                name="numero"
-                                width="w-[25%]"
-                                label="Número"
-                                type="text"
-                                onChange={(e) => setNumero(e.target.value)}
-                                placeholder="Insira o número"
-                                max="5"
-                                required={true}
-                            />
-                            <Input
-                                name="complemento"
-                                width="w-[30%]"
-                                label="Complemento"
-                                type="text"
-                                onChange={(e) => setComplemento(e.target.value)}
-                                placeholder="Insira o complemento"
-                                required={false}
-                            />
+                            <div className={styles.input_group}>
+                                <Input
+                                    name="cep"
+                                    value={cep}
+                                    width={isMobile ? "w-[90%]" : "w-[35%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    height="h-[100%]"
+                                    label="CEP"
+                                    type="text"
+                                    onChange={handleCepChange}
+                                    onBlur={handleBuscarEndereco}
+                                    placeholder="00000-000"
+                                    required={true}
+                                />
+                                <Input
+                                    name="logradouro"
+                                    value={logradouro}
+                                    width={isMobile ? "w-[90%]" : "w-[60%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    height="h-[100%]"
+                                    label="Logradouro"
+                                    type="text"
+                                    onChange={(e) => setLogradouro(e.target.value)}
+                                    placeholder="Ex. Rua, Avenida, Estrada"
+                                    required={true}
+                                />
+                                
+                                <Input
+                                    name="cidade"
+                                    value={cidade}
+                                    width={isMobile ? "w-[90%]" : "w-[40%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    label="Cidade"
+                                    type="text"
+                                    onChange={(e) => setCidade(e.target.value)}
+                                    placeholder="Ex. São Paulo"
+                                    required={true}
+                                />
+                                
+                                <Input
+                                    name="bairro"
+                                    value={bairro}
+                                    width={isMobile ? "w-[90%]" : "w-[30%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    label="Bairro"
+                                    type="text"
+                                    onChange={(e) => setBairro(e.target.value)}
+                                    placeholder="Ex. Paulista"
+                                    required={true}
+                                />
+                                <Input
+                                    name="estado"
+                                    value={estado}
+                                    width={isMobile ? "w-[90%]" : "w-[20%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    label="Estado"
+                                    type="text"
+                                    onChange={(e) => setEstado(e.target.value)}
+                                    placeholder="Ex. SP"
+                                    required={true}
+                                />
+                                <Input
+                                    name="numero"
+                                    width={isMobile ? "w-[90%]" : "w-[20%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    label="Número"
+                                    type="text"
+                                    onChange={(e) => setNumero(e.target.value)}
+                                    placeholder="Ex. 123"
+                                    max="5"
+                                    required={true}
+                                />
+                                <Input
+                                    name="complemento"
+                                    width={isMobile ? "w-[90%]" : "w-[70%]"}
+                                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                                    label="Complemento"
+                                    type="text"
+                                    onChange={(e) => setComplemento(e.target.value)}
+                                    placeholder="Ex. Apto 123"
+                                    required={false}
+                                />
+                            </div>
                         </div>
                         {erro && <p className='text-red-500'>{erro}</p>}
                         <br />

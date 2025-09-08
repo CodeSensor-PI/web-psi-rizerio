@@ -47,3 +47,38 @@
     border: 4px solid var(--LightPurplePsi);
     border-radius: 24px;
 }
+
+
+@media (max-width: 900px) {
+  .box_inputs {
+    width: 95vw;
+    gap: 1.2em;
+  }
+  .inputs {
+    width: 90vw;
+    padding: 1em 0.5em;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.3rem;
+    padding: 0.5em 0;
+  }
+  .container {
+    padding-bottom: 1em;
+  }
+  .box_inputs {
+    width: 100vw;
+    gap: 1em;
+    padding: 0;
+  }
+  .inputs {
+    width: 98vw;
+    min-width: 0;
+    padding: 0.5em 0.2em;
+    border-radius: 16px;
+    font-size: 1rem;
+  }
+}
+

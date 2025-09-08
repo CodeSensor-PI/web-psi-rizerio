@@ -69,7 +69,7 @@ const LoginComponent = () => {
         </p>
 
         <div className={styles.title}>
-          <Titulo titulo="Bem vindo de Volta"></Titulo>
+          <Titulo titulo="Bem vindo!"></Titulo>
           <p>Entre para continuar</p>
         </div>
         <div className={styles.input}>
@@ -95,11 +95,8 @@ const LoginComponent = () => {
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
-          <span className={styles.frase}>
-            É necessário no mínimo 8 letras, 1 letra Maiúscula e 1 número
-          </span>
           <span className={styles.esqSenha}>Esqueceu a senha?</span>
-          <Botao texto="Entrar" width="30vw" onClick={logarUsuario} />
+          <Botao texto="Entrar" width="w-full" onClick={logarUsuario} />
         </div>
 
         <div className={styles.criarConta}>

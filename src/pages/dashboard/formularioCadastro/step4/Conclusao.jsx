@@ -104,18 +104,16 @@ const Conclusao = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} />
+            <HeaderDash showSettingsIcon={false} telaAtual={'conclusao'}/>
             <form onSubmit={salvarInformacoes} className={styles.conclusao}>
                 <StepComponent stepAtual={4} />
                 <MainComponent stepAtual={4} showBackItem={true}>
                     <div className={styles.inputs_content_conclusao}>
-                        <label className='font-bold' htmlFor="motivo_consulta">Explique o motivo da sua consulta</label>
+                        <label className='font-bold' htmlFor="motivo_consulta">Explique o motivo da(s) sua(s) consulta(s)</label>
                         <textarea required={true}
                             name="motivo_consulta"
                             value={motivoConsulta}
-                            onChange={(e) => setMotivoConsulta(e.target.value)}
-                        >
-
+                            onChange={(e) => setMotivoConsulta(e.target.value)}>
                         </textarea>
                     </div>
                     <div className={styles.div_botao}>

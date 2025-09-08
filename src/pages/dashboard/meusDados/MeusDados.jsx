@@ -286,9 +286,11 @@ const MeusDados = () => {
             <HeaderDash telaAtual="meus-dados" showSettingsIcon={true} showBackButton={true} />
             {loading && <Loading />}
             <section className={styles.container_meus_dados}>
-                <div className='flex flex-row items-center justify-around w-[80em]'>
+                <div className={styles.titulo_senha_row}>
                     <Titulo titulo="Meus Dados" />
-                    <button onClick={() => window.location.href = '/dashboard/alterar-senha'} className={styles.botao_senha}><FaLock /> Alterar Senha</button>
+                    <button onClick={() => window.location.href = '/dashboard/alterar-senha'} className={styles.botao_senha}>
+                        <FaLock /> Alterar Senha
+                    </button>
                 </div>
                 <div className={styles.box_infos}>
                     <figure className="flex flex-col items-center justify-center h-[15em] w-[10em] rounded-xl">

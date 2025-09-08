@@ -50,6 +50,7 @@ const AlterarSenha = () => {
             <InputComponent
               label={"Senha Atual:"}
               type="password"
+              width="w-[70%]"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               placeholder="Insira sua senha atual"
@@ -57,6 +58,7 @@ const AlterarSenha = () => {
             <InputComponent
               label={"Nova Senha:"}
               type="password"
+              width="w-[70%]"
               value={novaSenha}
               onChange={(e) => setNovaSenha(e.target.value)}
               placeholder="Insira sua nova senha"
@@ -64,6 +66,7 @@ const AlterarSenha = () => {
             <InputComponent
               label={"Confirmar Senha:"}
               type="password"
+              width="w-[70%]"
               value={confirmarSenha}
               onChange={(e) => setConfirmarSenha(e.target.value)}
               placeholder="Confirme sua nova senha"
