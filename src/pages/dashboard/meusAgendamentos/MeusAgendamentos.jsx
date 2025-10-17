@@ -235,17 +235,8 @@ const MeusAgendamentos = () => {
         <Loading />
       ) : (
         <div className={styles.containerPrincipal}>
-          <div className={styles.header}>
-            <h1>Meus agendamentos</h1>
-            <button
-              className={styles.agendarButton}
-              type="button"
-              onClick={mostrarPopupAgendar}
-            >
-              + Novo Agendamento
-            </button>
-          </div>
           <div className={styles.agendamentosContainer}>
+            <h1>Meus agendamentos</h1>
             {agendamentos.length > 0 ? (
               agendamentos.map((agendamento, index) => (
                 <Agendamento
@@ -257,6 +248,27 @@ const MeusAgendamentos = () => {
             ) : (
               <p>Nenhum agendamento encontrado.</p>
             )}
+          </div>
+          <div className={styles.infoContainer}>
+            <div className={styles.novaConsultaBox}>
+              <div className={styles.textoConsulta}>
+                <h1>Já fazem X meses desde sua última consulta.</h1>
+                <h3><b>Deseja agendar novamente?</b></h3>
+              </div>
+              <button
+                className={styles.agendarButton}
+                type="button"
+                onClick={mostrarPopupAgendar}
+              >
+                Agendar Consulta
+              </button>
+            </div>
+            <div className={styles.calendarioBox}>
+              <h2>Consultas</h2>
+              <div className={styles.calendarioContainer}>
+
+              </div>
+            </div>
           </div>
         </div>
       )}
