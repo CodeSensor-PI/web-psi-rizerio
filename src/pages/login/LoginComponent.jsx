@@ -1,4 +1,4 @@
-import axios from "axios"; // Importando axios
+import axios from "axios";
 import Titulo from "../../components/titulo/TituloComponent";
 import styles from "../login/login.module.css";
 import React, { useState } from "react";
@@ -16,41 +16,47 @@ const LoginComponent = () => {
     }
 
     try {
-      const loginResponse = await axios.post("/pacientes/login", {
-        email: email,
-        senha: senha,
-      });
+      const loginResponse = await axios.post(
+        "/pacientes/login",
+        {
+          email: email,
+          senha: senha,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       const { token, nome, id } = loginResponse.data;
 
       if (token) {
         localStorage.setItem("authToken", token);
-        localStorage.setItem("idUsuario", id);
-        localStorage.setItem("nomeUsuario", nome);
-
-        responseMessage(`Bem vindo, ${nome}!`, "small");
-
-        const pacienteResponse = await axios.get(`/pacientes/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const { cpf } = pacienteResponse.data;
-
-        setTimeout(() => {
-          if (!cpf) {
-            window.location.href = "/dashboard/forms";
-          } else {
-            window.location.href = "/dashboard/meus-agendamentos";
-          }
-        }, 2300);
-      } else {
-        errorMessage("Token de acesso não recebido, tente novamente", "small");
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
       }
+
+      localStorage.setItem("idUsuario", id);
+      localStorage.setItem("nomeUsuario", nome);
+
+      responseMessage(`Bem vindo, ${nome}!`, "small");
+
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+      const pacienteResponse = await axios.get(`/pacientes/${id}`, {
+        headers,
+        withCredentials: true,
+      });
+
+      const { cpf } = pacienteResponse.data;
+
+      setTimeout(() => {
+        if (!cpf) {
+          window.location.href = "/dashboard/forms";
+        } else {
+          window.location.href = "/dashboard/meus-agendamentos";
+        }
+      }, 2300);
     } catch (error) {
       console.error("Erro ao autenticar usuário ou buscar dados:", error);
       errorMessage("Usuário não autorizado ou credenciais inválidas", "small");
@@ -64,7 +70,6 @@ const LoginComponent = () => {
           className={styles.voltarTexto}
           onClick={() => (window.location.href = "/")}
         >
-          {" "}
           Voltar
         </p>
 
