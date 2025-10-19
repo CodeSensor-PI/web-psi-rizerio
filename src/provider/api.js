@@ -1,4 +1,5 @@
 import axios from "axios";
+import baseApi from "./baseApi";
 
 /**
  * @param {string | number} idPaciente
@@ -6,10 +7,10 @@ import axios from "axios";
  */
 export const buscarPacientePorId = async (idPaciente) => {
   try {
-    const response = await axios.get(`/pacientes/${idPaciente}`);
+    const response = await baseApi.get(`/pacientes/${idPaciente}`);
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar paciente por ID:".error.message);
+    console.error("Erro ao buscar paciente por ID:", error.message);
     throw error;
   }
 };
@@ -22,7 +23,7 @@ export const buscarPacientePorId = async (idPaciente) => {
  */
 export const alterarSenha = async (id, senhaAtual, novaSenha) => {
   try {
-    const response = await axios.put(`/pacientes/${id}/alterar-senha`, {
+    const response = await baseApi.put(`/pacientes/${id}/alterar-senha`, {
       senha: senhaAtual,
       novaSenha,
     });
@@ -35,7 +36,7 @@ export const alterarSenha = async (id, senhaAtual, novaSenha) => {
 
 export const buscarEnderecoPorCep = async (cep) => {
   try {
-    const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+    const response = await baseApi.get(`https://viacep.com.br/ws/${cep}/json/`);
 
     if (response.data.erro) {
       throw new Error("CEP não encontrado.");
@@ -49,7 +50,7 @@ export const buscarEnderecoPorCep = async (cep) => {
 
 export const buscarPlanos = async () => {
   try {
-    const response = await axios.get(`/planos`);
+    const response = await baseApi.get(`/planos`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar os planos:", error.message);
@@ -63,7 +64,7 @@ export const buscarPlanos = async () => {
  */
 export const visualizarAgendamentos = async (idPaciente) => {
   try {
-    const response = await axios.get(`/sessoes/pacientes/${idPaciente}`);
+    const response = await baseApi.get(`/sessoes/pacientes/${idPaciente}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar os agendamentos:", error.message);
@@ -73,7 +74,7 @@ export const visualizarAgendamentos = async (idPaciente) => {
 
 export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
   try {
-    const response = await axios.put(
+    const response = await baseApi.put(
       `/sessoes/${idAgendamento}`,
       dadosAtualizados
     );
@@ -86,7 +87,7 @@ export const atualizarAgendamento = async (idAgendamento, dadosAtualizados) => {
 
 export const buscarAgendamentoPorId = async (idAgendamento) => {
   try {
-    const response = await axios.get(`/sessoes/${idAgendamento}`);
+    const response = await baseApi.get(`/sessoes/${idAgendamento}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar o agendamento por ID:", error.message);
@@ -100,7 +101,7 @@ export const buscarAgendamentoPorId = async (idAgendamento) => {
  */
 export const cadastrarEndereco = async (endereco) => {
   try {
-    const response = await axios.post(`/enderecos`, endereco);
+    const response = await baseApi.post(`/enderecos`, endereco);
     return response.data;
   } catch (error) {
     console.error("Erro ao criar endereço: ", error.message);
@@ -115,7 +116,7 @@ export const cadastrarEndereco = async (endereco) => {
  */
 export const buscarEnderecoPorCepNumero = async (cep, numero) => {
   try {
-    const response = await axios.get(
+    const response = await baseApi.get(
       `/enderecos/encontrarEndereco?cep=${cep}&numero=${numero}`
     );
     return response.data;
@@ -132,7 +133,7 @@ export const buscarEnderecoPorCepNumero = async (cep, numero) => {
  */
 export const cadastrarTelefone = async (telefone) => {
   try {
-    const response = await axios.post(`/telefones`, telefone);
+    const response = await baseApi.post(`/telefones`, telefone);
     response.data;
   } catch (error) {
     console.error("Erro ao cadastrar telefone: ", telefone);
@@ -146,7 +147,7 @@ export const cadastrarTelefone = async (telefone) => {
  */
 export const buscarTelefonePorIdPaciente = async (idPaciente) => {
   try {
-    const response = await axios.get(`/telefones/pacientes/${idPaciente}`);
+    const response = await baseApi.get(`/telefones/pacientes/${idPaciente}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar telefone por ID do paciente:".error.message);
@@ -161,7 +162,7 @@ export const buscarTelefonePorIdPaciente = async (idPaciente) => {
  */
 export const atualizarUsuario = async (idUsuario, dadosPessoais) => {
   try {
-    const response = await axios.put(
+    const response = await baseApi.put(
       `/pacientes/primeiroLogin/${idUsuario}`,
       dadosPessoais
     );
@@ -178,7 +179,7 @@ export const atualizarUsuario = async (idUsuario, dadosPessoais) => {
  */
 export const getPreferenciasPorId = async (idUsuario) => {
   try {
-    const response = await axios.get(`/preferencias/${idUsuario}`, {
+    const response = await baseApi.get(`/preferencias/${idUsuario}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -197,7 +198,7 @@ export const getPreferenciasPorId = async (idUsuario) => {
  */
 export const atualizarDados = async (idUsuario, dados) => {
   try {
-    const response = await axios.put(`/pacientes/${idUsuario}`, dados);
+    const response = await baseApi.put(`/pacientes/${idUsuario}`, dados);
     return response.data;
   } catch (error) {
     console.error("Erro ao atualizar o usuário:", error.message);
@@ -212,7 +213,7 @@ export const atualizarDados = async (idUsuario, dados) => {
  */
 export const atualizarEndereco = async (idEndereco, endereco) => {
   try {
-    const response = await axios.put(`/enderecos/${idEndereco}`, endereco);
+    const response = await baseApi.put(`/enderecos/${idEndereco}`, endereco);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -228,7 +229,7 @@ export const atualizarEndereco = async (idEndereco, endereco) => {
  */
 export const atualizarTelefone = async (idTelefone, telefone) => {
   try {
-    const response = await axios.put(`/telefones/${idTelefone}`, telefone);
+    const response = await baseApi.put(`/telefones/${idTelefone}`, telefone);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -239,9 +240,12 @@ export const atualizarTelefone = async (idTelefone, telefone) => {
 
 export const buscarHorariosDisponiveis = async (data, hora, hora2) => {
   try {
-    const response = await axios.get(`http://localhost:8080/sessoes/horarios`, {
-      params: { data, hora, hora2 },
-    });
+    const response = await baseApi.get(
+      `http://localhost:8080/sessoes/horarios`,
+      {
+        params: { data, hora, hora2 },
+      }
+    );
     console.log("Resposta do backend:", response.data);
     return response.data;
   } catch (error) {
@@ -252,7 +256,7 @@ export const buscarHorariosDisponiveis = async (data, hora, hora2) => {
 
 export const postAgendamento = async (agendamento) => {
   try {
-    const response = await axios.post("/sessoes", agendamento, {
+    const response = await baseApi.post("/sessoes", agendamento, {
       headers: {
         "Content-Type": "application/json",
       },
