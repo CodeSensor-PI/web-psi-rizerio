@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--LightWhitePsi);
+    color: #333;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    gap: 15%;
+    color: var(--LightPurplePsi);
+    margin-bottom: 1rem;
+}
+
+.botoesContainer {
+    display: flex;
+    gap: 1rem;
+}

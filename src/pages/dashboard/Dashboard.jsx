@@ -3,9 +3,9 @@ import DadosPessoais from "./formularioCadastro/step1/DadosPessoais"
 import Localidade from "./formularioCadastro/step2/Localidade"
 import Contato from "./formularioCadastro/step3/Contato"
 import Conclusao from "./formularioCadastro/step4/Conclusao"
-import MeusAgendamentos from "./meusAgendamentos/MeusAgendamentos"
 import MeusDados from "./meusDados/MeusDados"
 import { Route, Routes } from "react-router-dom"
+import MeusAgendamentos from "./meusAgendamentos/meusAgendamentos"
 
 const Dashboard = () => {
     return (
@@ -20,6 +20,7 @@ const Dashboard = () => {
                     <Route path="contato" element={<Contato />} />
                     <Route path="conclusao" element={<Conclusao />} />
                 </Route>
+                <Route path="desconectado" element={Desconectado} />
             </Routes>
         </div>
     )

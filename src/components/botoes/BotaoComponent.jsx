@@ -2,7 +2,7 @@ import styles from './botao.module.css'
 
 function Botao({ texto, onClick, disabled, style, height, backgroundColor, color, hoverTextColor, hoverBackgroundColor }) {
     return (
-        <div className={styles.botoes}>
+        
             <button
                 className={styles.button}
                 onClick={onClick}
@@ -22,7 +22,7 @@ function Botao({ texto, onClick, disabled, style, height, backgroundColor, color
                 }}>
                 {texto}
             </button>
-        </div>
+        
     );
 }
 
