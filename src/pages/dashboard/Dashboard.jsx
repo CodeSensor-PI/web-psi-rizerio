@@ -1,4 +1,4 @@
-import AlterarSenha from "./alterarSenha/AlterarSenha"
+import AlterarSenha from "./alterarSenha/alterarSenha"
 import DadosPessoais from "./formularioCadastro/step1/DadosPessoais"
 import Localidade from "./formularioCadastro/step2/Localidade"
 import Contato from "./formularioCadastro/step3/Contato"
