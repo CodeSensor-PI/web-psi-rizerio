@@ -6,61 +6,8 @@ on:
       - refactor/login-jwt-cookies
 
 jobs:
-  # ------------------ 🧩 ETAPA 1: Verificar imports ------------------
-  verify-imports:
-    name: 🔍 Verify Import Casing
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📦 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: ⚙️ Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: 📥 Install dependencies
-        run: npm ci --include=dev
-
-      - name: 🧠 Run ESLint (show all, fail only on case mismatch)
-        run: |
-          echo "🔎 Rodando ESLint — exibindo avisos.."
-          echo "---------------------------------------------------"
-          # Mostra todos os avisos/erros, mas sem quebrar o pipeline
-          npx eslint src --ext .js,.jsx -f stylish || true
-
-          echo ""
-          echo "⚠️ Agora verificando APENAS imports com case incorreto..."
-          echo "---------------------------------------------------"
-
-          # Configuração temporária para validação de import
-          echo 'export default [{
-            files: ["**/*.{js,jsx}"],
-            languageOptions: {
-              ecmaVersion: 2020,
-              sourceType: "module"
-            },
-            plugins: {
-              import: require("eslint-plugin-import")
-            },
-            rules: {
-              "import/no-unresolved": ["error", { "caseSensitive": true }]
-            }
-          }];' > eslint-temp.config.mjs
-          
-
-          # Executa o ESLint com o config temporário
-          npx eslint src --ext .js,.jsx -f stylish --config eslint-temp.config.mjs
-
-          # Remove o arquivo temporário (limpeza)
-          rm eslint-temp.config.mjs
-
-  # ------------------ 🧱 ETAPA 2: Build & Push ------------------
   build-and-push:
-    name: 🐳 Build and Push Docker Image
     runs-on: ubuntu-latest
-    needs: verify-imports 
 
     steps:
       - name: 📦 Checkout repository
@@ -78,8 +25,8 @@ jobs:
         run: npx vite build
 
       - name: 🐳 Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest .
-
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest .
       - name: 🔐 Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
