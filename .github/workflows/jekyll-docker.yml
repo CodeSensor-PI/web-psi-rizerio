@@ -19,7 +19,7 @@ jobs:
           node-version: "20"
 
       - name: 🔎 Run import-case checker
-        run: node .\scripts\check-import-casing.cjs
+        run: node ./scripts/check-import-casing.cjs
 
   build-and-push:
     name: 🧱 Build and Push React Docker Image
