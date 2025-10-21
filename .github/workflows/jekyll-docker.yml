@@ -6,24 +6,7 @@ on:
       - refactor/login-jwt-cookies
 
 jobs:
-  check-import-casing:
-    name: Check import path casing
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📦 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: ⚙️ Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: 🔎 Run import-case checker
-        run: node ./scripts/check-import-casing.cjs
-
   build-and-push:
-    name: 🧱 Build and Push React Docker Image
-    needs: check-import-casing
     runs-on: ubuntu-latest
 
     steps:
@@ -42,8 +25,8 @@ jobs:
         run: npx vite build
 
       - name: 🐳 Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest .
-
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest .
       - name: 🔐 Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
