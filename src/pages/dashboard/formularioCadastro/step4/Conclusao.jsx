@@ -5,9 +5,9 @@ import styles from './conclusao.module.css';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
 import { useState } from 'react'
 import { errorMessage, responseMessage } from "../../../../utils/alert";
-import { atualizarUsuario, buscarEnderecoPorCepNumero } from '../../../../provider/api';
+import { atualizarUsuario, buscarEnderecoPorCepNumero , buscarPacientePorId, cadastrarEndereco, cadastrarTelefone } from '../../../../provider/api';
 import { useNavigate } from 'react-router-dom'
-import { buscarPacientePorId, cadastrarEndereco, cadastrarTelefone } from '../../../../provider/api';
+
 
 const Conclusao = () => {
 
