@@ -1,22 +1,39 @@
 import styles from "./Desconectado.module.css";
 import Botao from "../../../components/botoes/BotaoComponent";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { IoIosHome } from "react-icons/io";
+import { FaUserCircle } from "react-icons/fa";  
+
 const Desconectado = () => {
+    const navigate = useNavigate();
+    
+
     return (
         <>
-            <div className={styles.container}>
-                <h1 className={styles.title}>Você foi desconectado</h1>
-                <div className={styles.botoesContainer}>
+            <main className={styles.container} aria-labelledby="desc-title">
+                <h1 id="desc-title" className={styles.title} role="alert" aria-live="polite">
+                    Você foi desconectado
+                </h1>
+
+                <div className={styles.botoesContainer} role="group" aria-label="Ações após desconexão">
                     <Botao
-                    texto="Home"
-                    onClick={() => window.location.href = "/"} />
+                        texto="Home"
+                        onClick={() => navigate("/")}
+                        ariaLabel="Ir para a página inicial" 
+                        icone={<IoIosHome />}
+                        
+                    /> 
 
                     <Botao
-                    texto="Login"
-                    onClick={() => window.location.href = "/login"} />
-
+                        texto="Login"
+                        onClick={() => navigate("/login")}
+                        ariaLabel="Ir para a tela de login"
+                        icone={<FaUserCircle />}
+                    />
                 </div>
-                
-            </div>
+
+            </main>
         </>
     );
 }

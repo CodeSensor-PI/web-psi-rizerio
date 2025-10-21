@@ -1,6 +1,7 @@
-
-
 .button {
+    display: inline-flex;
+    align-items: center; 
+    gap: 0.6rem; 
     background-color: var(--PurplePsi);
     border: 2px solid var(--PurplePsi);
     color: var(--TrueWhitePsi);
@@ -16,4 +17,25 @@
     background-color: var(--TrueWhitePsi);
     color: var(--PurplePsi);
     font-weight: bold;
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    line-height: 0;
+}
+
+
+.icon svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+.label {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
 }
