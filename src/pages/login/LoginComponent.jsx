@@ -3,8 +3,8 @@ import Titulo from "../../components/titulo/TituloComponent";
 import styles from "../login/login.module.css";
 import React, { useState } from "react";
 import Botao from "../../components/botoes/BotaoComponent";
-import { errorMessage, responseMessage } from "../../utils/alert.js";
-import { autenticateUser } from "../../utils/auth.js";
+import { errorMessage, responseMessage } from "../../utils/alert";
+import { autenticateUser } from "../../utils/auth";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");

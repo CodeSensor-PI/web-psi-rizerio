@@ -1,4 +1,4 @@
-import { errorMessage } from "./alert.js";
+import { errorMessage } from "./alert";
 
 export function autenticateUser(email, password) {
   // Verifica se os campos estão vazios
@@ -22,8 +22,6 @@ export function autenticateUser(email, password) {
   //   return false;
   // }
 
-
   // Se todas as validações passarem, retorna true
   return true;
-
 }
