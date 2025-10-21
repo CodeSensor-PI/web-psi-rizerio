@@ -1,4 +1,3 @@
-
 name: 🧱 Build and Push React Docker Image (Psi-Rizerio)
 
 on:
@@ -7,8 +6,35 @@ on:
       - refactor/login-jwt-cookies
 
 jobs:
-  build-and-push:
+  # ------------------ 🧩 ETAPA 1: Verificar imports ------------------
+  verify-imports:
+    name: 🔍 Verify Import Paths
     runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 📥 Install dependencies
+        run: npm ci --include=dev
+
+      - name: 🧠 Run ESLint import check
+        run: |
+          npx eslint src --ext .js,.jsx -f stylish \
+            --rule 'import/no-unresolved:error' \
+            --rule 'import/no-duplicates:error' \
+            --rule 'import/extensions:error'
+
+  # ------------------ 🧱 ETAPA 2: Build & Push ------------------
+  build-and-push:
+    name: 🐳 Build and Push Docker Image
+    runs-on: ubuntu-latest
+    needs: verify-imports   # 👈 só executa se o primeiro job passar
 
     steps:
       - name: 📦 Checkout repository
@@ -26,8 +52,8 @@ jobs:
         run: npx vite build
 
       - name: 🐳 Build Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest .
+
       - name: 🔐 Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
