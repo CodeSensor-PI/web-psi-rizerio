@@ -23,20 +23,23 @@ jobs:
       - name: 📥 Install dependencies
         run: npm ci --include=dev
 
-      - name: 🧠 Run ESLint checks (info + case validation)
+      - name: 🧠 Run ESLint (show all, fail only on case mismatch)
         run: |
-          echo "🔎 Rodando ESLint — exibindo avisos, mas sem falhar..."
+          echo "🔎 Rodando ESLint — exibindo avisos"
           echo "---------------------------------------------------"
-          # Roda o ESLint completo, mas ignora falhas (|| true)
+          # Roda o ESLint completo (para mostrar avisos, mas sem quebrar)
           npx eslint src --ext .js,.jsx -f stylish || true
 
           echo ""
           echo "⚠️ Agora verificando APENAS imports com case incorreto..."
           echo "---------------------------------------------------"
-          # Executa apenas a regra crítica (case mismatch)
+          # Verifica apenas case mismatch de imports
           npx eslint src --ext .js,.jsx -f stylish \
             --no-eslintrc \
+            --parser-options '{"ecmaVersion":2020,"sourceType":"module"}' \
+            --plugin import \
             --rule 'import/no-unresolved:["error",{"caseSensitive":true}]'
+
 
   # ------------------ 🧱 ETAPA 2: Build & Push ------------------
   build-and-push:
