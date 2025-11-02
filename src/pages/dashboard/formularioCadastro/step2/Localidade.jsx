@@ -4,12 +4,12 @@ import MainComponent from '../../../../components/main/MainComponent';
 import Input from '../../../../components/inputs/InputComponent';
 import StepComponent from '../../../../components/steps/StepComponent';
 import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent'
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { errorMessage } from "../../../../utils/alert";
 import { buscarEnderecoPorCep } from '../../../../provider/api';
 import Loading from '../../../../components/loading/Loading';
-import { useEffect } from 'react';
+
 
 function useIsMobile(breakpoint = 1100) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
