@@ -8,7 +8,7 @@ function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/desconectado";
   };
 
   const handleSettings = () => {

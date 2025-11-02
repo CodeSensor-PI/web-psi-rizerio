@@ -10,6 +10,7 @@ import Conclusao from "./pages/dashboard/formularioCadastro/step4/Conclusao";
 import MeusDados from "./pages/dashboard/meusDados/MeusDados";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./pages/errors/notFound/NotFound";
+import Desconectado from "./pages/dashboard/desconectado/Desconectado";
 
 export const routes = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
