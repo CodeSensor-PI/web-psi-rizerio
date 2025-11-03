@@ -1,13 +1,23 @@
-# ---------- Stage 1: Build ----------
-FROM node:20-slim AS build
+# --- Build stage ---
+FROM node:20 AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --include=dev
 COPY . .
 RUN npm run build
 
-# ---------- Stage 2: apenas os artefatos ----------
-FROM alpine:3.20
+# --- Runtime stage ---
+FROM node:20-slim
 WORKDIR /app
+
+# Instala servidor estático leve
+RUN npm install -g serve
+
+# Copia o build gerado
 COPY --from=build /app/dist ./dist
-CMD ["echo", "✅ Build completo! dist/ disponível para servir via NGINX externo"]
+
+# Copia env.js default (será override na EC2)
+COPY env.js ./dist/env.js
+
+EXPOSE 3000
+CMD ["serve", "-s", "dist", "-l", "3000"]
