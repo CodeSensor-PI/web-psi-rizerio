@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Botao from "../../components/botoes/BotaoComponent";
 import { errorMessage, responseMessage } from "../../utils/alert";
 import { autenticateUser } from "../../utils/auth";
+import { api } from "../../services/api";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const LoginComponent = () => {
     }
 
     try {
-      const loginResponse = await axios.post(
+      const loginResponse = await api.post(
         "/pacientes/login",
         {
           email: email,
@@ -43,7 +44,7 @@ const LoginComponent = () => {
 
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
-      const pacienteResponse = await axios.get(`/pacientes/${id}`, {
+      const pacienteResponse = await api.get(`/pacientes/${id}`, {
         headers,
         withCredentials: true,
       });
