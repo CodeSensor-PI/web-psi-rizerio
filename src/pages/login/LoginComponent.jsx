@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Botao from "../../components/botoes/BotaoComponent";
 import { errorMessage, responseMessage } from "../../utils/alert";
 import { autenticateUser } from "../../utils/auth";
-import { api } from "../../services/api";
+import { api } from "../../provider/api";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
