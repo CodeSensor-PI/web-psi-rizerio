@@ -31,21 +31,13 @@ const LoginComponent = () => {
         }
       );
 
-      const { token, nome, id } = loginResponse.data;
-
-      if (token) {
-        localStorage.setItem("authToken", token);
-      }
-
+      const { nome, id } = loginResponse.data;
       localStorage.setItem("idUsuario", id);
       localStorage.setItem("nomeUsuario", nome);
 
       responseMessage(`Bem vindo, ${nome}!`, "small");
 
-      const headers = token ? { Authorization: `Bearer ${token}` } : {};
-
       const pacienteResponse = await baseApi.get(`/pacientes/${id}`, {
-        headers,
         withCredentials: true,
       });
 
