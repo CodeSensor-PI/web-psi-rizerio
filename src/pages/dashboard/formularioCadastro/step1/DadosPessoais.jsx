@@ -7,12 +7,14 @@ import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { errorMessage } from "../../../../utils/alert";
+import { validarCpf } from '../../../../provider/api'
 
 const DadosPessoais = () => {
 
     const [data, setData] = useState('')
     const [telefone, setTelefone] = useState('')
     const [cpf, setCpf] = useState('')
+    const [cpfExistente, setCpfExistente] = useState(true)
     const navigate = useNavigate()
 
     const handleTelefoneChange = (e) => {
@@ -24,7 +26,7 @@ const DadosPessoais = () => {
         setTelefone(formattedValue);
     };
 
-    const handleCpfChange = (e) => {
+    const handleCpfChange = async (e) => {
         const value = e.target.value.replace(/\D/g, '');
         const limitedValue = value.slice(0, 11);
         const formattedValue = limitedValue
@@ -32,7 +34,23 @@ const DadosPessoais = () => {
             .replace(/(\d{3})(\d)/, '$1.$2')
             .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
         setCpf(formattedValue);
-
+        
+        if (limitedValue.length === 11) {
+            try {
+                const cpfEnviado = await validarCpf(limitedValue);
+                console.log('CPF existe?: ', cpfEnviado);
+                if (cpfEnviado === true || cpfEnviado.exists === true) {
+                    setCpfExistente(true);
+                } else {
+                    setCpfExistente(false);
+                }
+            } catch (error) {
+                console.error("Erro ao validar CPF:", error);
+                setCpfExistente(false);
+            }
+        } else {
+            setCpfExistente(false);
+        }
     };
 
     const handleKeyPress = (e) => {
@@ -106,12 +124,14 @@ const DadosPessoais = () => {
                             placeholder="000.000.000-00"
                             required={true}
                         />
+                        {cpfExistente && <p className='text-red-500 text-sm mt-1'>CPF já existente!</p>}
                     </div>
                     <div className={styles.div_botao}>
                         <BotaoSalvar
                             texto="Salvar e Continuar"
                             type="submit"
                             onSubmit={salvarInformacoes}
+                            disabled={cpfExistente}
                         />
                     </div>
                 </MainComponent>
