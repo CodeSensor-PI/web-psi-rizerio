@@ -36,7 +36,7 @@ export const alterarSenha = async (id, senhaAtual, novaSenha) => {
 
 export const buscarEnderecoPorCep = async (cep) => {
   try {
-    const response = await baseApi.get(`https://viacep.com.br/ws/${cep}/json/`);
+    const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
 
     if (response.data.erro) {
       throw new Error("CEP não encontrado.");
@@ -264,6 +264,29 @@ export const postAgendamento = async (agendamento) => {
     return response.data;
   } catch (error) {
     console.error("Erro ao criar agendamento:", error);
+    throw error;
+  }
+};
+
+/**
+ * Upload de foto do paciente para S3
+ * @param {string | number} id - ID do paciente
+ * @param {File} arquivo - Arquivo de imagem
+ * @returns {Promise}
+ */
+export const uploadFotoPaciente = async (id, arquivo) => {
+  try {
+    const formData = new FormData();
+    formData.append('imagem', arquivo);
+
+    const response = await baseApi.post(`/pacientes/${id}/imagem`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao fazer upload da foto:", error);
     throw error;
   }
 };

@@ -5,6 +5,7 @@ import { FaLock, FaPen } from "react-icons/fa6";
 import Input from "../../../components/inputs/InputComponent";
 import Accordion from "../../../components/accordion/AccordionComponent";
 import Loading from "../../../components/loading/Loading";
+import ModalCropImagem from "../../../components/modalCropImagem/ModalCropImagem";
 import { useState, useEffect } from "react";
 import {
   atualizarDados,
@@ -16,6 +17,7 @@ import {
   cadastrarEndereco,
   atualizarEndereco,
   atualizarTelefone,
+  uploadFotoPaciente,
 } from "../../../provider/api";
 import { FaSave } from "react-icons/fa";
 import {
@@ -46,6 +48,9 @@ const MeusDados = () => {
   const [estado, setEstado] = useState("");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
+  const [fotoSelecionada, setFotoSelecionada] = useState(null);
+  const [showModalCrop, setShowModalCrop] = useState(false);
+  const [imagemParaCrop, setImagemParaCrop] = useState(null);
 
   const diasSemanaMap = {
     SEGUNDA: "segunda",
@@ -270,6 +275,9 @@ const MeusDados = () => {
       setDiaConsultas(diasSemanaMap[preferencias?.diaSemana] || "");
       setHorarioConsultas(preferencias?.horario || "");
       setMotivoConsulta(responseEndereco?.motivoConsulta || "");
+      
+      // Carregar imagem do usuário
+      setImagem(responseEndereco?.urlImagem || null);
     } catch (error) {
       console.error("Erro ao buscar dados do paciente:", error);
     } finally {
@@ -320,8 +328,53 @@ const MeusDados = () => {
   const handleImagemChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImagem(URL.createObjectURL(file));
+      // Validar tipo de arquivo
+      if (!file.type.startsWith('image/')) {
+        errorMessage('Por favor, selecione um arquivo de imagem válido.');
+        return;
+      }
+      
+      // Validar tamanho (máximo 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        errorMessage('A imagem deve ter no máximo 5MB.');
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImagemParaCrop(reader.result);
+        setShowModalCrop(true);
+      };
+      reader.readAsDataURL(file);
     }
+  };
+
+  const handleSalvarImagemCortada = async (imagemCortada) => {
+    try {
+      setLoading(true);
+      setShowModalCrop(false);
+      
+      const idUsuario = localStorage.getItem("idUsuario");
+      const response = await uploadFotoPaciente(idUsuario, imagemCortada);
+      
+      // Atualizar preview da imagem
+      setImagem(response.urlImagem || URL.createObjectURL(imagemCortada));
+      setFotoSelecionada(imagemCortada);
+      
+      responseMessage('Foto atualizada com sucesso!');
+    } catch (error) {
+      errorMessage('Erro ao fazer upload da foto. Tente novamente.');
+      console.error('Erro no upload:', error);
+    } finally {
+      setLoading(false);
+      setImagemParaCrop(null);
+    }
+  };
+
+  const handleCancelarCrop = () => {
+    setShowModalCrop(false);
+    setImagemParaCrop(null);
+    setFotoSelecionada(null);
   };
 
   return (
@@ -597,6 +650,14 @@ const MeusDados = () => {
           {editing ? <FaSave /> : <FaPen />} {editing ? "Salvar" : "Editar"}{" "}
         </button>
       </section>
+      
+      {showModalCrop && imagemParaCrop && (
+        <ModalCropImagem
+          imagemOriginal={imagemParaCrop}
+          onSalvar={handleSalvarImagemCortada}
+          onCancelar={handleCancelarCrop}
+        />
+      )}
     </>
   );
 };
