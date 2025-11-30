@@ -7,7 +7,8 @@ function BotaoSalvar(props) {
             onClick={props.onClick}
             width={props.width}
             backgroundColor={props.backgroundColor}
-            type={props.type}>
+            type={props.type}
+            disabled={props.disabled}>
             <FaSave /> {props.texto}
         </button>
 
