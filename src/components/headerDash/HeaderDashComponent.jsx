@@ -5,8 +5,8 @@ import { IoArrowBack } from "react-icons/io5";
 import ProfileMenu from "../profileMenu/ProfileMenu";
 import EditarFotoModal from "../editarFotoModal/EditarFotoModal";
 import { useState, useEffect } from "react";
-import { buscarPacientePorId, uploadFotoPaciente } from "../../provider/api";
-import { errorMessage, responseMessage } from "../../utils/alert";
+import { buscarPacientePorId, uploadFotoPaciente, logout } from "../../provider/api";
+import { errorMessage, responseMessage, confirmAction } from "../../utils/alert";
 
 function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
   const [imagem, setImagem] = useState(null);
@@ -61,11 +61,23 @@ function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
   };
 
   const handleSair = async () => {
-    const result = await errorMessage("Deseja realmente sair?");
-    if (result) {
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = "/login";
+    const result = await confirmAction(
+      "Deseja realmente sair?",
+      "",
+      "Sim, sair",
+      "Cancelar"
+    );
+
+    if (result.isConfirmed) {
+      try {
+        await logout();
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = "/login";
+      } catch (error) {
+        console.error("Erro ao fazer logout:", error);
+        errorMessage("Erro ao realizar logout. Tente novamente.");
+      }
     }
   };
 

@@ -290,3 +290,17 @@ export const uploadFotoPaciente = async (id, arquivo) => {
     throw error;
   }
 };
+
+/**
+ * Realiza logout do usuário removendo o cookie JWT
+ * @returns {Promise}
+ */
+export const logout = async () => {
+  try {
+    const response = await baseApi.post('/auth/logout');
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao fazer logout:", error);
+    throw error;
+  }
+};
