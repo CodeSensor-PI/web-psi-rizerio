@@ -2,9 +2,12 @@ import styles from "./meusDados.module.css";
 import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
 import Titulo from "../../../components/titulo/TituloComponent";
 import { FaLock, FaPen } from "react-icons/fa6";
-import Input from "../../../components/inputs/InputComponent";
-import Accordion from "../../../components/accordion/AccordionComponent";
 import Loading from "../../../components/loading/Loading";
+import DadosPessoaisCard from "./components/DadosPessoaisCard";
+import EnderecoCard from "./components/EnderecoCard";
+import ContatoCard from "./components/ContatoCard";
+import ConsultaCard from "./components/ConsultaCard";
+import TabMenu from "./components/TabMenu";
 import { useState, useEffect } from "react";
 import {
   atualizarDados,
@@ -25,7 +28,6 @@ import {
 } from "../../../utils/alert";
 
 const MeusDados = () => {
-  const [imagem, setImagem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [editing, isEditing] = useState(false);
   const [nome, setNome] = useState("");
@@ -46,6 +48,7 @@ const MeusDados = () => {
   const [estado, setEstado] = useState("");
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
+  const [activeTab, setActiveTab] = useState('dados-pessoais');
 
   const diasSemanaMap = {
     SEGUNDA: "segunda",
@@ -317,18 +320,11 @@ const MeusDados = () => {
     }
   };
 
-  const handleImagemChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImagem(URL.createObjectURL(file));
-    }
-  };
-
   return (
     <>
       <HeaderDash
         telaAtual="meus-dados"
-        showSettingsIcon={true}
+        showSettingsIcon={false}
         showBackButton={true}
       />
       {loading && <Loading />}
@@ -343,253 +339,73 @@ const MeusDados = () => {
           </button>
         </div>
         <div className={styles.box_infos}>
-          <figure className="flex flex-col items-center justify-center h-[15em] w-[10em] rounded-xl">
-            <img
-              className="rounded-xl"
-              src={imagem || "https://placehold.co/300x300"}
-              alt="Foto de perfil paciente"
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            />
-            <label className="text-[#643BA1] cursor-pointer mt-2">
-              Upload
-              <input
-                type="file"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={handleImagemChange}
-              />
-            </label>
-            <span>image</span>
-          </figure>
           <div className={styles.box_inputs_dados}>
-            <Accordion
-              texto="Dados Pessoais"
-              background="#C5A8FA"
-              className="flex flex-wrap"
-            >
-              <Input
-                label="Nome:"
-                name="nome"
-                type="text"
-                value={nome}
-                width="w-[20em]"
-                onChange={(e) => setNome(e.target.value)}
-                placeholder="Nome completo"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                label="Email:"
-                name="email"
-                type="email"
-                value={email}
-                width="w-[23em]"
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="email@email.com"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                label="Data de Nascimento:"
-                name="data_nascimento"
-                type="date"
-                width="w-[12em]"
-                value={dataNasc}
-                onChange={(e) => setDataNasc(e.target.value)}
-                fontSize="0.8rem"
-                disabled={true}
-              />
-              <Input
-                label="CPF:"
-                name="cpf"
-                type="text"
-                width="w-[12em]"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-                placeholder="000.000.000-00"
-                fontSize="0.8rem"
-                disabled={true}
-              />
-            </Accordion>
-            <Accordion
-              texto="Endereço"
-              background="#C5A8FA"
-              className="flex flex-wrap"
-            >
-              <Input
-                name="cep"
-                value={cep}
-                width="w-[8em]"
-                label="CEP"
-                type="text"
-                onChange={(e) => setCep(handleCepChange(e.target.value))}
-                onBlur={handleBuscarEndereco}
-                placeholder="00000-000"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                name="logradouro"
-                value={logradouro}
-                width="w-[20em]"
-                label="Logradouro"
-                type="text"
-                onChange={(e) => setLogradouro(e.target.value)}
-                placeholder="Rua, Avenida, Estrada"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                name="bairro"
-                value={bairro}
-                width="w-[20em]"
-                label="Bairro"
-                type="text"
-                onChange={(e) => setBairro(e.target.value)}
-                placeholder="Insira seu bairro"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                name="cidade"
-                value={cidade}
-                width="w-[15em]"
-                label="Cidade"
-                type="text"
-                onChange={(e) => setCidade(e.target.value)}
-                placeholder="Insira sua cidade"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                name="estado"
-                value={estado}
-                width="w-[12em]"
-                label="Estado"
-                type="text"
-                onChange={handleEstadoChange}
-                placeholder="Insira seu estado"
-                fontSize="0.8rem"
-                className="my-2"
-                disabled={!editing}
-              />
-              <Input
-                name="numero"
-                width="w-[11em]"
-                label="Número"
-                value={numero}
-                type="text"
-                onChange={(e) => setNumero(e.target.value)}
-                placeholder="Insira o número"
-                max="5"
-                fontSize="0.8rem"
-                className="my-2"
-                disabled={!editing}
-              />
-              <Input
-                name="complemento"
-                width="w-[15em]"
-                label="Complemento"
-                value={complemento}
-                type="text"
-                onChange={(e) => setComplemento(e.target.value)}
-                placeholder="Insira o complemento"
-                fontSize="0.8rem"
-                className="my-20"
-                disabled={!editing}
-              />
-            </Accordion>
-            <Accordion
-              texto="Contato"
-              background="#C5A8FA"
-              className="flex flex-wrap"
-            >
-              <Input
-                label="Telefone:"
-                name="telefone"
-                type="tel"
-                width="w-[12em]"
-                value={telefone}
-                onChange={handleTelefoneChange}
-                onKeyUp={handleKeyPress}
-                placeholder="(00) 00000-0000"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                label="Nome do contato de emergência:"
-                name="nome_contato_emergencia"
-                type="text"
-                width="w-[20em]"
-                value={nomeContatoEmergencia}
-                onChange={(e) => setNomeContatoEmergencia(e.target.value)}
-                placeholder="Contato de emergência"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-              <Input
-                label="Telefone de emergência:"
-                name="telefone_contato_emergencia"
-                type="tel"
-                width="w-[12em]"
-                value={telefoneContatoEmergencia}
-                onChange={handleTelefoneEmergenciaChange}
-                onKeyUp={handleKeyPress}
-                placeholder="(00) 00000-0000"
-                fontSize="0.8rem"
-                disabled={!editing}
-              />
-            </Accordion>
-            <Accordion
-              texto="Consulta"
-              background="#C5A8FA"
-              className="flex flex-wrap"
-            >
-              <div className="flex flex-wrap gap-2.5 w-max">
-                <div className="flex flex-col gap-2.5 w-[20em] h-17">
-                  <label className="font-bold text-[0.8rem]">
-                    Dia consultas:
-                  </label>
-                  <select
-                    className="border-3 rounded-[20px] border-[#C5A8FA] h-[85%]"
-                    name="dia_consultas"
-                    value={diaConsultas}
-                    disabled={true}
-                    onChange={(e) => setDiaConsultas(e.target.value)}
-                  >
-                    <option value="segunda">Segunda-Feira</option>
-                    <option value="terca">Terça-Feira</option>
-                    <option value="quarta">Quarta-Feira</option>
-                    <option value="quinta">Quinta-Feira</option>
-                    <option value="sexta">Sexta-Feira</option>
-                  </select>
-                </div>
-                <Input
-                  label="Horário consultas:"
-                  name="horario_consultas"
-                  placeholder="00:00"
-                  type="text"
-                  value={horarioConsultas}
-                  width="w-[10em]"
-                  onChange={(e) => setHorarioConsultas(e.target.value)}
-                  fontSize="0.8rem"
-                  disabled={true}
+            <div className={styles.tab_menu_container}>
+              <TabMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+            </div>
+            
+            <div className={styles.content_container}>
+              {activeTab === 'dados-pessoais' && (
+                <DadosPessoaisCard
+                  nome={nome}
+                  setNome={setNome}
+                  email={email}
+                  setEmail={setEmail}
+                  dataNasc={dataNasc}
+                  setDataNasc={setDataNasc}
+                  cpf={cpf}
+                  setCpf={setCpf}
+                  editing={editing}
                 />
-              </div>
-              <div className="flex flex-col gap-2.5 w-120">
-                <label className="font-bold text-[0.8rem]">
-                  Motivo de consulta
-                </label>
-                <textarea
-                  name="motivo_consulta"
-                  value={motivoConsulta}
-                  style={{ padding: "0.4em" }}
-                  className="border-3 rounded-[20px] border-[#C5A8FA] min-h-20 resize-y max-w-[30em] h-[5em] overflow-auto"
-                  onChange={(e) => setMotivoConsulta(e.target.value)}
-                  disabled={true}
-                ></textarea>
-              </div>
-            </Accordion>
+              )}
+              
+              {activeTab === 'endereco' && (
+                <EnderecoCard
+                  cep={cep}
+                  setCep={setCep}
+                  logradouro={logradouro}
+                  setLogradouro={setLogradouro}
+                  bairro={bairro}
+                  setBairro={setBairro}
+                  cidade={cidade}
+                  setCidade={setCidade}
+                  estado={estado}
+                  setEstado={setEstado}
+                  numero={numero}
+                  setNumero={setNumero}
+                  complemento={complemento}
+                  setComplemento={setComplemento}
+                  handleCepChange={handleCepChange}
+                  handleBuscarEndereco={handleBuscarEndereco}
+                  handleEstadoChange={handleEstadoChange}
+                  editing={editing}
+                />
+              )}
+              
+              {activeTab === 'contato' && (
+                <ContatoCard
+                  telefone={telefone}
+                  handleTelefoneChange={handleTelefoneChange}
+                  nomeContatoEmergencia={nomeContatoEmergencia}
+                  setNomeContatoEmergencia={setNomeContatoEmergencia}
+                  telefoneContatoEmergencia={telefoneContatoEmergencia}
+                  handleTelefoneEmergenciaChange={handleTelefoneEmergenciaChange}
+                  handleKeyPress={handleKeyPress}
+                  editing={editing}
+                />
+              )}
+              
+              {activeTab === 'consulta' && (
+                <ConsultaCard
+                  diaConsultas={diaConsultas}
+                  setDiaConsultas={setDiaConsultas}
+                  horarioConsultas={horarioConsultas}
+                  setHorarioConsultas={setHorarioConsultas}
+                  motivoConsulta={motivoConsulta}
+                  setMotivoConsulta={setMotivoConsulta}
+                />
+              )}
+            </div>
           </div>
         </div>
         <button onClick={handleEdit} className={styles.botao_editar}>

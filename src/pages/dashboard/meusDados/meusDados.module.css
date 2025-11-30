@@ -121,10 +121,25 @@
 
 .box_inputs_dados {
     display: flex;
-    gap: 3%;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0;
     width: 70vw;
     overflow-x: auto;
+}
+
+.tab_menu_container {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--WhitePsi);
+    padding: 12px 0;
+    margin-bottom: 0;
+}
+
+.content_container {
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 8px;
 }
 
 .titulo_senha_row {

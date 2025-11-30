@@ -1,0 +1,148 @@
+.profileMenuContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.profileButton {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #643BA1;
+  background: white;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.profileButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(100, 59, 161, 0.3);
+}
+
+.profileButton:active {
+  transform: scale(0.98);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.defaultIcon {
+  font-size: 28px;
+  color: #643BA1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 998;
+  background: transparent;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 999;
+  animation: slideDown 0.2s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.menuItem:hover {
+  background-color: #F5F0FF;
+}
+
+.menuItem:active {
+  background-color: #E8DDFA;
+}
+
+.menuIcon {
+  font-size: 18px;
+  color: #643BA1;
+  flex-shrink: 0;
+}
+
+.logout {
+  color: #dc3545;
+}
+
+.logout .menuIcon {
+  color: #dc3545;
+}
+
+.logout:hover {
+  background-color: #FFF5F5;
+}
+
+.divider {
+  height: 1px;
+  background-color: #E0E0E0;
+  margin: 4px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profileButton {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+
+  .defaultIcon {
+    font-size: 24px;
+  }
+
+  .dropdown {
+    min-width: 180px;
+  }
+
+  .menuItem {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .menuIcon {
+    font-size: 16px;
+  }
+}
