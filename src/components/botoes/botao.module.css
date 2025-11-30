@@ -5,11 +5,11 @@
     background-color: var(--PurplePsi);
     border: 2px solid var(--PurplePsi);
     color: var(--TrueWhitePsi);
-    width: max-content;
     height: fit-content;
     border-radius: 24px;
     padding: 0.5em 1em;
     transition: ease-in-out 0.3s;
+    justify-content: center;
 }
 
 .button:hover {
@@ -17,6 +17,9 @@
     background-color: var(--TrueWhitePsi);
     color: var(--PurplePsi);
     font-weight: bold;
+    & .label {
+        color: var(--PurplePsi);
+    }
 }
 
 .icon {
@@ -38,4 +41,10 @@
     display: inline-block;
     line-height: 1;
     vertical-align: middle;
+    color: var(--TrueWhitePsi);
+}
+
+.label:hover {
+    color: var(--PurplePsi);
+    font-weight: bold;
 }

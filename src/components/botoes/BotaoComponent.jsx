@@ -9,15 +9,17 @@ function Botao({ texto, onClick, disabled, style, height, width, backgroundColor
             style={{
                 ...style,
                 height: height,
-                backgroundColor: color,
+                width: width,
+                backgroundColor: backgroundColor,
+                color: color,
             }}
             onMouseEnter={(e) => {
-                e.target.style.backgroundColor = hoverBackgroundColor;
-                e.target.style.color = hoverTextColor;
+                if (hoverBackgroundColor) e.target.style.backgroundColor = hoverBackgroundColor;
+                if (hoverTextColor) e.target.style.color = hoverTextColor;
             }}
             onMouseLeave={(e) => {
-                e.target.style.backgroundColor = backgroundColor;
-                e.target.style.color = color
+                if (backgroundColor) e.target.style.backgroundColor = backgroundColor;
+                if (color) e.target.style.color = color;
             }}>
             {icone && <span className={styles.icon} aria-hidden="true">{icone}</span>}
             <span className={styles.label}>{texto}</span>

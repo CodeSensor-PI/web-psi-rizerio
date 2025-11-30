@@ -304,3 +304,21 @@ export const logout = async () => {
     throw error;
   }
 };
+
+
+/**
+ * Valida se um CPF já existe na base de dados
+ * @param {string} cpf - CPF sem formatação (apenas números)
+ * @returns {Promise<boolean>}
+ */
+export const validarCpf = async (cpf) => {
+  try {
+    const response = await baseApi.get('/pacientes/cpf-existente', {
+      params: { cpf }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao validar CPF:", error);
+    throw error;
+  }
+};

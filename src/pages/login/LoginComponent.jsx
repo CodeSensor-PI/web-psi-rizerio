@@ -94,7 +94,9 @@ const LoginComponent = () => {
             />
           </div>
           <span className={styles.esqSenha}>Esqueceu a senha?</span>
-          <Botao texto="Entrar" width="w-full" onClick={logarUsuario} />
+          
+            <Botao texto="Entrar" width="70%" onClick={logarUsuario} />
+          
         </div>
 
         <div className={styles.criarConta}>
