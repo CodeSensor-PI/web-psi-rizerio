@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import LoginComponent from "./pages/login/LoginComponent";
 import AlterarSenha from "./pages/dashboard/alterarSenha/alterarSenha";
-import MeusAgendamentos from "./pages/dashboard/meusAgendamentos/MeusAgendamentos";
+import MeusAgendamentos from "./pages/dashboard/meusAgendamentos/meusAgendamentos";
 import DadosPessoais from "./pages/dashboard/formularioCadastro/step1/DadosPessoais";
 import Localidade from "./pages/dashboard/formularioCadastro/step2/Localidade";
 import Contato from "./pages/dashboard/formularioCadastro/step3/Contato";
@@ -11,10 +11,16 @@ import MeusDados from "./pages/dashboard/meusDados/MeusDados";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./pages/errors/notFound/NotFound";
 import Desconectado from "./pages/dashboard/desconectado/Desconectado";
+import EsqueceuSenha from "./pages/esqueceuSenha/EsqueceuSenha";
+import ConfirmarCodigo from "./pages/esqueceuSenha/confirmarCodigo/ConfirmarCodigo";
+import AlterarSenhaRecuperacao from "./pages/esqueceuSenha/alterarSenha/AlterarSenha";
 
 export const routes = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
   { path: "/login", element: <LoginComponent /> },
+  { path: "/esqueceu-senha", element: <EsqueceuSenha /> },
+  { path: "/esqueceu-senha/confirmar-codigo", element: <ConfirmarCodigo /> },
+  { path: "/esqueceu-senha/alterar-senha", element: <AlterarSenhaRecuperacao /> },
   {
     path: "/dashboard/alterar-senha",
     element: (

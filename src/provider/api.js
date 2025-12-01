@@ -322,3 +322,55 @@ export const validarCpf = async (cpf) => {
     throw error;
   }
 };
+
+/**
+ * Solicita código de recuperação de senha
+ * @param {string} email - Email do paciente
+ * @returns {Promise}
+ */
+export const solicitarRecuperacaoSenha = async (email) => {
+  try {
+    const response = await baseApi.post('/auth/recuperar-senha', { email });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao solicitar recuperação de senha:", error);
+    throw error;
+  }
+};
+
+/**
+ * Valida código de recuperação de senha
+ * @param {string} email - Email do paciente
+ * @param {string} codigo - Código de 6 dígitos
+ * @returns {Promise}
+ */
+export const validarCodigoRecuperacao = async (email, codigo) => {
+  try {
+    const response = await baseApi.post('/auth/validar-codigo', { email, codigo });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao validar código:", error);
+    throw error;
+  }
+};
+
+/**
+ * Redefine a senha do paciente
+ * @param {string} email - Email do paciente
+ * @param {string} codigo - Código de validação
+ * @param {string} novaSenha - Nova senha
+ * @returns {Promise}
+ */
+export const redefinirSenha = async (email, codigo, novaSenha) => {
+  try {
+    const response = await baseApi.post('/auth/redefinir-senha', { 
+      email, 
+      codigo, 
+      novaSenha 
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao redefinir senha:", error);
+    throw error;
+  }
+};

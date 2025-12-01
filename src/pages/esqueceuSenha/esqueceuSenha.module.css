@@ -1,10 +1,4 @@
-/* body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--PurplePsi);
-} */
-
-.login {
+.esqueceuSenha {
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -14,10 +8,6 @@
     padding: 0 4em;
     justify-content: end;
     align-items: center;
-
-    span {
-        font-size: 12px;
-    }
 }
 
 .container {
@@ -25,14 +15,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 90%;
+    height: auto;
     width: 40vw;
     gap: 1em;
-    padding: 5vw;
+    padding: 3em;
     background-color: #fff;
     border-radius: 0.5em;
 }
-
 
 .title {
     display: flex;
@@ -44,49 +33,16 @@
 }
 
 .title p {
-    font-size: 1em;
-}
-
-.subtitulo {
-    color: red;
-    font-size: 1em;
-}
-
-.input {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 16px;
-}
-
-
-.frase {
+    font-size: 0.95em;
     color: #697077;
 }
 
-.esqSenha {
+.form {
     display: flex;
-    align-items: right;
-    justify-content: right;
-    color: #001D6C;
-    cursor: pointer;
-}
-
-.criarConta {
-    display: flex;
-    align-items: right;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
-    color: #000;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-.criarConta span {
-    color: var(--PurplePsi);
-    font-weight: bold;
+    gap: 20px;
 }
 
 .div_input {
@@ -99,48 +55,18 @@
     font-weight: 300;
 }
 
-.inputWrapper {
-    position: relative;
-    width: 100%;
-}
-
 .div_input input {
     background-color: #F2F4F8;
     border-radius: 24px;
     height: 2.7em;
     width: 100%;
-    padding: 0 3em 0 1em;
-}
-
-.div_input input::-ms-reveal,
-.div_input input::-ms-clear {
-    display: none;
-}
-
-.eyeButton {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
+    padding: 0 1em;
     border: none;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #697077;
-    transition: color 0.3s ease;
+    outline: none;
 }
 
-.eyeButton:hover {
-    color: var(--PurplePsi);
-}
-
-.eyeButton:focus {
-    outline: 2px solid var(--PurplePsi);
-    outline-offset: 2px;
-    border-radius: 4px;
+.div_input input:focus {
+    border: 2px solid var(--PurplePsi);
 }
 
 .voltarTexto {
@@ -158,58 +84,50 @@
     color: var(--PinkPsi);
 }
 
+.botao {
+    margin-top: 0.5em;
+}
+
 @media (max-width: 1000px) {
-    .login {
+    .esqueceuSenha {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 4em;
         background-position: center;
     }
+    
     .container {
         width: 80vw;
-        min-width: 0;
-        height: auto;
-        padding: 1em 0.5em;
+        padding: 2em 1em;
         gap: 0.8em;
     }
+    
     .title p,
-    .subtitulo,
-    .frase,
     .voltarTexto {
         font-size: 0.95em;
     }
+    
     .div_input input {
-        height: 2.2em;
+        height: 2.5em;
         font-size: 1em;
-        padding: 0 0.7em;
-    }
-    .input {
-        gap: 10px;
-        padding: 5em;
-    }
-    .criarConta {
-        font-size: 0.95em;
-        text-wrap: wrap;
-        width: 80%;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .container {
         width: 90vw;
-        padding: 0.5em 0.2em;
-        gap: 0.5em;
+        padding: 1.5em 1em;
+        gap: 0.7em;
     }
+    
     .title p,
-    .subtitulo,
-    .frase,
     .voltarTexto {
         font-size: 0.9em;
     }
+    
     .div_input input {
-        height: 2em;
+        height: 2.3em;
         font-size: 0.95em;
-        padding: 0 0.5em;
     }
 }
