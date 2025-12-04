@@ -146,10 +146,21 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 80em;
     margin-bottom: 1em;
-    gap: 2em;
+    position: relative;
+}
+
+.titulo_wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.titulo_senha_row .botao_editar {
+    position: absolute;
+    right: 0;
 }
 
 @media (max-width: 1200px) {

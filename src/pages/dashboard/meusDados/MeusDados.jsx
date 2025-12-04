@@ -1,12 +1,13 @@
 import styles from "./meusDados.module.css";
 import HeaderDash from "../../../components/headerDash/HeaderDashComponent";
 import Titulo from "../../../components/titulo/TituloComponent";
-import { FaLock, FaPen } from "react-icons/fa6";
+import { FaPen } from "react-icons/fa6";
 import Loading from "../../../components/loading/Loading";
 import DadosPessoaisCard from "./components/DadosPessoaisCard";
 import EnderecoCard from "./components/EnderecoCard";
 import ContatoCard from "./components/ContatoCard";
 import ConsultaCard from "./components/ConsultaCard";
+import AlterarSenhaCard from "./components/AlterarSenhaCard";
 import TabMenu from "./components/TabMenu";
 import { useState, useEffect } from "react";
 import {
@@ -19,6 +20,7 @@ import {
   cadastrarEndereco,
   atualizarEndereco,
   atualizarTelefone,
+  alterarSenha,
 } from "../../../provider/api";
 import { FaSave } from "react-icons/fa";
 import {
@@ -49,6 +51,12 @@ const MeusDados = () => {
   const [numero, setNumero] = useState("");
   const [complemento, setComplemento] = useState("");
   const [activeTab, setActiveTab] = useState('dados-pessoais');
+  const [senha, setSenha] = useState("");
+  const [novaSenha, setNovaSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [showSenha, setShowSenha] = useState(false);
+  const [showNovaSenha, setShowNovaSenha] = useState(false);
+  const [showConfirmarSenha, setShowConfirmarSenha] = useState(false);
 
   const diasSemanaMap = {
     SEGUNDA: "segunda",
@@ -77,6 +85,46 @@ const MeusDados = () => {
       errorMessage(error.message || "CEP não encontrado.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSavePassword = async () => {
+    if (!senha || !novaSenha || !confirmarSenha) {
+      errorMessage("Todos os campos devem estar preenchidos!");
+      return;
+    }
+
+    if (novaSenha.length < 12) {
+      errorMessage("A senha deve ter no mínimo 12 caracteres.");
+      return;
+    }
+
+    if (novaSenha !== confirmarSenha) {
+      errorMessage("A nova senha e a confirmação não coincidem!");
+      return;
+    }
+
+    const result = await confirmEdit(
+      "Salvar alterações?",
+      "Deseja alterar a senha?",
+      "small"
+    );
+
+    if (result.isConfirmed) {
+      try {
+        setLoading(true);
+        const idDoUsuario = localStorage.getItem("idUsuario");
+        await alterarSenha(idDoUsuario, senha, novaSenha);
+        responseMessage("Senha alterada com sucesso!");
+        setSenha("");
+        setNovaSenha("");
+        setConfirmarSenha("");
+      } catch (error) {
+        errorMessage("Erro ao alterar a senha. Verifique a senha atual.");
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -330,13 +378,17 @@ const MeusDados = () => {
       {loading && <Loading />}
       <section className={styles.container_meus_dados}>
         <div className={styles.titulo_senha_row}>
-          <Titulo titulo="Meus Dados" />
-          <button
-            onClick={() => (window.location.href = "/dashboard/alterar-senha")}
-            className={styles.botao_senha}
-          >
-            <FaLock /> Alterar Senha
-          </button>
+          <div className={styles.titulo_wrapper}>
+            <Titulo titulo="Configurações" />
+          </div>
+          {activeTab !== 'alterar-senha' && activeTab !== 'consulta' && (
+            <button
+              onClick={() => isEditing(!editing)}
+              className={styles.botao_editar}
+            >
+              {editing ? "Cancelar" : <><FaPen /> Editar</>}
+            </button>
+          )}
         </div>
         <div className={styles.box_infos}>
           <div className={styles.box_inputs_dados}>
@@ -356,6 +408,7 @@ const MeusDados = () => {
                   cpf={cpf}
                   setCpf={setCpf}
                   editing={editing}
+                  handleEdit={handleEdit}
                 />
               )}
               
@@ -379,6 +432,7 @@ const MeusDados = () => {
                   handleBuscarEndereco={handleBuscarEndereco}
                   handleEstadoChange={handleEstadoChange}
                   editing={editing}
+                  handleEdit={handleEdit}
                 />
               )}
               
@@ -392,6 +446,7 @@ const MeusDados = () => {
                   handleTelefoneEmergenciaChange={handleTelefoneEmergenciaChange}
                   handleKeyPress={handleKeyPress}
                   editing={editing}
+                  handleEdit={handleEdit}
                 />
               )}
               
@@ -405,13 +460,27 @@ const MeusDados = () => {
                   setMotivoConsulta={setMotivoConsulta}
                 />
               )}
+
+              {activeTab === 'alterar-senha' && (
+                <AlterarSenhaCard
+                  senha={senha}
+                  setSenha={setSenha}
+                  novaSenha={novaSenha}
+                  setNovaSenha={setNovaSenha}
+                  confirmarSenha={confirmarSenha}
+                  setConfirmarSenha={setConfirmarSenha}
+                  showSenha={showSenha}
+                  setShowSenha={setShowSenha}
+                  showNovaSenha={showNovaSenha}
+                  setShowNovaSenha={setShowNovaSenha}
+                  showConfirmarSenha={showConfirmarSenha}
+                  setShowConfirmarSenha={setShowConfirmarSenha}
+                  handleSavePassword={handleSavePassword}
+                />
+              )}
             </div>
           </div>
         </div>
-        <button onClick={handleEdit} className={styles.botao_editar}>
-          {" "}
-          {editing ? <FaSave /> : <FaPen />} {editing ? "Salvar" : "Editar"}{" "}
-        </button>
       </section>
     </>
   );

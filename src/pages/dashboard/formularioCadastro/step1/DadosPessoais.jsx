@@ -87,7 +87,7 @@ const DadosPessoais = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} telaAtual={"dados-pessoais"} />
+            <HeaderDash showSettingsIcon={false} telaAtual={"dados-pessoais"} limitMenuOptions={true} />
             <form onSubmit={salvarInformacoes} className={styles.dados_pessoais}>
                 <StepComponent stepAtual={1} />
                 <MainComponent stepAtual={1} showBackItem={false}>

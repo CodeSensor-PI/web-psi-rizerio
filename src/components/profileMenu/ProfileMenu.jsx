@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaUserCircle, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import styles from './ProfileMenu.module.css';
 
-const ProfileMenu = ({ imagem, onEditarFoto, onConfiguracoes, onSair }) => {
+const ProfileMenu = ({ imagem, onEditarFoto, onConfiguracoes, onSair, showEditarFoto = true, showConfiguracoes = true }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -46,23 +46,27 @@ const ProfileMenu = ({ imagem, onEditarFoto, onConfiguracoes, onSair }) => {
         <>
           <div className={styles.overlay} onClick={() => setIsOpen(false)} />
           <div className={styles.dropdown}>
-            <button 
-              className={styles.menuItem} 
-              onClick={handleEditarFoto}
-            >
-              <FaUserCircle className={styles.menuIcon} />
-              <span>Editar Foto</span>
-            </button>
+            {showEditarFoto && (
+              <button 
+                className={styles.menuItem} 
+                onClick={handleEditarFoto}
+              >
+                <FaUserCircle className={styles.menuIcon} />
+                <span>Editar Foto</span>
+              </button>
+            )}
             
-            <button 
-              className={styles.menuItem} 
-              onClick={handleConfiguracoes}
-            >
-              <FaCog className={styles.menuIcon} />
-              <span>Configurações</span>
-            </button>
+            {showConfiguracoes && (
+              <button 
+                className={styles.menuItem} 
+                onClick={handleConfiguracoes}
+              >
+                <FaCog className={styles.menuIcon} />
+                <span>Configurações</span>
+              </button>
+            )}
             
-            <div className={styles.divider} />
+            {(showEditarFoto || showConfiguracoes) && <div className={styles.divider} />}
             
             <button 
               className={`${styles.menuItem} ${styles.logout}`} 

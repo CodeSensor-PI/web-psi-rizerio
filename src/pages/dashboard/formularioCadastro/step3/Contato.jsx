@@ -48,7 +48,7 @@ const Contato = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} telaAtual={'contato'} />
+            <HeaderDash showSettingsIcon={false} telaAtual={'contato'} limitMenuOptions={true} />
             <form onSubmit={salvarInformacoes} className={styles.contato}>
                 <StepComponent stepAtual={3} />
                 <MainComponent stepAtual={3} showBackItem={true} tituloPagina="Quem é seu Contato de Emergência?">

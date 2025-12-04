@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { buscarPacientePorId, uploadFotoPaciente, logout } from "../../provider/api";
 import { errorMessage, responseMessage, confirmAction } from "../../utils/alert";
 
-function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
+function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false, limitMenuOptions = false }) {
   const [imagem, setImagem] = useState(null);
   const [showEditarFotoModal, setShowEditarFotoModal] = useState(false);
 
@@ -118,6 +118,8 @@ function HeaderDash({telaAtual,  showSettingsIcon, showBackButton = false }) {
             onEditarFoto={() => setShowEditarFotoModal(true)}
             onConfiguracoes={handleSettings}
             onSair={handleSair}
+            showEditarFoto={!limitMenuOptions}
+            showConfiguracoes={!limitMenuOptions}
           />
         </div>
       </header>

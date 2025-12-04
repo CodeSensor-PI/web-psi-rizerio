@@ -7,6 +7,7 @@ const TabMenu = ({ activeTab, setActiveTab }) => {
     { id: 'endereco', label: 'Endereço' },
     { id: 'contato', label: 'Contato' },
     { id: 'consulta', label: 'Consulta' },
+    { id: 'alterar-senha', label: 'Alterar Senha' },
   ];
 
   return (

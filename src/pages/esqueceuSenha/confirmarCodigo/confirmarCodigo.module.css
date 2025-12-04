@@ -1,0 +1,179 @@
+.confirmarCodigo {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: var(--PurplePsi) url('../../../assets/images/ICONE-06.png') no-repeat center center fixed;
+    background-position: 10% 50%;
+    background-size: cover;
+    padding: 0 4em;
+    justify-content: end;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    width: 40vw;
+    gap: 1.5em;
+    padding: 3em;
+    background-color: #fff;
+    border-radius: 0.5em;
+}
+
+.title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.title p {
+    font-size: 0.95em;
+    color: #697077;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+}
+
+.codigoInputs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.digitInput {
+    width: 50px;
+    height: 50px;
+    background-color: #F2F4F8;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.digitInput:focus {
+    border-color: var(--PurplePsi);
+    background-color: #fff;
+}
+
+.digitInput:not(:placeholder-shown) {
+    background-color: #fff;
+    border-color: var(--PurplePsi);
+}
+
+.voltarTexto {
+    align-self: center;
+    text-align: center;
+    color: var(--PurplePsi);
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.voltarTexto:hover {
+    color: var(--PinkPsi);
+}
+
+.botao {
+    margin-top: 0.5em;
+    width: 100%;
+}
+
+.naoRecebi {
+    color: var(--PurplePsi);
+    font-size: 0.9em;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.naoRecebi:hover {
+    color: var(--PinkPsi);
+    text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+    .confirmarCodigo {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4em;
+        background-position: center;
+    }
+    
+    .container {
+        width: 80vw;
+        padding: 2em 1em;
+        gap: 1.2em;
+    }
+    
+    .title p,
+    .voltarTexto,
+    .naoRecebi {
+        font-size: 0.9em;
+    }
+    
+    .digitInput {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+    }
+
+    .codigoInputs {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90vw;
+        padding: 1.5em 1em;
+        gap: 1em;
+    }
+    
+    .title p,
+    .voltarTexto,
+    .naoRecebi {
+        font-size: 0.85em;
+    }
+    
+    .digitInput {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+
+    .codigoInputs {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .digitInput {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+    }
+
+    .codigoInputs {
+        gap: 6px;
+    }
+}

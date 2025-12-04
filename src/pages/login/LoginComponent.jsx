@@ -6,10 +6,12 @@ import Botao from "../../components/botoes/BotaoComponent";
 import { errorMessage, responseMessage } from "../../utils/alert";
 import { autenticateUser } from "../../utils/auth";
 import baseApi from "../../provider/baseApi";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [showSenha, setShowSenha] = useState(false);
 
   async function logarUsuario() {
     if (!autenticateUser(email, senha)) {
@@ -102,18 +104,35 @@ const LoginComponent = () => {
           </div>
           <div className={styles.div_input}>
             <label htmlFor="senha">Senha</label>
-            <input
-              type="password"
-              name="senha"
-              id="input_senha"
-              placeholder="Senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-            />
+            <div className={styles.inputWrapper}>
+              <input
+                type={showSenha ? "text" : "password"}
+                name="senha"
+                id="input_senha"
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                className={styles.eyeButton}
+                onClick={() => setShowSenha(!showSenha)}
+                aria-label={showSenha ? "Ocultar senha" : "Mostrar senha"}
+              >
+                {showSenha ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              </button>
+            </div>
           </div>
-          <span className={styles.esqSenha}>Esqueceu a senha?</span>
-
-          <Botao texto="Entrar" width="70%" onClick={logarUsuario} />
+          <span 
+            className={styles.esqSenha}
+            onClick={() => window.location.href = "/esqueceu-senha"}
+          >
+            Esqueceu a senha?
+          </span>
+          
+            <Botao texto="Entrar" width="70%" onClick={logarUsuario} />
+          
         </div>
 
         <div className={styles.criarConta}>

@@ -1,5 +1,7 @@
 import React from 'react';
 import Input from '../../../../components/inputs/InputComponent';
+import { FaSave } from 'react-icons/fa';
+import styles from './Cards.module.css';
 
 const ContatoCard = ({
   telefone,
@@ -9,7 +11,8 @@ const ContatoCard = ({
   telefoneContatoEmergencia,
   handleTelefoneEmergenciaChange,
   handleKeyPress,
-  editing
+  editing,
+  handleEdit
 }) => {
   return (
     <div className="w-full">
@@ -50,6 +53,13 @@ const ContatoCard = ({
           disabled={!editing}
         />
       </div>
+      {editing && (
+        <div className={styles.buttonContainer}>
+          <button onClick={handleEdit} className={styles.botaoSalvar}>
+            <FaSave /> Salvar
+          </button>
+        </div>
+      )}
     </div>
   );
 };

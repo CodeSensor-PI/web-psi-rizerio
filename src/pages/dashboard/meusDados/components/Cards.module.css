@@ -1,0 +1,39 @@
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.botaoSalvar {
+    background-color: #8a6ed4;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.botaoSalvar:hover {
+    background-color: #7459b8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(138, 110, 212, 0.3);
+}
+
+.botaoSalvar:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .botaoSalvar {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+}
