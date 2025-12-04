@@ -51,11 +51,29 @@ const LoginComponent = () => {
         }
       }, 2300);
     } catch (error) {
+      if (error.response) {
+        const status = error.response.status;
+        if (status === 429) {
+          const retryAfter = error.response.data.ttl
+            ? error.response.data.ttl
+            : null;
+          const waitMsg = retryAfter
+            ? `Tente novamente em ${retryAfter} segundos.`
+            : "Tente novamente mais tarde.";
+
+          errorMessage(`Muitas tentativas. ${waitMsg}`, "small");
+        } else {
+          errorMessage(
+            "Usuário não autorizado ou credenciais inválidas",
+            "small"
+          );
+        }
+      } else {
+        errorMessage("Erro de conexão. Tente novamente.", "small");
+      }
       console.error("Erro ao autenticar usuário ou buscar dados:", error);
-      errorMessage("Usuário não autorizado ou credenciais inválidas", "small");
     }
   }
-
   return (
     <div className={styles.login}>
       <div className={styles.container}>
@@ -94,9 +112,8 @@ const LoginComponent = () => {
             />
           </div>
           <span className={styles.esqSenha}>Esqueceu a senha?</span>
-          
-            <Botao texto="Entrar" width="70%" onClick={logarUsuario} />
-          
+
+          <Botao texto="Entrar" width="70%" onClick={logarUsuario} />
         </div>
 
         <div className={styles.criarConta}>
