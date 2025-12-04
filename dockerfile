@@ -20,7 +20,7 @@ COPY env.js /usr/share/nginx/html/env.js
 
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 81
 
 CMD sh -c "envsubst '\$SERVER_ID' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.rendered && \
            mv /etc/nginx/conf.d/default.rendered /etc/nginx/conf.d/default.conf && \
