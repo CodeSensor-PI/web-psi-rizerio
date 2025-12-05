@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LandingPage from "./pages/landingPage/LandingPage";
 import LoginComponent from "./pages/login/LoginComponent";
 import AlterarSenha from "./pages/dashboard/alterarSenha/alterarSenha";
-import MeusAgendamentos from "./pages/dashboard/meusAgendamentos/meusAgendamentos";
+import MeusAgendamentos from "./pages/dashboard/meusAgendamentos/MeusAgendamentos";
 import DadosPessoais from "./pages/dashboard/formularioCadastro/step1/DadosPessoais";
 import Localidade from "./pages/dashboard/formularioCadastro/step2/Localidade";
 import Contato from "./pages/dashboard/formularioCadastro/step3/Contato";
@@ -20,7 +20,10 @@ export const routes = createBrowserRouter([
   { path: "/login", element: <LoginComponent /> },
   { path: "/esqueceu-senha", element: <EsqueceuSenha /> },
   { path: "/esqueceu-senha/confirmar-codigo", element: <ConfirmarCodigo /> },
-  { path: "/esqueceu-senha/alterar-senha", element: <AlterarSenhaRecuperacao /> },
+  {
+    path: "/esqueceu-senha/alterar-senha",
+    element: <AlterarSenhaRecuperacao />,
+  },
   {
     path: "/dashboard/alterar-senha",
     element: (
