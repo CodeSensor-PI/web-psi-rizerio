@@ -83,15 +83,6 @@ const EditarFotoModal = ({
                 onChange={handleSelecionarFoto}
               />
             </label>
-
-            {imagem && (
-              <button 
-                className={`${styles.button} ${styles.deleteButton}`}
-                onClick={handleExcluir}
-              >
-                Excluir Foto
-              </button>
-            )}
           </div>
 
           <div className={styles.info}>
