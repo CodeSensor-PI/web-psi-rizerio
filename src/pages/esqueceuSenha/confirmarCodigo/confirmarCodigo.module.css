@@ -6,7 +6,7 @@
     background-position: 10% 50%;
     background-size: cover;
     padding: 0 4em;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -16,11 +16,13 @@
     align-items: center;
     flex-direction: column;
     height: auto;
-    width: 40vw;
+    width: min(500px, 90vw);
+    max-width: 500px;
     gap: 1.5em;
     padding: 3em;
     background-color: #fff;
     border-radius: 0.5em;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .title {

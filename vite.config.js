@@ -42,6 +42,18 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/preferencias/, "/preferencias"),
+      },
+      "/password-reset": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/password-reset/, "/password-reset"),
+      },
+      "/auth": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/auth/, "/auth"),
       }
     },
   },

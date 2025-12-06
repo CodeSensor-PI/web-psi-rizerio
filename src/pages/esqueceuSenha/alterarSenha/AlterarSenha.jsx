@@ -97,7 +97,7 @@ const AlterarSenha = () => {
     setLoading(true);
 
     try {
-      await redefinirSenha(email, codigo, novaSenha);
+      await redefinirSenha(codigo, novaSenha);
       responseMessage("Senha alterada com sucesso!");
       
       setTimeout(() => {
@@ -105,7 +105,28 @@ const AlterarSenha = () => {
       }, 2300);
     } catch (error) {
       console.error("Erro ao redefinir senha:", error);
-      errorMessage("Erro ao alterar senha. Tente novamente.");
+      
+      // Tratamento de erros mais específico
+      if (error.response) {
+        const status = error.response.status;
+        const data = error.response.data;
+        
+        if (status === 400) {
+          if (data.includes && data.includes("Código inválido")) {
+            errorMessage("Código inválido ou expirado. Solicite um novo código.");
+          } else if (data.includes && data.includes("expirado")) {
+            errorMessage("Código expirado. Solicite um novo código.");
+          } else {
+            errorMessage("Código inválido. Verifique o código e tente novamente.");
+          }
+        } else if (status === 404) {
+          errorMessage("Código não encontrado. Solicite um novo código.");
+        } else {
+          errorMessage("Erro no servidor. Tente novamente em alguns momentos.");
+        }
+      } else {
+        errorMessage("Erro de conexão. Verifique sua internet e tente novamente.");
+      }
     } finally {
       setLoading(false);
     }
