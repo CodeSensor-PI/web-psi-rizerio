@@ -330,7 +330,7 @@ export const validarCpf = async (cpf) => {
  */
 export const solicitarRecuperacaoSenha = async (email) => {
   try {
-    const response = await baseApi.post('/auth/recuperar-senha', { email });
+    const response = await baseApi.post(`/password-reset/paciente/request?email=${encodeURIComponent(email)}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao solicitar recuperação de senha:", error);
@@ -339,35 +339,42 @@ export const solicitarRecuperacaoSenha = async (email) => {
 };
 
 /**
- * Valida código de recuperação de senha
- * @param {string} email - Email do paciente
+ * Valida código de recuperação de senha no backend
+ * @param {string} email - Email do paciente (não usado, mas mantido para compatibilidade)
  * @param {string} codigo - Código de 6 dígitos
  * @returns {Promise}
  */
 export const validarCodigoRecuperacao = async (email, codigo) => {
   try {
-    const response = await baseApi.post('/auth/validar-codigo', { email, codigo });
+    // Validação básica do formato do código
+    if (!codigo || codigo.length !== 6 || !/^\d{6}$/.test(codigo)) {
+      throw new Error("Código deve ter exatamente 6 dígitos numéricos");
+    }
+    
+    // Validação real no backend
+    const response = await baseApi.post(`/password-reset/paciente/validate?codigo=${encodeURIComponent(codigo)}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao validar código:", error);
+    
+    // Tratar erros específicos do backend
+    if (error.response && error.response.status === 400) {
+      throw new Error("Código inválido ou expirado");
+    }
+    
     throw error;
   }
 };
 
 /**
  * Redefine a senha do paciente
- * @param {string} email - Email do paciente
  * @param {string} codigo - Código de validação
  * @param {string} novaSenha - Nova senha
  * @returns {Promise}
  */
-export const redefinirSenha = async (email, codigo, novaSenha) => {
+export const redefinirSenha = async (codigo, novaSenha) => {
   try {
-    const response = await baseApi.post('/auth/redefinir-senha', { 
-      email, 
-      codigo, 
-      novaSenha 
-    });
+    const response = await baseApi.post(`/password-reset/paciente/confirm?codigo=${encodeURIComponent(codigo)}&novaSenha=${encodeURIComponent(novaSenha)}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao redefinir senha:", error);
