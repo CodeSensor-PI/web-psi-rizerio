@@ -64,18 +64,29 @@ const ConfirmarCodigo = () => {
       return;
     }
 
+    if (!/^\d{6}$/.test(codigoCompleto)) {
+      errorMessage("O código deve conter apenas números.");
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await validarCodigoRecuperacao(email, codigoCompleto);
+      // Validação real no backend
+      const resultado = await validarCodigoRecuperacao(email, codigoCompleto);
       responseMessage("Código validado com sucesso!");
       
       setTimeout(() => {
         window.location.href = `/esqueceu-senha/alterar-senha?email=${encodeURIComponent(email)}&codigo=${codigoCompleto}`;
-      }, 2300);
+      }, 2000);
     } catch (error) {
       console.error("Erro ao validar código:", error);
-      errorMessage("Código inválido ou expirado. Tente novamente.");
+      
+      if (error.message === "Código inválido ou expirado") {
+        errorMessage("Código inválido ou expirado. Solicite um novo código.");
+      } else {
+        errorMessage("Erro na validação. Verifique o código e tente novamente.");
+      }
     } finally {
       setLoading(false);
     }

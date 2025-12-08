@@ -14,7 +14,8 @@ const DadosPessoais = () => {
     const [data, setData] = useState('')
     const [telefone, setTelefone] = useState('')
     const [cpf, setCpf] = useState('')
-    const [cpfExistente, setCpfExistente] = useState(true)
+    const [cpfExistente, setCpfExistente] = useState(false)
+    const [cpfVerificado, setCpfVerificado] = useState(false)
     const navigate = useNavigate()
 
     const handleTelefoneChange = (e) => {
@@ -39,6 +40,7 @@ const DadosPessoais = () => {
             try {
                 const cpfEnviado = await validarCpf(limitedValue);
                 console.log('CPF existe?: ', cpfEnviado);
+                setCpfVerificado(true);
                 if (cpfEnviado === true || cpfEnviado.exists === true) {
                     setCpfExistente(true);
                 } else {
@@ -46,9 +48,11 @@ const DadosPessoais = () => {
                 }
             } catch (error) {
                 console.error("Erro ao validar CPF:", error);
+                setCpfVerificado(true);
                 setCpfExistente(false);
             }
         } else {
+            setCpfVerificado(false);
             setCpfExistente(false);
         }
     };
@@ -124,7 +128,7 @@ const DadosPessoais = () => {
                             placeholder="000.000.000-00"
                             required={true}
                         />
-                        {cpfExistente && <p className='text-red-500 text-sm mt-1'>CPF já existente!</p>}
+                        {cpfVerificado && cpfExistente && <p className='text-red-500 text-sm mt-1'>CPF já existente!</p>}
                     </div>
                     <div className={styles.div_botao}>
                         <BotaoSalvar
