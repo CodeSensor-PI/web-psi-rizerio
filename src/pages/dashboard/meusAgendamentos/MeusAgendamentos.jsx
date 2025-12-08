@@ -250,25 +250,13 @@ const MeusAgendamentos = () => {
             )}
           </div>
           <div className={styles.infoContainer}>
-            <div className={styles.novaConsultaBox}>
-              <div className={styles.textoConsulta}>
-                <h1>Já fazem X meses desde sua última consulta.</h1>
-                <h3><b>Deseja agendar novamente?</b></h3>
-              </div>
-              <button
-                className={styles.agendarButton}
-                type="button"
-                onClick={mostrarPopupAgendar}
-              >
-                Agendar Consulta
-              </button>
-            </div>
-            <div className={styles.calendarioBox}>
-              <h2>Consultas</h2>
-              <div className={styles.calendarioContainer}>
-
-              </div>
-            </div>
+            <button
+              className={styles.agendarButton}
+              type="button"
+              onClick={mostrarPopupAgendar}
+            >
+              Agendar Consulta
+            </button>
           </div>
         </div>
       )}
