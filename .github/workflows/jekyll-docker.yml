@@ -67,8 +67,8 @@ jobs:
       - name: 🐳 Build Docker image (latest + incremental)
         run: |
           docker build \
-            -t ${{ secrets.DOCKER_USERNAME }}/web-projeto:latest \
-            -t ${{ secrets.DOCKER_USERNAME }}/web-projeto:${{ steps.tags.outputs.tag }} \
+            -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:${{ steps.tags.outputs.tag }} \
             .
 
       # -------------------------
@@ -76,8 +76,8 @@ jobs:
       # -------------------------
       - name: 🚀 Push Docker images to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/web-projeto:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/web-projeto:${{ steps.tags.outputs.tag }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/web-psi-rizerio:${{ steps.tags.outputs.tag }}
 
   deploy:
     runs-on: ubuntu-latest
