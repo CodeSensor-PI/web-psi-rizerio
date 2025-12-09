@@ -42,8 +42,187 @@
     align-items: center;
     gap: 1rem;
     background-color: var(--WhitePsi);
-    height: 70%;
+    height: auto;
+    max-height: 70vh;
+    overflow-y: auto;
     width: 60vw;
     border: 4px solid var(--LightPurplePsi);
     border-radius: 24px;
+    padding: 2em 1em;
 }
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70%;
+    gap: 0.5em;
+}
+
+.inputGroup label {
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.inputGroup input {
+    background-color: #F2F4F8;
+    border-radius: 24px;
+    height: 2.7em;
+    width: 100%;
+    padding: 0 3em 0 1em;
+    border: none;
+    outline: none;
+    font-size: 0.95em;
+}
+
+.inputGroup input:focus {
+    border: 2px solid var(--PurplePsi);
+}
+
+.inputGroup input::-ms-reveal,
+.inputGroup input::-ms-clear {
+    display: none;
+}
+
+.eyeButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #697077;
+    transition: color 0.3s ease;
+}
+
+.eyeButton:hover {
+    color: var(--PurplePsi);
+}
+
+.eyeButton:focus {
+    outline: 2px solid var(--PurplePsi);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.matchText {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    width: 70%;
+}
+
+.passwordFeedback {
+    width: 70%;
+    margin-top: 8px;
+}
+
+.passwordMeter {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.meterFill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strengthText {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+}
+
+.requirementsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85em;
+}
+
+.requirementsList li {
+    padding: 4px 0;
+    transition: color 0.3s ease;
+}
+
+
+@media (max-width: 900px) {
+  .box_inputs {
+    width: 95vw;
+    gap: 1.2em;
+  }
+  .inputs {
+    width: 90vw;
+    padding: 1.5em 0.5em;
+    max-height: 65vh;
+  }
+  .inputGroup {
+    width: 85%;
+  }
+  .requirementsList {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.3rem;
+    padding: 0.5em 0;
+  }
+  .container {
+    padding-bottom: 1em;
+  }
+  .box_inputs {
+    width: 100vw;
+    gap: 1em;
+    padding: 0;
+  }
+  .inputs {
+    width: 98vw;
+    min-width: 0;
+    padding: 1em 0.5em;
+    border-radius: 16px;
+    font-size: 1rem;
+    max-height: 60vh;
+  }
+  .inputGroup {
+    width: 90%;
+  }
+  .inputGroup label {
+    font-size: 0.9em;
+  }
+  .inputGroup input {
+    height: 2.5em;
+    font-size: 0.9em;
+  }
+  .matchText,
+  .strengthText {
+    font-size: 0.85em;
+  }
+  .requirementsList {
+    font-size: 0.75em;
+  }
+  .passwordFeedback {
+    width: 90%;
+  }
+  .matchText {
+    width: 90%;
+  }
+}
+

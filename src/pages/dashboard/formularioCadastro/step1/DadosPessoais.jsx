@@ -7,12 +7,15 @@ import BotaoSalvar from '../../../../components/botaoSalvar/BotaoSalvarComponent
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { errorMessage } from "../../../../utils/alert";
+import { validarCpf } from '../../../../provider/api'
 
 const DadosPessoais = () => {
 
     const [data, setData] = useState('')
     const [telefone, setTelefone] = useState('')
     const [cpf, setCpf] = useState('')
+    const [cpfExistente, setCpfExistente] = useState(false)
+    const [cpfVerificado, setCpfVerificado] = useState(false)
     const navigate = useNavigate()
 
     const handleTelefoneChange = (e) => {
@@ -24,7 +27,7 @@ const DadosPessoais = () => {
         setTelefone(formattedValue);
     };
 
-    const handleCpfChange = (e) => {
+    const handleCpfChange = async (e) => {
         const value = e.target.value.replace(/\D/g, '');
         const limitedValue = value.slice(0, 11);
         const formattedValue = limitedValue
@@ -32,7 +35,26 @@ const DadosPessoais = () => {
             .replace(/(\d{3})(\d)/, '$1.$2')
             .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
         setCpf(formattedValue);
-
+        
+        if (limitedValue.length === 11) {
+            try {
+                const cpfEnviado = await validarCpf(limitedValue);
+                console.log('CPF existe?: ', cpfEnviado);
+                setCpfVerificado(true);
+                if (cpfEnviado === true || cpfEnviado.exists === true) {
+                    setCpfExistente(true);
+                } else {
+                    setCpfExistente(false);
+                }
+            } catch (error) {
+                console.error("Erro ao validar CPF:", error);
+                setCpfVerificado(true);
+                setCpfExistente(false);
+            }
+        } else {
+            setCpfVerificado(false);
+            setCpfExistente(false);
+        }
     };
 
     const handleKeyPress = (e) => {
@@ -58,7 +80,7 @@ const DadosPessoais = () => {
             dataNasc: data,
             cpf: cpfNumeros,
             ddd: ddd,
-            nomeContato: localStorage.getItem('nomeUsuario'), 
+            nomeContato: localStorage.getItem('nomeUsuario'),
             telefonePaciente: numero,
             tipo: "PESSOAL",
             fkPaciente: localStorage.getItem('idUsuario')
@@ -69,15 +91,15 @@ const DadosPessoais = () => {
 
     return (
         <>
-            <HeaderDash showSettingsIcon={false} />
+            <HeaderDash showSettingsIcon={false} telaAtual={"dados-pessoais"} limitMenuOptions={true} />
             <form onSubmit={salvarInformacoes} className={styles.dados_pessoais}>
                 <StepComponent stepAtual={1} />
                 <MainComponent stepAtual={1} showBackItem={false}>
                     <div className={styles.inputs_content_dados}>
                         <Input className="flex-col"
                             name="data"
-                            height="h-[50%]"
-                            label="Quando você nasceu"
+                            width="w-[100%]"
+                            label="Quando você nasceu?"
                             type="date"
                             onChange={(e) => setData(e.target.value)}
                             placeholder="DD/MM/AAAA"
@@ -86,8 +108,9 @@ const DadosPessoais = () => {
                         />
                         <Input className="flex-col"
                             name="telefone"
-                            label="Qual o seu telefone"
+                            label="Qual o seu telefone?"
                             type="tel"
+                            width="w-[100%]"
                             value={telefone}
                             onChange={handleTelefoneChange}
                             onKeyUp={handleKeyPress}
@@ -96,23 +119,27 @@ const DadosPessoais = () => {
                         />
                         <Input className="flex-col"
                             name="cpf"
-                            label="Qual o seu CPF"
+                            label="Qual o seu CPF?"
                             type="text"
+                            width="w-[100%]"
                             value={cpf}
                             onChange={handleCpfChange}
                             onKeyUp={handleKeyPress}
                             placeholder="000.000.000-00"
                             required={true}
                         />
+                        {cpfVerificado && cpfExistente && <p className='text-red-500 text-sm mt-1'>CPF já existente!</p>}
                     </div>
                     <div className={styles.div_botao}>
                         <BotaoSalvar
                             texto="Salvar e Continuar"
                             type="submit"
                             onSubmit={salvarInformacoes}
+                            disabled={cpfExistente}
                         />
                     </div>
                 </MainComponent>
+
             </form>
         </>
     )

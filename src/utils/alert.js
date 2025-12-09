@@ -46,4 +46,21 @@ export function confirmEdit(titulo, message, size = "small") {
   });
 }
 
+export function confirmAction(titulo, message, confirmText = "Confirmar", cancelText = "Cancelar", size = "small") {
+  return Swal.fire({
+    title: titulo,
+    text: message,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: confirmText,
+    cancelButtonText: cancelText,
+    customClass: {
+      popup: `swal-${size}`,
+      confirmButton: "btn_primario",
+      cancelButton: "btn_secundario",
+    },
+    backdrop: false,
+  });
+}
+
 

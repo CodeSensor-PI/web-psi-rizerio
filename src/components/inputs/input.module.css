@@ -3,7 +3,6 @@
 .input_container {
     display: flex;
     flex-direction: column;
-    height: 30%;
     gap: 10px;
 
 
@@ -11,9 +10,11 @@
         border: var(--LightPurplePsi) 3px solid;
         border-radius: 20px;
         background-color: var(--TrueWhitePsi);
-        height: 50%;
+        height: 2.8em;
+        min-height: 44px;
         width: 100%;
         padding-left: 0.7em;
+        font-size: 1.1rem;
     }
     
     label{
@@ -23,4 +24,69 @@
         width: 100%;
     }
 
+}
+
+.select_input {
+    border: var(--LightPurplePsi) 3px solid;
+    border-radius: 20px;
+    background-color: var(--TrueWhitePsi);
+    height: 2.8em;
+    min-height: 44px;
+    width: 100%;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    font-size: 1.1rem;
+}
+
+.textarea_input {
+    border: var(--LightPurplePsi) 3px solid;
+    border-radius: 20px;
+    background-color: var(--TrueWhitePsi);
+    width: 100%;
+    padding: 0.7em;
+    font-size: 1.1rem;
+    resize: vertical;
+    min-height: 8rem;
+}
+
+@media (max-width: 780px) {
+    .input_container {
+
+        input {
+            font-size: 0.9rem;
+        }
+
+        label {
+            font-size: 1rem;
+        }
+    }
+
+    .select_input {
+        font-size: 0.9rem;
+    }
+
+    .textarea_input {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .input_container {
+
+        input {
+            font-size: 0.8rem;
+        }
+
+        label {
+            font-size: 0.8rem;
+        }
+    }
+
+    .select_input {
+        font-size: 0.8rem;
+    }
+
+    .textarea_input {
+        font-size: 0.8rem;
+    }
 }

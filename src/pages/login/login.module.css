@@ -17,7 +17,6 @@
 
     span {
         font-size: 12px;
-        color: #001D6C;
     }
 }
 
@@ -31,6 +30,7 @@
     gap: 1em;
     padding: 5vw;
     background-color: #fff;
+    border-radius: 0.5em;
 }
 
 
@@ -55,7 +55,8 @@
 .input {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     gap: 16px;
 }
@@ -98,12 +99,48 @@
     font-weight: 300;
 }
 
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
 .div_input input {
     background-color: #F2F4F8;
     border-radius: 24px;
     height: 2.7em;
     width: 100%;
-    padding: 0 1em;
+    padding: 0 3em 0 1em;
+}
+
+.div_input input::-ms-reveal,
+.div_input input::-ms-clear {
+    display: none;
+}
+
+.eyeButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #697077;
+    transition: color 0.3s ease;
+}
+
+.eyeButton:hover {
+    color: var(--PurplePsi);
+}
+
+.eyeButton:focus {
+    outline: 2px solid var(--PurplePsi);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .voltarTexto {
@@ -119,4 +156,60 @@
 
 .voltarTexto:hover {
     color: var(--PinkPsi);
+}
+
+@media (max-width: 1000px) {
+    .login {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4em;
+        background-position: center;
+    }
+    .container {
+        width: 80vw;
+        min-width: 0;
+        height: auto;
+        padding: 1em 0.5em;
+        gap: 0.8em;
+    }
+    .title p,
+    .subtitulo,
+    .frase,
+    .voltarTexto {
+        font-size: 0.95em;
+    }
+    .div_input input {
+        height: 2.2em;
+        font-size: 1em;
+        padding: 0 0.7em;
+    }
+    .input {
+        gap: 10px;
+        padding: 5em;
+    }
+    .criarConta {
+        font-size: 0.95em;
+        text-wrap: wrap;
+        width: 80%;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        width: 90vw;
+        padding: 0.5em 0.2em;
+        gap: 0.5em;
+    }
+    .title p,
+    .subtitulo,
+    .frase,
+    .voltarTexto {
+        font-size: 0.9em;
+    }
+    .div_input input {
+        height: 2em;
+        font-size: 0.95em;
+        padding: 0 0.5em;
+    }
 }

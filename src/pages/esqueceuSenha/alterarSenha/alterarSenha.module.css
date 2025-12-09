@@ -1,0 +1,233 @@
+.alterarSenha {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: var(--PurplePsi) url('../../../assets/images/ICONE-06.png') no-repeat center center fixed;
+    background-position: 10% 50%;
+    background-size: cover;
+    padding: 0 4em;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: min(500px, 90vw);
+    max-width: 500px;
+    gap: 1em;
+    padding: 3em;
+    background-color: #fff;
+    border-radius: 0.5em;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.title p {
+    font-size: 0.95em;
+    color: #697077;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.div_input {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    gap: 0.5em;
+    font-weight: 300;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.div_input input {
+    background-color: #F2F4F8;
+    border-radius: 24px;
+    height: 2.7em;
+    width: 100%;
+    padding: 0 3em 0 1em;
+    border: none;
+    outline: none;
+}
+
+.div_input input:focus {
+    border: 2px solid var(--PurplePsi);
+}
+
+.div_input input::-ms-reveal,
+.div_input input::-ms-clear {
+    display: none;
+}
+
+.eyeButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #697077;
+    transition: color 0.3s ease;
+}
+
+.eyeButton:hover {
+    color: var(--PurplePsi);
+}
+
+.eyeButton:focus {
+    outline: 2px solid var(--PurplePsi);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.voltarTexto {
+    align-self: center;
+    text-align: center;
+    color: var(--PurplePsi);
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.voltarTexto:hover {
+    color: var(--PinkPsi);
+}
+
+.botao {
+    margin-top: 0.5em;
+}
+
+.matchText {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.passwordFeedback {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.passwordMeter {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.meterFill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strengthText {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 12px;
+    text-transform: capitalize;
+}
+
+.requirementsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85em;
+}
+
+.requirementsList li {
+    padding: 4px 0;
+    transition: color 0.3s ease;
+}
+
+@media (max-width: 1000px) {
+    .alterarSenha {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4em;
+        background-position: center;
+    }
+    
+    .container {
+        width: 80vw;
+        max-height: 85vh;
+        padding: 2em 1em;
+        gap: 0.8em;
+    }
+    
+    .title p,
+    .voltarTexto {
+        font-size: 0.95em;
+    }
+    
+    .div_input input {
+        height: 2.5em;
+        font-size: 1em;
+    }
+
+    .requirementsList {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90vw;
+        max-height: 80vh;
+        padding: 1.5em 1em;
+        gap: 0.7em;
+    }
+    
+    .title p,
+    .voltarTexto {
+        font-size: 0.9em;
+    }
+    
+    .div_input input {
+        height: 2.3em;
+        font-size: 0.95em;
+    }
+
+    .requirementsList {
+        font-size: 0.75em;
+    }
+
+    .matchText,
+    .strengthText {
+        font-size: 0.85em;
+    }
+}

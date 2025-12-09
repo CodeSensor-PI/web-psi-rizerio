@@ -9,7 +9,7 @@ const stepBackRoutes = {
     4: '/dashboard/forms/contato',
 };
 
-function MainComponent({ children, showBackItem, stepAtual }) {
+function MainComponent({ children, showBackItem, stepAtual, tituloPagina }) {
     const navigate = useNavigate();
 
     const handleBackClick = () => {
@@ -36,7 +36,7 @@ function MainComponent({ children, showBackItem, stepAtual }) {
                 
             )}
             <div className={styles.inputs_content}>
-                <Titulo subtitulo="Conte sobre você" />
+                <Titulo subtitulo={tituloPagina || "Conte sobre você"} />
                 <div className={styles.inputs_box}>
                     {children}
                 </div>
